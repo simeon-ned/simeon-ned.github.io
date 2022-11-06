@@ -10,8 +10,7 @@ profile:
   image_circular: false # crops the image to make it circular
   address: >
     <p>Office 105/401 </p>
-    <p><a href='[#](https://innopolis.university/en/)'>Innopolis University</a></p>
-    <p>1, Universitetskaya Str., Innopolis, 420500, Russia</p>
+    <p>Innopolis University, 1, Universitetskaya Str., Innopolis, 420500, Russia</p>
 
 news: False  # includes a list of news items
 selected_papers: False # includes a list of papers marked as "selected={true}"
