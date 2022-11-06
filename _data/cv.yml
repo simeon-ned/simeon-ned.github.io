@@ -13,7 +13,7 @@
   contents:
     - title: PhD in Computer Science (Robotics track)
       institution: Innopolis University, Russia
-      year: present
+      year: now
       description:
         - Thesis on the optimization based discrete nonlinear control of mechanical systems in implicit form 
         # - Description 2.
@@ -49,7 +49,7 @@
   contents:
     - title: Lecturer 
       institution: Institute for Robotics and Computer Vision, Innopolis University
-      year: 2022 - present
+      year: 2022 - now
       # description:
       #   - Description 1.
       #   - Description 2.
@@ -64,13 +64,14 @@
     #   description:
     #     - Description 1.
     #     - Description 2.
-    - title: Teaching Assistant
-      institution: Institute for Robotics and Computer Vision, Innopolis University
-      year: 2019 - 2022
 
     - title: Researcher
       institution: Center for Technologies in Robotics and Mechatronics Components, Innopolis, Russia
-      year: 2019-Present
+      year: 2019 - now
+
+    - title: Teaching Assistant
+      institution: Institute for Robotics and Computer Vision, Innopolis University
+      year: 2019 - 2022
 
     - title: Associate Professor of Theoretical Physics
       institution: BioRobotics laboratory of Korea University of Technology and Education, South Korea
