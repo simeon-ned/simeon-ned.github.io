@@ -3,13 +3,16 @@
   color: "#00369f"
 
 "RAL":
-  url : https://ieeexplore.ieee.org/xpl/aboutJournal.jsp?punumber=7083369
+  url: https://ieeexplore.ieee.org/xpl/aboutJournal.jsp?punumber=7083369
+  color: "#00369f"
 
 "IROS":
-  url : https://www.ieee-ras.org/conferences-workshops/financially-co-sponsored/iros
+  url: https://www.ieee-ras.org/conferences-workshops/financially-co-sponsored/iros
+  color: "#00369f"
 
 "ICRA"
-  url : https://www.ieee-ras.org/conferences-workshops/fully-sponsored/icra
+  url: https://www.ieee-ras.org/conferences-workshops/fully-sponsored/icra
+  color: "#00369f"
 
 "PhysRev":
   url: https://journals.aps.org/
