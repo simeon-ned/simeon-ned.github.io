@@ -3,8 +3,8 @@
   contents:
     - name: Full Name
       value: Simeon Nedelchev
-    - name: Date of Birth
-      value: 17th June 1991
+    # - name: Date of Birth
+    #   value: 17th June 1991
     - name: Languages
       value: English, Russian 
 
@@ -73,7 +73,7 @@
       institution: Institute for Robotics and Computer Vision, Innopolis University
       year: 2019 - 2022
 
-    - title: Associate Professor of Theoretical Physics
+    - title: Research Assistant 
       institution: BioRobotics laboratory of Korea University of Technology and Education, South Korea
       year: 2017 - 2019
 
@@ -88,6 +88,7 @@
   type: time_table
   contents:
     - year: 2019
+      name: “Best master thesis award”, Korea University of Technology and Education
       items: 
         - “Best master thesis award”, Korea University of Technology and Education
     - year: 2018
