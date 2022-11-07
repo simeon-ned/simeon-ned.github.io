@@ -95,21 +95,21 @@
       items: 
         - First prize in Russian thesis competition “Be-First” 2018 in Computer and Information Technologies.
 
-- title: Academic Interests
-  type: nested_list
-  contents:
-    - title: Nonlinear Control
-      items: 
-        - Description 1.
-        - Description 2.
-    - title: Dynamical Systems
-      items:
-        - Description 1.
-        - Description 2.
-    - title: Applied Optimization
-      items:
-        - Description 1.
-        - Description 2.
+# - title: Academic Interests
+#   type: nested_list
+#   contents:
+#     - title: Nonlinear Control
+#       items: 
+#         - Description 1.
+#         - Description 2.
+#     - title: Dynamical Systems
+#       items:
+#         - Description 1.
+#         - Description 2.
+#     - title: Applied Optimization
+#       items:
+#         - Description 1.
+#         - Description 2.
 
 # - title: Other Interests
 #   type: list
