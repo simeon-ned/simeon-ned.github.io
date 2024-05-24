@@ -13,9 +13,10 @@
   contents:
     - title: PhD in Computer Science (Robotics track)
       institution: Innopolis University, Russia
-      year: now
+      year: 2023
       description:
-        - Thesis on the optimization based discrete nonlinear control of mechanical systems in implicit form 
+        - Dynamic parameter estimation and adaptive control over robotic
+systems: generalized momentum approach
         # - Description 2.
         # - title: Description 3.
         #   contents:
@@ -47,7 +48,7 @@
 - title: Experience
   type: time_table
   contents:
-    - title: Lecturer 
+    - title: Senior Lecturer 
       institution: Institute for Robotics and Computer Vision, Innopolis University
       year: 2022 - now
       # description:
