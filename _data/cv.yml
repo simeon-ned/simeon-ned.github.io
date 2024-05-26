@@ -6,7 +6,7 @@
     # - name: Date of Birth
     #   value: 17th June 1991
     - name: Languages
-      value: English, Russian 
+      value: English, Bulgarian, Russian 
 
 - title: Education
   type: time_table
@@ -67,7 +67,7 @@
 
     - title: Researcher
       institution: Center for Technologies in Robotics and Mechatronics Components, Innopolis, Russia
-      year: 2019 - now
+      year: 2019 - 2022
 
     - title: Teaching Assistant
       institution: Institute for Robotics and Computer Vision, Innopolis University

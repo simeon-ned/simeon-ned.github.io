@@ -13,16 +13,28 @@ profile:
     <p>Innopolis University, 1, Universitetskaya Str., Innopolis, 420500, Russia</p>
 
 news: False  # includes a list of news items
-selected_papers: False # includes a list of papers marked as "selected={true}"
+selected_papers: True # includes a list of papers marked as "selected={true}"
 social: false  # includes social icons at the bottom of the page
 ---
 
+Hello everyone, I am a researcher specializing in nonlinear control, robotics, and novel actuators. Currently, I serve as a lecturer at Innopolis University, where I am passionate about sharing knowledge and inspiring the next generation of engineers and researchers
 
-The researcher in nonlinear control, robotics and novel actuators, lecturer in Innopolis University. 
+### **Research Interests**
 
+My primary research interests include:
 
-<!-- Write your biography here. Tell the world about yourself. Link to your favorite [subreddit](http://reddit.com). You can put a picture in, too. The code is already in, just name your picture `prof_pic.jpg` and put it in the `img/` folder.
+- **Nonlinear Control:** Exploring advanced control strategies for complex, nonlinear systems.
+- **System Identification and Adaptation:** Focusing on system identification for mechanical articulated robotic systems.
+- **Novel Actuators:** Designing and implementing cutting-edge actuators to enhance the performance and capabilities of robotic systems.
+- **Optimization:** Applying optimization techniques to improve system performance and solve challenging engineering problems.
 
-Put your address / P.O. box / other info right below your picture. You can also disable any of these elements by editing `profile` property of the YAML header of your `_pages/about.md`. Edit `_bibliography/papers.bib` and Jekyll will render your [publications page](/al-folio/publications/) automatically.
+### **Collaboration**
 
-Link to your social media connections, too. This theme is set up to use [Font Awesome icons](http://fortawesome.github.io/Font-Awesome/) and [Academicons](https://jpswalsh.github.io/academicons/), like the ones below. Add your Facebook, Twitter, LinkedIn, Google Scholar, or just disable all of them. -->
+I always enjoy collaborating with fellow researchers, industry professionals, and students. I believe that collaboration is the key to driving innovation and achieving breakthroughs in our field. If you have an exciting project or research idea, feel free to reach out—I am always open to new opportunities for collaboration.
+
+I look forward to connecting with you and exploring the fascinating world of nonlinear control, robotics, and beyond!
+
+---
+
+*For inquiries or collaboration opportunities, please contact me via [email](mailto:simkaned@gmail.com) or [telegram](https://telegram.me/simkasimka).*
+
