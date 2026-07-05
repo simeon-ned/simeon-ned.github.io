@@ -97,6 +97,11 @@ nav.site-nav a[href="alumni.html"] {
   fill: currentColor;
 }
 
+.nav-icons a.nav-scholar svg {
+  width: 22px;
+  height: 22px;
+}
+
 /* Main content */
 main {
   max-width: var(--max-width);
