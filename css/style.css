@@ -97,15 +97,8 @@ nav.site-nav a[href="alumni.html"] {
   fill: currentColor;
 }
 
-.nav-icons img {
-  width: 18px;
-  height: 18px;
-  display: block;
-  border-radius: 50%;
-}
-
-.nav-icons a:hover img {
-  opacity: 0.85;
+.nav-icons a.nav-scholar .scholar-mark {
+  fill: #fff;
 }
 
 /* Main content */
