@@ -1,0 +1,632 @@
+/* Academic one-pager — minimal static layout */
+
+:root {
+  --text: #222;
+  --text-light: #555;
+  --link: #1772d0;
+  --border: #ddd;
+  --max-width: 820px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.55;
+  color: var(--text);
+  background: #fff;
+}
+
+a {
+  color: var(--link);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* Navigation */
+nav.site-nav {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 1.25rem 1.5rem 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  font-size: 0.95rem;
+}
+
+.nav-links {
+  display: flex;
+  gap: 1.25rem;
+  flex-wrap: wrap;
+}
+
+nav.site-nav a {
+  color: var(--text);
+}
+
+nav.site-nav a.active {
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* Hide Alumni nav until content is ready — delete this rule to show */
+nav.site-nav a[href="alumni.html"] {
+  display: none;
+}
+
+.nav-icons {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.nav-icons a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  color: var(--text-light);
+  border-radius: 4px;
+}
+
+.nav-icons a:hover {
+  color: var(--link);
+  text-decoration: none;
+  background: rgba(0, 0, 0, 0.04);
+}
+
+.nav-icons svg {
+  width: 18px;
+  height: 18px;
+  fill: currentColor;
+}
+
+/* Main content */
+main {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 1rem 1.5rem 3rem;
+}
+
+h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  margin: 0 0 1.25rem;
+}
+
+h2 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin: 0 0 1rem;
+  text-transform: none;
+}
+
+h2 .subtle {
+  float: right;
+  font-size: 0.85rem;
+  font-weight: 400;
+  color: var(--text-light);
+}
+
+hr.section {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 2rem 0;
+}
+
+/* Intro */
+.intro-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.intro-table td {
+  vertical-align: top;
+  padding: 0;
+}
+
+.intro-table .photo {
+  width: 240px;
+  padding-right: 1.5rem;
+}
+
+.intro-table img.profile {
+  width: 220px;
+  border-radius: 4px;
+}
+
+.intro-table .bio {
+  font-size: 1rem;
+}
+
+.intro-table .bio p {
+  margin: 0 0 0.85rem;
+}
+
+/* Project / publication rows */
+.row-item {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1.25rem;
+  align-items: flex-start;
+}
+
+.row-item:last-child {
+  margin-bottom: 0;
+}
+
+.row-item .thumb {
+  flex: 0 0 100px;
+}
+
+.row-item .thumb img {
+  width: 100px;
+  height: 75px;
+  object-fit: cover;
+  border-radius: 3px;
+  display: block;
+}
+
+.row-item .thumb img.contain {
+  object-fit: contain;
+  background: #f5f5f5;
+}
+
+.row-item .body .title {
+  font-weight: 600;
+  margin-bottom: 0.2rem;
+}
+
+.row-item .body .meta {
+  color: var(--text-light);
+  font-style: italic;
+  margin-bottom: 0.35rem;
+}
+
+.row-item .body .links {
+  font-size: 0.92rem;
+  margin: 0;
+}
+
+.row-item .body .links a {
+  margin-right: 0.15rem;
+}
+
+/* Project cards — stacked thumbs left, text right */
+.project-card {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+  margin-bottom: 1.5rem;
+}
+
+.project-card:last-of-type {
+  margin-bottom: 0;
+}
+
+.project-thumbs {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.project-thumbs.portrait {
+  flex: 0 0 219px;
+  flex-direction: row;
+}
+
+.project-thumbs.landscape {
+  flex: 0 0 219px;
+}
+
+.project-thumbs a {
+  display: block;
+  flex: 1;
+  min-width: 0;
+}
+
+.project-thumbs img {
+  border-radius: 3px;
+  display: block;
+  background: #f3f3f3;
+}
+
+.project-thumbs.portrait img {
+  flex: 1;
+  min-width: 0;
+  width: 100%;
+  height: 187px;
+  object-fit: cover;
+}
+
+.project-thumbs.landscape {
+  flex: 0 0 219px;
+}
+
+.project-thumbs.landscape img {
+  width: 219px;
+  height: 123px;
+  object-fit: cover;
+}
+
+.project-thumbs.sber-grid {
+  flex: 0 0 219px;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.sber-top {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.sber-top img {
+  flex: 1;
+  min-width: 0;
+  width: 100%;
+  height: 130px;
+  object-fit: cover;
+  border-radius: 3px;
+  background: #f3f3f3;
+}
+
+.sber-grid .sber-walk {
+  width: 100%;
+  height: 123px;
+  object-fit: cover;
+  border-radius: 3px;
+  background: #f3f3f3;
+}
+
+.project-body {
+  flex: 1;
+  min-width: 0;
+}
+
+.project-body .title {
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+}
+
+.project-body p {
+  margin: 0 0 0.45rem;
+}
+
+.project-body .meta {
+  color: var(--text-light);
+  font-style: italic;
+  margin-bottom: 0.35rem;
+}
+
+.project-body .links {
+  font-size: 0.92rem;
+  margin: 0;
+}
+
+.project-body .links a {
+  margin-right: 0.15rem;
+}
+
+/* Publications dropdown */
+.pub-dropdown > summary,
+.pub-year > summary {
+  cursor: pointer;
+  list-style: none;
+  user-select: none;
+}
+
+.pub-dropdown > summary::-webkit-details-marker,
+.pub-year > summary::-webkit-details-marker {
+  display: none;
+}
+
+.pub-dropdown > summary::before,
+.pub-year > summary::before {
+  content: "▸ ";
+  display: inline-block;
+  width: 1em;
+  transition: transform 0.15s ease;
+}
+
+.pub-dropdown[open] > summary::before,
+.pub-year[open] > summary::before {
+  transform: rotate(90deg);
+}
+
+.pub-dropdown > summary {
+  color: var(--link);
+  font-size: 0.95rem;
+  margin-top: 0.25rem;
+}
+
+.pub-dropdown > summary:hover {
+  text-decoration: underline;
+}
+
+.pub-list {
+  margin-top: 0.75rem;
+}
+
+.pub-year {
+  border-top: 1px solid var(--border);
+}
+
+.pub-year:first-child {
+  border-top: none;
+}
+
+.pub-year > summary {
+  font-weight: 600;
+  padding: 0.65rem 0;
+  color: var(--text);
+}
+
+.pub-year > summary:hover {
+  color: var(--link);
+}
+
+.pub-year .row-item:first-of-type {
+  margin-top: 0;
+}
+
+.pub-year .row-item:last-child {
+  padding-bottom: 0.75rem;
+}
+
+/* Year headers in publications (legacy) */
+.year-label {
+  font-weight: 600;
+  margin: 1.25rem 0 0.75rem;
+  color: var(--text);
+}
+
+.year-label:first-child {
+  margin-top: 0;
+}
+
+/* Experience */
+.exp-item {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.exp-item .year {
+  flex: 0 0 88px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--text-light);
+}
+
+.exp-item .role {
+  font-weight: 600;
+}
+
+.exp-item .org {
+  color: var(--text-light);
+}
+
+/* Alumni tabs */
+.tab-bar {
+  display: flex;
+  gap: 0;
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1rem;
+  border-bottom: 2px solid var(--border);
+}
+
+.tab-bar li button {
+  background: none;
+  border: none;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -2px;
+  padding: 0.5rem 1rem;
+  font: inherit;
+  font-size: 0.82rem;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  color: var(--text-light);
+  cursor: pointer;
+}
+
+.tab-bar li button:hover {
+  color: var(--text);
+}
+
+.tab-bar li button.active {
+  color: var(--text);
+  border-bottom-color: var(--link);
+  font-weight: 600;
+}
+
+.tab-panel {
+  display: none;
+}
+
+.tab-panel.active {
+  display: block;
+}
+
+.alumni-item {
+  margin-bottom: 0.85rem;
+}
+
+.alumni-item .name {
+  font-weight: 600;
+}
+
+.alumni-item .detail {
+  color: var(--text-light);
+  font-size: 0.92rem;
+}
+
+.empty-note {
+  color: var(--text-light);
+  font-style: italic;
+}
+
+/* CV page */
+.cv-block {
+  margin-bottom: 2rem;
+}
+
+.cv-block h2 {
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 0.35rem;
+}
+
+.cv-entry {
+  margin-bottom: 1rem;
+}
+
+.cv-entry .title {
+  font-weight: 600;
+}
+
+.cv-entry .institution {
+  color: var(--text-light);
+}
+
+.cv-pdf-link {
+  float: right;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--link);
+}
+
+.cv-header {
+  text-align: center;
+  margin-bottom: 1.75rem;
+}
+
+.cv-header .name {
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  margin-bottom: 0.35rem;
+}
+
+.cv-header .contact {
+  margin: 0;
+  line-height: 1.6;
+}
+
+.cv-entry-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.cv-date {
+  font-style: italic;
+  color: var(--text-light);
+  white-space: nowrap;
+}
+
+.cv-block h3,
+.cv-block .cv-subhead {
+  font-size: 1rem;
+  font-weight: 600;
+  margin: 0.75rem 0 0.35rem;
+}
+
+.cv-block ul {
+  margin: 0.35rem 0 0;
+  padding-left: 1.25rem;
+}
+
+.cv-block ul li {
+  margin-bottom: 0.35rem;
+}
+
+.cv-block > p {
+  margin: 0 0 0.75rem;
+}
+
+.cv-block > p:last-child {
+  margin-bottom: 0;
+}
+
+/* Footer contact */
+.contact-footer {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem 1.25rem;
+  font-size: 0.95rem;
+}
+
+.contact-footer a {
+  color: var(--text);
+}
+
+@media (max-width: 640px) {
+  .intro-table,
+  .intro-table tbody,
+  .intro-table tr,
+  .intro-table td {
+    display: block;
+    width: 100%;
+  }
+
+  .intro-table .photo {
+    text-align: center;
+    padding: 0 0 1rem;
+  }
+
+  .row-item {
+    flex-direction: column;
+  }
+
+  .project-card {
+    flex-direction: column;
+  }
+
+  .project-thumbs {
+    flex-direction: row;
+    flex-wrap: wrap;
+    flex: none;
+    width: 100%;
+  }
+
+  .project-thumbs.sber-grid {
+    flex: none;
+    width: 100%;
+  }
+
+  .sber-top {
+    width: 100%;
+  }
+
+  h2 .subtle {
+    float: none;
+    display: block;
+    margin-top: 0.25rem;
+  }
+
+  .exp-item {
+    flex-direction: column;
+    gap: 0.2rem;
+  }
+}
