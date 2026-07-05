@@ -208,16 +208,32 @@ hr.section {
   margin-right: 0.15rem;
 }
 
-/* Project cards — stacked thumbs left, text right */
+/* Project cards — title first, then thumbs + text */
 .project-card {
   display: flex;
-  gap: 1rem;
-  align-items: flex-start;
-  margin-bottom: 1.5rem;
+  flex-direction: column;
+  gap: 0.65rem;
+  padding-bottom: 2rem;
+  margin-bottom: 2rem;
+  border-bottom: 1px solid var(--border);
 }
 
 .project-card:last-of-type {
   margin-bottom: 0;
+  padding-bottom: 0;
+  border-bottom: none;
+}
+
+.project-card > .title {
+  font-weight: 600;
+  font-size: 1.05rem;
+  line-height: 1.35;
+}
+
+.project-row {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
 }
 
 .project-thumbs {
@@ -310,11 +326,6 @@ hr.section {
 .project-body {
   flex: 1;
   min-width: 0;
-}
-
-.project-body .title {
-  font-weight: 600;
-  margin-bottom: 0.25rem;
 }
 
 .project-body p {
@@ -612,7 +623,7 @@ hr.section {
     flex-direction: column;
   }
 
-  .project-card {
+  .project-row {
     flex-direction: column;
   }
 
