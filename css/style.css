@@ -91,23 +91,10 @@ nav.site-nav a[href="alumni.html"] {
   background: rgba(0, 0, 0, 0.04);
 }
 
-.nav-icons svg,
-.nav-icons img {
+.nav-icons svg {
   width: 18px;
   height: 18px;
-  display: block;
-}
-
-.nav-icons svg {
   fill: currentColor;
-}
-
-.nav-icons img {
-  border-radius: 50%;
-}
-
-.nav-icons a:hover img {
-  opacity: 0.85;
 }
 
 /* Main content */
