@@ -267,6 +267,12 @@ hr.section {
   background: #f3f3f3;
 }
 
+.project-thumbs video {
+  border-radius: 3px;
+  display: block;
+  background: #f3f3f3;
+}
+
 .project-thumbs.portrait img {
   flex: 1;
   min-width: 0;
@@ -279,7 +285,8 @@ hr.section {
   flex: 0 0 219px;
 }
 
-.project-thumbs.landscape img {
+.project-thumbs.landscape img,
+.project-thumbs.landscape video {
   width: 219px;
   height: 123px;
   object-fit: cover;
@@ -649,7 +656,8 @@ hr.section {
     width: 100%;
   }
 
-  .project-thumbs.landscape img {
+  .project-thumbs.landscape img,
+  .project-thumbs.landscape video {
     width: 100%;
     height: auto;
     aspect-ratio: 16 / 9;
