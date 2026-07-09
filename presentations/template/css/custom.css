@@ -81,63 +81,75 @@
   color: var(--text-muted);
 }
 
-/* Title slide */
-.reveal .title-slide .title-content {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+/* Closing slide */
+.reveal .closing-slide {
+  text-align: center;
 }
 
-.reveal .profile-photo {
-  width: 140px;
-  height: 140px;
-  border-radius: 50%;
-  object-fit: cover;
-  margin-bottom: 0.6em;
-  border: 3px solid #fff;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+/* About Me — photo + name, headline, bio, contact */
+.reveal .about-slide-section {
+  text-align: left;
 }
 
-.reveal .application-line {
-  font-size: 0.62em;
-  font-style: italic;
-  margin-top: 0.8em;
-}
-
-.reveal .contact-line {
-  font-size: 0.58em;
-  margin-top: 1.2em;
-}
-
-/* About Me — photo + bio (matches homepage intro) */
 .reveal .about-slide {
   display: grid;
-  grid-template-columns: 240px 1fr;
+  grid-template-columns: 220px 1fr;
   gap: 2em;
-  text-align: left;
   align-items: start;
-  max-width: 92%;
+  max-width: 94%;
   margin: 0 auto;
-  font-size: 0.78em;
+  font-size: 0.72em;
 }
 
 .reveal .about-photo {
-  width: 220px;
+  width: 200px;
   border-radius: 4px;
   display: block;
   box-shadow: 0 2px 16px rgba(0, 0, 0, 0.1);
 }
 
-.reveal .about-content .about-bio {
-  font-size: 0.95em;
-  line-height: 1.5;
+.reveal .about-name {
+  font-size: 1.85em;
+  margin: 0 0 0.15em;
+  line-height: 1.1;
+}
+
+.reveal .about-headline {
+  font-size: 0.88em;
   color: var(--text-light);
-  margin: 0 0 0.9em;
+  line-height: 1.4;
+  margin: 0 0 0.35em;
+}
+
+.reveal .about-content .application-line {
+  font-size: 0.82em;
+  font-style: italic;
+  margin: 0 0 0.65em;
+}
+
+.reveal .about-content .about-bio {
+  font-size: 0.92em;
+  line-height: 1.45;
+  color: var(--text-light);
+  margin: 0 0 0.75em;
 }
 
 .reveal .about-content ul.compact {
-  margin-bottom: 0.6em;
+  margin-bottom: 0.45em;
+}
+
+.reveal .about-content ul.compact li {
+  margin-bottom: 0.28em;
+}
+
+.reveal .about-content .contact-line {
+  font-size: 0.78em;
+  margin: 0.65em 0 0;
+}
+
+.reveal .closing-slide .contact-line {
+  font-size: 0.58em;
+  margin-top: 1.2em;
 }
 
 /* Layout helpers */
