@@ -182,7 +182,106 @@
   margin-bottom: 0.4em;
 }
 
-/* Media */
+/* Project slides — media + description (matches homepage cards) */
+.reveal .project-slide {
+  display: grid;
+  grid-template-columns: 40% 1fr;
+  gap: 1.4em;
+  text-align: left;
+  align-items: start;
+  max-width: 95%;
+  margin: 0 auto;
+}
+
+.reveal .project-slide.sber {
+  grid-template-columns: 38% 1fr;
+}
+
+.reveal .project-text h3 {
+  margin-top: 0;
+  margin-bottom: 0.15em;
+}
+
+.reveal .project-text .tagline {
+  margin-top: 0;
+  margin-bottom: 0.6em;
+}
+
+.reveal .project-text .desc {
+  font-size: 0.68em;
+  line-height: 1.45;
+  color: var(--text-light);
+  margin: 0 0 0.5em;
+}
+
+.reveal .project-text .links {
+  margin-top: 0.6em;
+  font-size: 0.62em;
+}
+
+.reveal .project-media {
+  display: flex;
+  gap: 0.45em;
+}
+
+.reveal .project-media.portrait {
+  flex-direction: row;
+}
+
+.reveal .project-media.landscape {
+  flex-direction: column;
+}
+
+.reveal .project-media.landscape.single video {
+  width: 100%;
+}
+
+.reveal .project-media img,
+.reveal .project-media video {
+  border-radius: 5px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+  background: #f3f3f3;
+}
+
+.reveal .project-media.portrait img {
+  flex: 1;
+  min-width: 0;
+  max-height: 260px;
+  width: 100%;
+  object-fit: cover;
+}
+
+.reveal .project-media.landscape img,
+.reveal .project-media.landscape video {
+  width: 100%;
+  max-height: 130px;
+  object-fit: cover;
+}
+
+.reveal .project-media.sber-grid {
+  flex-direction: column;
+  gap: 0.4em;
+}
+
+.reveal .project-media.sber-grid .sber-top {
+  display: flex;
+  gap: 0.4em;
+}
+
+.reveal .project-media.sber-grid .sber-top img {
+  flex: 1;
+  min-width: 0;
+  max-height: 120px;
+  object-fit: cover;
+}
+
+.reveal .project-media.sber-grid img.wide {
+  width: 100%;
+  max-height: 100px;
+  object-fit: cover;
+}
+
+/* Legacy media helpers (kept for optional custom slides) */
 .reveal .media-row {
   display: flex;
   gap: 0.8em;
@@ -269,6 +368,20 @@
   .reveal .two-col-list {
     columns: 1;
     grid-template-columns: 1fr;
+  }
+
+  .reveal .project-slide,
+  .reveal .project-slide.sber {
+    grid-template-columns: 1fr;
+    gap: 0.8em;
+  }
+
+  .reveal .project-media.portrait {
+    flex-direction: row;
+  }
+
+  .reveal .project-media.portrait img {
+    max-height: 160px;
   }
 
   .reveal .media-row {

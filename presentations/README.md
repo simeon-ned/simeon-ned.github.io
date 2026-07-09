@@ -25,9 +25,9 @@ Use arrow keys / space to navigate. Press `S` for speaker notes (where added). P
    - Change `<title>` and the `.application-line` text (e.g. *Application for Senior RL Engineer at Acme Robotics*).
    - Optionally adjust the `.subtitle` to emphasize skills the posting cares about.
 
-3. **Reorder or hide project slides** — each project uses a nested `<section>` (vertical stack: demo → details). Delete entire project blocks you do not want, or move the most relevant ones right after the overview slide.
+3. **Reorder or hide project slides** — each project is one horizontal slide (media + description). Delete entire `<section>` blocks you do not want, or move the most relevant ones right after the overview slide.
 
-4. **Add speaker notes** — uncomment or extend `<aside class="notes">` blocks inside project slides. Notes appear in the speaker view (`S` key) but not on the projected slide.
+4. **Add speaker notes** — optional `<aside class="notes">` inside any project `<section>`. Notes appear in the speaker view (`S` key) but not on the projected slide.
 
 5. **Tailor the closing slide** — update the thank-you message for the specific team.
 
@@ -48,7 +48,7 @@ Use arrow keys / space to navigate. Press `S` for speaker notes (where added). P
 | Research Focus & Skills | Core areas + tools (trim per role) |
 | Experience | Timeline from portfolio / CV |
 | Recent Projects (overview) | Table of contents for deep dives |
-| Per-project (2 slides each) | Visual demo + bullet highlights |
+| Per-project | One slide: GIFs/video + short description + links |
 | Open Source | Pinocchio, Pink, Mink, mink-warp, GMR, MJINX |
 | Selected Publications | Top papers; add/remove as needed |
 | Education | Degrees |
@@ -65,6 +65,6 @@ Reveal.js is loaded from jsDelivr CDN (no npm install). Offline use: download [R
 ## Tips for interviews
 
 - Keep **one main narrative**: sim-to-real humanoid control, or IK libraries, or RL locomotion — pick based on the job description.
-- Use **2 slides max per project** in the live talk; move extra detail to speaker notes.
+- Use **one slide per project** in the live talk; extra detail goes in speaker notes.
 - For a **15-minute slot**, show: Title → About (30s) → 2–3 projects → Experience skim → Thank you.
 - For a **research talk**, expand PSM / LocoGen / WBC-Mjlab and shorten Experience.
