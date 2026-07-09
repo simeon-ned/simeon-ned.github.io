@@ -48,8 +48,17 @@
              ================================================================ -->
         <section>
           <h2>About Me</h2>
-          <div class="two-col">
-            <div>
+          <div class="about-slide">
+            <img
+              class="about-photo"
+              src="../../images/profile.jpg"
+              alt="Simeon Nedelchev"
+            />
+            <div class="about-content">
+              <p class="about-bio">
+                I build control for articulated robots — from novel actuators and adaptive methods to legged
+                locomotion, reinforcement learning, whole-body control, and sim-to-real deployment.
+              </p>
               <ul class="compact">
                 <li>
                   <strong>Researcher &amp; Senior RL Engineer</strong> — Institute of Artificial Intelligence, MIPT
@@ -64,12 +73,6 @@
                   <strong>~10 years</strong> across research labs, startups, industry, and big tech
                 </li>
               </ul>
-            </div>
-            <div>
-              <p class="small">
-                I build control for articulated robots — from novel actuators and adaptive methods to legged
-                locomotion, reinforcement learning, whole-body control, and sim-to-real deployment.
-              </p>
               <p class="small muted">
                 M.Sc. — Korea University of Technology and Education · STANKIN
               </p>
@@ -159,121 +162,141 @@
 
         <!-- WBC-Mjlab -->
         <section>
-          <div class="project-slide">
-            <div class="project-media portrait">
-              <img src="../../images/projects/wbc-mjlab-sideflip.gif" alt="WBC-Mjlab sideflip" />
-              <img src="../../images/projects/wbc-mjlab-getup.gif" alt="WBC-Mjlab get up" />
-            </div>
-            <div class="project-text">
+          <div class="project-card-slide">
+            <div class="project-header">
               <h3>WBC-Mjlab</h3>
               <p class="tagline">Whole Body Control in MuJoCo Lab</p>
-              <p class="desc">
-                One shared MDP for whole-body motion tracking in mjlab — train once on a motion library, deploy one
-                policy for many skills. Multi-clip training, paper-specific task presets, and sim-to-real export.
-              </p>
-              <p class="links">
-                <a href="https://wbc-mjlab.github.io/wbc-demo/" target="_blank" rel="noopener">Demo</a>
-                ·
-                <a href="https://github.com/wbc-mjlab/wbc-mjlab" target="_blank" rel="noopener">Code</a>
-                ·
-                <a href="https://wbc-mjlab.github.io/wbc-mjlab/" target="_blank" rel="noopener">Docs</a>
-              </p>
+            </div>
+            <div class="project-row">
+              <div class="project-media portrait">
+                <img src="../../images/projects/wbc-mjlab-sideflip.gif" alt="WBC-Mjlab sideflip" />
+                <img src="../../images/projects/wbc-mjlab-getup.gif" alt="WBC-Mjlab get up" />
+              </div>
+              <div class="project-text">
+                <p class="desc">
+                  One shared MDP for whole-body motion tracking in mjlab — train once on a motion library, deploy one
+                  policy for many skills. Multi-clip training, paper-specific task presets, and sim-to-real export.
+                </p>
+                <p class="links">
+                  <a href="https://wbc-mjlab.github.io/wbc-demo/" target="_blank" rel="noopener">Demo</a>
+                  ·
+                  <a href="https://github.com/wbc-mjlab/wbc-mjlab" target="_blank" rel="noopener">Code</a>
+                  ·
+                  <a href="https://wbc-mjlab.github.io/wbc-mjlab/" target="_blank" rel="noopener">Docs</a>
+                </p>
+              </div>
             </div>
           </div>
         </section>
 
         <!-- PSM -->
         <section>
-          <div class="project-slide">
-            <div class="project-media landscape">
-              <img src="../../images/projects/psm-walk.gif" alt="PSM walking on hardware" />
-              <img src="../../images/projects/psm-disturbance.gif" alt="PSM disturbance recovery" />
-            </div>
-            <div class="project-text">
+          <div class="project-card-slide">
+            <div class="project-header">
               <h3>PSM</h3>
               <p class="tagline">Predictive Style Matching for Natural Locomotion</p>
-              <p class="desc">
-                Natural and robust humanoid locomotion via an offline predictor that maps lower-body state and velocity
-                commands to upper-body and gait targets during RL training — task-only deployment on Unitree G1.
-              </p>
-              <p class="meta small">Nedelchev et al. · 2026 preprint</p>
-              <p class="links">
-                <a href="https://simeon-ned.github.io/predictive-style-matching/" target="_blank" rel="noopener">Project</a>
-                ·
-                <a href="https://arxiv.org/abs/2606.07083" target="_blank" rel="noopener">Paper</a>
-                ·
-                <a href="https://github.com/simeon-ned/predictive-style-matching" target="_blank" rel="noopener">Code</a>
-              </p>
+            </div>
+            <div class="project-row">
+              <div class="project-media landscape">
+                <img src="../../images/projects/psm-walk.gif" alt="PSM walking on hardware" />
+                <img src="../../images/projects/psm-disturbance.gif" alt="PSM disturbance recovery" />
+              </div>
+              <div class="project-text">
+                <p class="desc">
+                  Natural and robust humanoid locomotion via an offline predictor that maps lower-body state and velocity
+                  commands to upper-body and gait targets during RL training — task-only deployment on Unitree G1.
+                </p>
+                <p class="meta small">Nedelchev et al. · 2026 preprint</p>
+                <p class="links">
+                  <a href="https://simeon-ned.github.io/predictive-style-matching/" target="_blank" rel="noopener">Project</a>
+                  ·
+                  <a href="https://arxiv.org/abs/2606.07083" target="_blank" rel="noopener">Paper</a>
+                  ·
+                  <a href="https://github.com/simeon-ned/predictive-style-matching" target="_blank" rel="noopener">Code</a>
+                </p>
+              </div>
             </div>
           </div>
         </section>
 
         <!-- LocoGen -->
         <section>
-          <div class="project-slide">
-            <div class="project-media portrait">
-              <img src="../../images/projects/locogen-sim.gif" alt="LocoGen in simulation" />
-              <img src="../../images/projects/locogen-real.gif" alt="LocoGen on Unitree G1" />
-            </div>
-            <div class="project-text">
+          <div class="project-card-slide">
+            <div class="project-header">
               <h3>LocoGen</h3>
               <p class="tagline">Command-Conditioned Locomotion Generation</p>
-              <p class="desc">
-                Learned motion matching + flow matching for online, command-conditioned full-body locomotion on Unitree
-                G1. Interactive Viser control with stand / walk / run transitions; validated with BeyondMimic / ZEST in
-                sim and on hardware.
-              </p>
-              <p class="meta small muted">Ongoing · code not yet published</p>
+            </div>
+            <div class="project-row">
+              <div class="project-media portrait">
+                <img src="../../images/projects/locogen-sim.gif" alt="LocoGen in simulation" />
+                <img src="../../images/projects/locogen-real.gif" alt="LocoGen on Unitree G1" />
+              </div>
+              <div class="project-text">
+                <p class="desc">
+                  Learned motion matching + flow matching for online, command-conditioned full-body locomotion on Unitree
+                  G1. Interactive Viser control with stand / walk / run transitions; validated with BeyondMimic / ZEST in
+                  sim and on hardware.
+                </p>
+                <p class="meta small muted">Ongoing · code not yet published</p>
+              </div>
             </div>
           </div>
         </section>
 
         <!-- Sber Green -->
         <section>
-          <div class="project-slide sber">
-            <div class="project-media sber-grid">
-              <div class="sber-top">
-                <img src="../../images/projects/sber-dance.gif" alt="Zero-shot dance tracking" />
-                <img src="../../images/projects/sber-teleop.gif" alt="Teleoperation WBC" />
-              </div>
-              <img class="wide" src="../../images/projects/sber-walk.gif" alt="Natural RL locomotion" />
-            </div>
-            <div class="project-text">
+          <div class="project-card-slide">
+            <div class="project-header">
               <h3>Sber Green Humanoid</h3>
               <p class="tagline">RL Locomotion &amp; Whole-Body Control · AIJ 2025</p>
-              <p class="desc">
-                Core engineer on RL locomotion and WBC for the Green humanoid: improved naturalness of walking; WBC
-                trained on synthetic reference trajectories without mocap; unified tracking for teleoperation, dance,
-                and zero-shot skills.
-              </p>
-              <p class="links">
-                <a href="https://youtu.be/eehll8Uw3pw?t=1432" target="_blank" rel="noopener">Presentation</a>
-              </p>
+            </div>
+            <div class="project-row">
+              <div class="project-media sber-grid">
+                <div class="sber-top">
+                  <img class="sber-dance" src="../../images/projects/sber-dance.gif" alt="Zero-shot dance tracking" />
+                  <img class="sber-teleop" src="../../images/projects/sber-teleop.gif" alt="Teleoperation WBC" />
+                </div>
+                <img class="sber-walk" src="../../images/projects/sber-walk.gif" alt="Natural RL locomotion" />
+              </div>
+              <div class="project-text">
+                <p class="desc">
+                  Core engineer on RL locomotion and WBC for the Green humanoid: improved naturalness of walking; WBC
+                  trained on synthetic reference trajectories without mocap; unified tracking for teleoperation, dance,
+                  and zero-shot skills.
+                </p>
+                <p class="links">
+                  <a href="https://youtu.be/eehll8Uw3pw?t=1432" target="_blank" rel="noopener">Presentation</a>
+                </p>
+              </div>
             </div>
           </div>
         </section>
 
         <!-- mink-warp -->
         <section>
-          <div class="project-slide">
-            <div class="project-media landscape single">
-              <video src="../../images/projects/mink-warp-cassie.mp4" autoplay loop muted playsinline aria-label="Cassie batched IK"></video>
-            </div>
-            <div class="project-text">
+          <div class="project-card-slide">
+            <div class="project-header">
               <h3>mink-warp</h3>
               <p class="tagline">Batched Differential IK on MuJoCo Warp</p>
-              <p class="desc">
-                GPU-parallel task-space IK with a Mink-shaped API on MuJoCo Warp — frame tasks, closed-chain equality
-                constraints, and hard limits via GPU ADMM. CUDA graph capture for real-time loops; Panda, Cassie, G1
-                examples.
-              </p>
-              <p class="links">
-                <a href="https://simeon-ned.github.io/mink-warp/" target="_blank" rel="noopener">Docs</a>
-                ·
-                <a href="https://github.com/simeon-ned/mink-warp" target="_blank" rel="noopener">Code</a>
-                ·
-                <a href="https://pypi.org/project/mink-warp/" target="_blank" rel="noopener">PyPI</a>
-              </p>
+            </div>
+            <div class="project-row">
+              <div class="project-media landscape single">
+                <video src="../../images/projects/mink-warp-cassie.mp4" autoplay loop muted playsinline aria-label="Cassie batched IK"></video>
+              </div>
+              <div class="project-text">
+                <p class="desc">
+                  GPU-parallel task-space IK with a Mink-shaped API on MuJoCo Warp — frame tasks, closed-chain equality
+                  constraints, and hard limits via GPU ADMM. CUDA graph capture for real-time loops; Panda, Cassie, G1
+                  examples.
+                </p>
+                <p class="links">
+                  <a href="https://simeon-ned.github.io/mink-warp/" target="_blank" rel="noopener">Docs</a>
+                  ·
+                  <a href="https://github.com/simeon-ned/mink-warp" target="_blank" rel="noopener">Code</a>
+                  ·
+                  <a href="https://pypi.org/project/mink-warp/" target="_blank" rel="noopener">PyPI</a>
+                </p>
+              </div>
             </div>
           </div>
         </section>
