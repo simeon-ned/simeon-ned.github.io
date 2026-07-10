@@ -21,11 +21,11 @@ Use arrow keys / space to navigate. Press `S` for speaker notes (where added). P
    cd acme-robotics-senior-rl
    ```
 
-2. **Customize the title slide** in `index.html`:
-   - Change `<title>` and the `.application-line` text (e.g. *Application for Senior RL Engineer at Acme Robotics*).
-   - Optionally adjust the `.subtitle` to emphasize skills the posting cares about.
+2. **Customize the About Me slide** in `index.html`:
+   - Change `<title>` if needed.
+   - Optionally adjust `.about-headline` to emphasize skills the posting cares about.
 
-3. **Reorder or hide project slides** — each project is one horizontal slide (media + description). Delete entire `<section>` blocks you do not want, or move the most relevant ones right after the overview slide.
+3. **Reorder or hide project slides** — each project is one horizontal slide (media + description). Delete entire `<section>` blocks you do not want, or move the most relevant ones right after About Me.
 
 4. **Add speaker notes** — optional `<aside class="notes">` inside any project `<section>`. Notes appear in the speaker view (`S` key) but not on the projected slide.
 
@@ -43,15 +43,11 @@ Use arrow keys / space to navigate. Press `S` for speaker notes (where added). P
 
 | Slide block | Purpose |
 |-------------|---------|
-| Title | Name, headline, contact, application line |
-| About Me | Roles, background, one-line pitch |
-| Research Focus & Skills | Core areas + tools (trim per role) |
-| Experience | Timeline from portfolio / CV |
-| Recent Projects (overview) | Table of contents for deep dives |
-| Per-project | One slide: GIFs/video + short description + links |
-| Open Source | Pinocchio, Pink, Mink, mink-warp, GMR, MJINX |
-| Selected Publications | Top papers; add/remove as needed |
-| Education | Degrees |
+| About Me | Photo, name, headline, contact (+ Google Scholar), experience timeline, pitch |
+| Experience & Technical Profile | Career path + what I deliver + RL stack (one slide for hiring teams) |
+| Per-project | One slide each: GIFs/video + short description + links |
+| Open Source | Pinocchio, Pink, Mink, mink-warp, GMR, mujoco-sysid, MJINX |
+| Motivation & Fit | Why apply, future directions, expertise |
 | Thank you | Contact + Q&A |
 
 ## Assets
@@ -66,5 +62,5 @@ Reveal.js is loaded from jsDelivr CDN (no npm install). Offline use: download [R
 
 - Keep **one main narrative**: sim-to-real humanoid control, or IK libraries, or RL locomotion — pick based on the job description.
 - Use **one slide per project** in the live talk; extra detail goes in speaker notes.
-- For a **15-minute slot**, show: Title → About (30s) → 2–3 projects → Experience skim → Thank you.
-- For a **research talk**, expand PSM / LocoGen / WBC-Mjlab and shorten Experience.
+- For a **15-minute slot**, show: About Me (30s) → Experience & Technical Profile (1 min) → 2–3 projects → Thank you.
+- For a **research talk**, expand PSM / LocoGen / WBC-Mjlab and shorten the profile slide.

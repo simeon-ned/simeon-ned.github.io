@@ -294,43 +294,54 @@ hr.section {
 }
 
 .project-thumbs.sber-grid {
-  flex: 0 0 219px;
+  flex: 1 1 48%;
   flex-direction: column;
-  gap: 0.5rem;
+  align-items: stretch;
+  gap: 0.1rem;
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
 }
 
 .sber-top {
-  display: flex;
-  gap: 0.5rem;
-  align-items: flex-start;
+  display: grid;
+  grid-template-columns: 602fr 453fr 506fr;
+  column-gap: 0.06rem;
+  row-gap: 0;
+  width: 100%;
+  align-items: start;
 }
 
 .sber-top img {
-  flex: 1;
-  min-width: 0;
   width: 100%;
-  height: auto;
+  height: 275px;
   object-fit: cover;
+  object-position: center center;
   border-radius: 3px;
   background: #f3f3f3;
 }
 
-.sber-top img.sber-dance {
-  aspect-ratio: 160 / 266;
-  object-position: center;
+.sber-catch-wrap {
+  min-width: 0;
+  overflow: hidden;
+  border-radius: 3px;
+  background: #f3f3f3;
 }
 
-.sber-top img.sber-teleop {
-  aspect-ratio: 160 / 266;
-  object-position: 62% center;
+.sber-catch-wrap img.sber-catch {
+  width: calc(100% * 320 / 288);
+  height: 275px;
+  margin-left: calc(100% * -32 / 288);
+  object-fit: cover;
+  object-position: right center;
 }
 
 .sber-grid .sber-walk {
   width: 100%;
+  max-height: 168px;
   height: auto;
-  aspect-ratio: 320 / 159;
-  object-fit: cover;
-  object-position: center;
+  object-fit: contain;
+  object-position: center bottom;
   border-radius: 3px;
   background: #f3f3f3;
 }
@@ -668,11 +679,7 @@ hr.section {
     flex: none;
     flex-direction: column;
     width: 100%;
-  }
-
-  .sber-top {
-    flex-direction: row;
-    width: 100%;
+    max-width: 100%;
   }
 
   h2 .subtle {

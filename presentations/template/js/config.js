@@ -10,6 +10,7 @@ Reveal.initialize({
   width: 1280,
   height: 720,
   margin: 0.08,
+  center: false,
   plugins: [RevealNotes],
 
   /* Uncomment for PDF export via ?print-pdf in URL:
