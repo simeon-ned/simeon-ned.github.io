@@ -32,20 +32,6 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      # Generate before TeX container (needs Node + citation-js from npm ci)
-      - name: Generate CV publications from BibTeX
-        run: node scripts/generate-cv-pubs.js
-
-      - name: Build CV PDF
-        uses: xu-cheng/texlive-action@v2
-        with:
-          scheme: small
-          packages: latexmk geometry lmodern microtype enumitem titlesec hyperref xcolor tools lm
-          run: |
-            cd cv && latexmk -pdf -interaction=nonstopmode cv.tex
-            cp cv.pdf ../pdf/CV.pdf
-            test -f ../pdf/CV.pdf
-
       - name: Build site
         run: npm run build
 
