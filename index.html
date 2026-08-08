@@ -75,6 +75,56 @@
 
       <article class="project-card">
         <div class="title">
+          <a href="https://wbc-mjlab.github.io/wbc-demo/" target="_blank" rel="noopener noreferrer"
+            >WBC-Gen: Reactive Generative Motion Planner</a
+          >
+        </div>
+        <div class="project-row">
+          <div class="project-thumbs portrait">
+            <video
+              src="images/projects/wbc-gen-walk.mp4"
+              width="104"
+              height="187"
+              autoplay
+              loop
+              muted
+              playsinline
+              aria-label="WBC-Gen walking on Unitree G1"
+            ></video>
+            <video
+              src="images/projects/wbc-gen-disturbance.mp4"
+              width="104"
+              height="187"
+              autoplay
+              loop
+              muted
+              playsinline
+              aria-label="WBC-Gen disturbance recovery on Unitree G1"
+            ></video>
+          </div>
+          <div class="project-body">
+            <p>
+              Proprio-conditioned latent flow-matching planner that sits next to a frozen whole-body controller and turns
+              high-level intent into trackable WBC references — reactive, physics- and controller-aware generation rather
+              than open-loop playback. Trained from streaming WBC rollouts with domain randomisation; Gen and WBC both run
+              on the Unitree G1 onboard CPU (no Jetson), with
+              <a href="https://youtube.com/shorts/dXNI8benYAo" target="_blank" rel="noopener noreferrer">walk&nbsp;/&nbsp;sprint teleop</a>,
+              <a href="https://youtube.com/shorts/iofTKa0GPwQ" target="_blank" rel="noopener noreferrer">disturbance rejection</a>,
+              and
+              <a href="https://youtube.com/shorts/aMezmX262tg" target="_blank" rel="noopener noreferrer">agile recovery</a>
+              on hardware, plus
+              <a href="https://youtu.be/gAHCAtJnRDU" target="_blank" rel="noopener noreferrer">walk&nbsp;/&nbsp;sprint&nbsp;/&nbsp;recovery in sim</a>.
+              <a href="https://wbc-mjlab.github.io/wbc-demo/" target="_blank" rel="noopener noreferrer">Try Gen alongside WBC tracking</a>
+              to interactively generate character locomotion (WASD to steer, Shift to sprint; press G to switch clips&nbsp;↔&nbsp;Gen).
+              Deploy code is in
+              <a href="https://github.com/wbc-mjlab/wbc-g1-deploy/tree/feat/generator" target="_blank" rel="noopener noreferrer">wbc-g1-deploy</a>.
+            </p>
+          </div>
+        </div>
+      </article>
+
+      <article class="project-card">
+        <div class="title">
           <a href="https://github.com/wbc-mjlab/wbc-mjlab" target="_blank" rel="noopener noreferrer">WBC-Mjlab: Whole Body Control in MuJoCo Lab</a>
         </div>
         <div class="project-row">
@@ -128,31 +178,6 @@
               [<a href="https://arxiv.org/abs/2606.07083" target="_blank" rel="noopener noreferrer">Paper</a>]
               [<a href="https://github.com/simeon-ned/predictive-style-matching" target="_blank" rel="noopener noreferrer">Code</a>]
             </p>
-          </div>
-        </div>
-      </article>
-
-      <article class="project-card">
-        <div class="title">LocoGen: Command-Conditioned Locomotion Generation</div>
-        <div class="project-row">
-          <div class="project-thumbs portrait">
-            <img src="images/projects/locogen-sim.gif" alt="LocoGen command-conditioned generation in simulation" loading="lazy" />
-            <img src="images/projects/locogen-real.gif" alt="LocoGen walking on Unitree G1 hardware" loading="lazy" />
-          </div>
-          <div class="project-body">
-            <p>
-              Combines
-              <a href="https://theorangeduck.com/media/uploads/other_stuff/Learned_Motion_Matching.pdf" target="_blank" rel="noopener noreferrer">learned motion matching</a>
-              and
-              <a href="https://theorangeduck.com/media/uploads/other_stuff/ControlOperators.pdf" target="_blank" rel="noopener noreferrer">flow matching</a>
-              for online, command-conditioned full-body locomotion.             Built for Unitree G1 but portable across
-              robots: MuJoCo-grounded
-              state, velocity commands (extensible to waypoints and trajectories), and interactive
-              <a href="https://viser.studio/" target="_blank" rel="noopener noreferrer">Viser</a> control with seamless
-              stand / walk / run transitions. Inference at ~800&nbsp;FPS (LMM) and ~150&nbsp;FPS (flow); PoC training from a
-              handful of LAFAN clips. Walking and tracking validated with BeyondMimic / ZEST in simulation and on hardware.
-            </p>
-            <p class="meta">Ongoing · code not yet published</p>
           </div>
         </div>
       </article>

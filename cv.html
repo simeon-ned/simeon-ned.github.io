@@ -159,6 +159,26 @@
         <h2>Selected Research &amp; Software Projects</h2>
         <p>
           <strong
+            ><a href="https://wbc-mjlab.github.io/wbc-demo/" target="_blank" rel="noopener noreferrer"
+              >WBC-Gen: Reactive Generative Motion Planner</a
+            ></strong
+          >
+          — proprio-conditioned latent flow-matching planner that emits trackable WBC references for a frozen whole-body
+          controller; trained from streaming WBC rollouts with domain randomisation; Gen and WBC co-located on the Unitree
+          G1 onboard CPU, with
+          <a href="https://youtube.com/shorts/dXNI8benYAo" target="_blank" rel="noopener noreferrer">walk&nbsp;/&nbsp;sprint teleop</a>,
+          <a href="https://youtube.com/shorts/iofTKa0GPwQ" target="_blank" rel="noopener noreferrer">disturbance rejection</a>,
+          and
+          <a href="https://youtube.com/shorts/aMezmX262tg" target="_blank" rel="noopener noreferrer">agile recovery</a>
+          on hardware and
+          <a href="https://youtu.be/gAHCAtJnRDU" target="_blank" rel="noopener noreferrer">sim walk&nbsp;/&nbsp;sprint&nbsp;/&nbsp;recovery</a>.
+          <a href="https://wbc-mjlab.github.io/wbc-demo/" target="_blank" rel="noopener noreferrer">Try Gen alongside WBC tracking</a>
+          to interactively generate character locomotion (WASD to steer, Shift to sprint; G switches clips&nbsp;↔&nbsp;Gen);
+          deploy code in
+          <a href="https://github.com/wbc-mjlab/wbc-g1-deploy/tree/feat/generator" target="_blank" rel="noopener noreferrer">wbc-g1-deploy</a>.
+        </p>
+        <p>
+          <strong
             ><a href="https://github.com/wbc-mjlab/wbc-mjlab" target="_blank" rel="noopener noreferrer"
               >WBC-Mjlab: Whole Body Control in MuJoCo Lab</a
             ></strong
@@ -176,18 +196,6 @@
           (<a href="https://simeon-ned.github.io/predictive-style-matching/" target="_blank" rel="noopener noreferrer">project page</a>)
           — offline predictor maps lower-body state and velocity commands to upper-body and gait targets during RL training;
           deployed on Unitree G1 with task-only inference at run time. arXiv:2606.07083 (2026).
-        </p>
-        <p>
-          <strong>LocoGen: Command-Conditioned Locomotion Generation</strong> — combines
-          <a href="https://theorangeduck.com/media/uploads/other_stuff/Learned_Motion_Matching.pdf" target="_blank" rel="noopener noreferrer">learned motion matching</a>
-          and
-          <a href="https://theorangeduck.com/media/uploads/other_stuff/ControlOperators.pdf" target="_blank" rel="noopener noreferrer">flow matching</a>
-          for online full-body locomotion on legged robots. G1-first but robot-agnostic;
-          MuJoCo-grounded state,
-          velocity commands (extensible to waypoints and trajectories), and interactive
-          <a href="https://viser.studio/" target="_blank" rel="noopener noreferrer">Viser</a> control with seamless mode
-          transitions. Inference at ~800&nbsp;FPS (LMM) and ~150&nbsp;FPS (flow); PoC training from a handful of LAFAN clips.
-          Walking and tracking validated with BeyondMimic / ZEST in simulation and on Unitree G1 hardware. Code forthcoming.
         </p>
         <p>
           <strong>Locomotion and Whole Body Control for Sber Green</strong>

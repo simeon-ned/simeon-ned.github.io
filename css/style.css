@@ -278,7 +278,8 @@ hr.section {
   background: #f3f3f3;
 }
 
-.project-thumbs.portrait img {
+.project-thumbs.portrait img,
+.project-thumbs.portrait video {
   flex: 1;
   min-width: 0;
   width: 100%;

@@ -43,7 +43,7 @@
                 <span class="kw">reinforcement learning</span>,
                 <span class="kw">whole-body control</span>, and
                 <span class="kw">sim-to-real</span> deployment. Currently exploring
-                <span class="kw">generative motion</span> (diffusion, score matching) for natural, command-conditioned humanoid motion.
+                <span class="kw">generative motion</span> planners stacked on unified whole-body controllers.
               </p>
               <ul class="compact">
                 <li>
@@ -135,7 +135,7 @@
                 <li><span class="kw">Humanoid locomotion &amp; WBC</span> — primary focus</li>
                 <li><span class="kw">Sim-to-real</span> — train in sim, deploy on hardware</li>
                 <li><span class="kw">Teleoperation &amp; imitation</span> — tracking, retargeting, multi-clip RL</li>
-                <li><span class="kw">Generative motion</span> — diffusion &amp; score matching (ongoing)</li>
+                <li><span class="kw">Generative motion</span> — Gen → WBC flow planners (ongoing)</li>
               </ul>
 
               <h3>How I work</h3>
@@ -168,6 +168,79 @@
         <!-- ================================================================
              RECENT PROJECTS — one slide each: media + short description
              ================================================================ -->
+
+        <!-- WBC-Gen -->
+        <section class="project-slide-section deck-slide">
+          <div class="project-card-slide">
+            <header class="project-header">
+              <div class="project-title-row">
+                <h3>WBC-Gen</h3>
+                <div class="project-tags">
+                  <span class="tag">Generative</span>
+                  <span class="tag">Flow matching</span>
+                  <span class="tag">Gen → WBC</span>
+                  <span class="tag">Unitree G1</span>
+                </div>
+              </div>
+              <p class="tagline">Reactive Generative Motion Planner for Unified WBC</p>
+            </header>
+            <div class="project-row media-tall">
+              <div class="project-media portrait-tall">
+                <figure class="media-figure">
+                  <video
+                    src="../../images/projects/wbc-gen-walk.mp4"
+                    autoplay
+                    loop
+                    muted
+                    playsinline
+                    aria-label="WBC-Gen walking on Unitree G1"
+                  ></video>
+                  <figcaption>Walking on G1</figcaption>
+                </figure>
+                <figure class="media-figure">
+                  <video
+                    src="../../images/projects/wbc-gen-disturbance.mp4"
+                    autoplay
+                    loop
+                    muted
+                    playsinline
+                    aria-label="WBC-Gen disturbance recovery on Unitree G1"
+                  ></video>
+                  <figcaption>Disturbance recovery</figcaption>
+                </figure>
+              </div>
+              <div class="project-text">
+                <p class="project-lead">
+                  <span class="kw">Proprio-closed-loop</span> planner → trackable <span class="kw">WBC references</span> every step above a frozen controller.
+                </p>
+                <p class="desc">
+                  Latent flow matching trained from <span class="kw">streaming WBC rollouts</span> with domain randomisation —
+                  reactive, physics- and controller-aware generation, not open-loop kinematic playback.
+                  Fall recovery and agile disturbance response are <span class="kw">embedded in the planner</span>.
+                  On G1 CPU (no Jetson):
+                  <a href="https://youtube.com/shorts/dXNI8benYAo" target="_blank" rel="noopener">walk&nbsp;/&nbsp;sprint teleop</a>,
+                  <a href="https://youtube.com/shorts/iofTKa0GPwQ" target="_blank" rel="noopener">disturbance rejection</a>,
+                  and
+                  <a href="https://youtube.com/shorts/aMezmX262tg" target="_blank" rel="noopener">agile recovery</a>;
+                  also
+                  <a href="https://youtu.be/gAHCAtJnRDU" target="_blank" rel="noopener">sim walk&nbsp;/&nbsp;sprint&nbsp;/&nbsp;recovery</a>.
+                  <a href="https://wbc-mjlab.github.io/wbc-demo/" target="_blank" rel="noopener">Try Gen alongside WBC tracking</a>
+                  to interactively generate character locomotion (WASD to steer, Shift to sprint; G switches clips&nbsp;↔&nbsp;Gen).
+                  Deploy code:
+                  <a href="https://github.com/wbc-mjlab/wbc-g1-deploy/tree/feat/generator" target="_blank" rel="noopener">wbc-g1-deploy</a>.
+                </p>
+                <ul class="project-highlights compact">
+                  <li><span class="kw">Onboard</span> — Gen + WBC co-located on G1 CPU (no Jetson)</li>
+                  <li><span class="kw">Modular</span> — stack task-specific generators on one unified WBC contract</li>
+                  <li><span class="kw">Physically consistent</span> — supervision from actual WBC rollouts with DR</li>
+                </ul>
+                <dl class="project-facts">
+                  <div><dt>Stack</dt><dd>Control Operators–style flow · mjlab / MuJoCo Warp · ONNX deploy</dd></div>
+                </dl>
+              </div>
+            </div>
+          </div>
+        </section>
 
         <!-- WBC-Mjlab -->
         <section class="project-slide-section deck-slide">
@@ -342,51 +415,6 @@
                 <p class="links">
                   <a href="https://youtu.be/eehll8Uw3pw?t=1432" target="_blank" rel="noopener">AIJ 2025 presentation</a>
                 </p>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <!-- LocoGen -->
-        <section class="project-slide-section deck-slide">
-          <div class="project-card-slide">
-            <header class="project-header">
-              <div class="project-title-row">
-                <h3>LocoGen</h3>
-                <div class="project-tags">
-                  <span class="tag">Generative</span>
-                  <span class="tag">Command-conditioned</span>
-                  <span class="tag">BeyondMimic / ZEST</span>
-                </div>
-              </div>
-              <p class="tagline">Command-Conditioned Locomotion Generation</p>
-            </header>
-            <div class="project-row media-tall">
-              <div class="project-media portrait-tall locogen-media">
-                <figure class="media-figure">
-                  <img class="locogen-sim" src="../../images/projects/locogen-sim.gif" alt="LocoGen in simulation" />
-                  <figcaption>Online generation in MuJoCo</figcaption>
-                </figure>
-                <figure class="media-figure">
-                  <img class="locogen-real" src="../../images/projects/locogen-real.gif" alt="LocoGen on Unitree G1" />
-                  <figcaption>Hardware validation on G1</figcaption>
-                </figure>
-              </div>
-              <div class="project-text">
-                <p class="project-lead">
-                  <span class="kw">Command-conditioned</span> full-body locomotion — online in sim, validated on <span class="kw">G1</span>.
-                </p>
-                <p class="desc">
-                  Learned motion matching + flow matching; stand / walk / run transitions via interactive control.
-                </p>
-                <ul class="project-highlights compact">
-                  <li>~800 FPS LMM · ~150 FPS flow matching at runtime</li>
-                  <li>PoC from a handful of LAFAN clips · robot-agnostic design</li>
-                </ul>
-                <dl class="project-facts">
-                  <div><dt>Robot</dt><dd>Unitree G1 (primary) · robot-agnostic design</dd></div>
-                  <div><dt>Status</dt><dd>Ongoing research · code not yet published</dd></div>
-                </dl>
               </div>
             </div>
           </div>

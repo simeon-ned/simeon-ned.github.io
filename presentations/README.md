@@ -63,4 +63,4 @@ Reveal.js is loaded from jsDelivr CDN (no npm install). Offline use: download [R
 - Keep **one main narrative**: sim-to-real humanoid control, or IK libraries, or RL locomotion — pick based on the job description.
 - Use **one slide per project** in the live talk; extra detail goes in speaker notes.
 - For a **15-minute slot**, show: About Me (30s) → Experience & Technical Profile (1 min) → 2–3 projects → Thank you.
-- For a **research talk**, expand PSM / LocoGen / WBC-Mjlab and shorten the profile slide.
+- For a **research talk**, expand WBC-Gen / WBC-Mjlab / PSM and shorten the profile slide.
