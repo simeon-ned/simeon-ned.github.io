@@ -38,7 +38,11 @@
     <main>
       <h1>
         CV
-        <a class="cv-pdf-link" href="pdf/CV.pdf" target="_blank" rel="noopener noreferrer" title="Download PDF">PDF</a>
+        <span class="cv-pdf-link">
+          <a href="pdf/CV.pdf" target="_blank" rel="noopener noreferrer" title="Download English CV PDF">PDF (EN)</a>
+          ·
+          <a href="pdf/CV_ru.pdf" target="_blank" rel="noopener noreferrer" title="Download Russian CV PDF">PDF (RU)</a>
+        </span>
       </h1>
 
       <div class="cv-header">
@@ -163,19 +167,20 @@
               >WBC-Gen: Reactive Generative Motion Planner</a
             ></strong
           >
-          — proprio-conditioned latent flow-matching planner that emits trackable WBC references for a frozen whole-body
-          controller; trained from streaming WBC rollouts with domain randomisation; Gen and WBC co-located on the Unitree
-          G1 onboard CPU, with
+          — fast proprio-conditioned latent flow-matching planner that emits trackable WBC references for a frozen
+          whole-body controller; generalizable across tasks on one unified WBC contract; can
+          <a href="https://youtu.be/gAHCAtJnRDU" target="_blank" rel="noopener noreferrer">autonomously recover and get up from failed states</a>
+          without a fall/standing mode FSM. Gen and WBC co-located on the Unitree G1 onboard CPU, with
           <a href="https://youtube.com/shorts/dXNI8benYAo" target="_blank" rel="noopener noreferrer">walk&nbsp;/&nbsp;sprint teleop</a>,
           <a href="https://youtube.com/shorts/iofTKa0GPwQ" target="_blank" rel="noopener noreferrer">disturbance rejection</a>,
           and
           <a href="https://youtube.com/shorts/aMezmX262tg" target="_blank" rel="noopener noreferrer">agile recovery</a>
-          on hardware and
-          <a href="https://youtu.be/gAHCAtJnRDU" target="_blank" rel="noopener noreferrer">sim walk&nbsp;/&nbsp;sprint&nbsp;/&nbsp;recovery</a>.
+          on hardware.
           <a href="https://wbc-mjlab.github.io/wbc-demo/" target="_blank" rel="noopener noreferrer">Try Gen alongside WBC tracking</a>
-          to interactively generate character locomotion (WASD to steer, Shift to sprint; G switches clips&nbsp;↔&nbsp;Gen);
+          to interactively generate robot locomotion (WASD to steer, Shift to sprint; G switches clips&nbsp;↔&nbsp;Gen);
           deploy code in
-          <a href="https://github.com/wbc-mjlab/wbc-g1-deploy/tree/feat/generator" target="_blank" rel="noopener noreferrer">wbc-g1-deploy</a>.
+          <a href="https://github.com/wbc-mjlab/wbc-g1-deploy/tree/feat/generator" target="_blank" rel="noopener noreferrer">wbc-g1-deploy</a>;
+          training code and paper coming soon.
         </p>
         <p>
           <strong
@@ -374,12 +379,18 @@
       <div class="cv-block">
         <h2>Research Interests</h2>
         <p>
-          Nonlinear and learning-based control; whole-body control and humanoid locomotion; system identification and
-          estimation; differentiable simulation; data-driven motion; novel actuators; convex optimization for control.
+          Articulated robots; reinforcement learning; hybrid methods; sim-to-real; motion imitation; whole-body control
+          and humanoid locomotion; learning-based and nonlinear control; system identification and estimation;
+          differentiable simulation; data-driven motion generation.
         </p>
       </div>
 
-      <p><a href="pdf/CV.pdf" target="_blank" rel="noopener noreferrer">Download full CV (PDF)</a></p>
+      <p>
+        Download full CV:
+        <a href="pdf/CV.pdf" target="_blank" rel="noopener noreferrer">PDF (EN)</a>
+        ·
+        <a href="pdf/CV_ru.pdf" target="_blank" rel="noopener noreferrer">PDF (RU)</a>
+      </p>
     </main>
   </body>
 </html>

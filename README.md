@@ -16,4 +16,4 @@ Source: `cv/cv.tex` — compile and copy to the site:
 cd cv && make
 ```
 
-Requires `latexmk` (TeX Live). Output: `pdf/CV.pdf`.
+Requires `latexmk` (TeX Live). Outputs: [`pdf/CV.pdf`](pdf/CV.pdf) (EN), [`pdf/CV_ru.pdf`](pdf/CV_ru.pdf) (RU).

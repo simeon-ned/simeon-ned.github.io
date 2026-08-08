@@ -654,11 +654,25 @@
   object-position: center;
 }
 
-.reveal .project-media.landscape.single .media-figure video {
+.reveal .project-media.landscape.single .media-figure video,
+.reveal .project-media.landscape.single .media-figure img {
   max-height: 340px;
   width: 100%;
+  aspect-ratio: auto;
   object-fit: contain;
   object-position: center;
+}
+
+/* WBC-Mjlab hardware collage — nearly square; give it more of the slide */
+.reveal .project-row.wbc-mjlab-row {
+  grid-template-columns: minmax(0, 56%) minmax(0, 44%);
+  align-items: start;
+}
+
+.reveal .project-media.landscape.single.collage .media-figure img {
+  max-height: min(520px, 62vh);
+  width: 100%;
+  height: auto;
 }
 
 .reveal .project-row.sber-layout {
@@ -942,9 +956,10 @@
     max-width: 85%;
   }
 
-  .reveal .project-media.landscape.single .media-figure video {
+  .reveal .project-media.landscape.single .media-figure video,
+  .reveal .project-media.landscape.single .media-figure img {
     max-height: none;
-    aspect-ratio: 16 / 9;
+    aspect-ratio: auto;
   }
 
   .reveal .project-facts div {

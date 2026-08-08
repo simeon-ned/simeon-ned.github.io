@@ -82,7 +82,7 @@ Thesis: \emph{Development and research of dynamic model of robot manipulator}.}
 \section{Selected Research \& Software Projects}
 
 \textbf{WBC-Gen: Reactive Generative Motion Planner}\\
-Proprio-conditioned latent flow-matching planner that emits trackable WBC references for a frozen whole-body controller; trained from streaming WBC rollouts with domain randomisation; Gen and WBC co-located on the Unitree G1 onboard CPU, with \href{https://youtube.com/shorts/dXNI8benYAo}{walk/sprint teleop}, \href{https://youtube.com/shorts/iofTKa0GPwQ}{disturbance rejection}, and \href{https://youtube.com/shorts/aMezmX262tg}{agile recovery} on hardware and \href{https://youtu.be/gAHCAtJnRDU}{sim walk/sprint/recovery}. \href{https://wbc-mjlab.github.io/wbc-demo/}{Try Gen alongside WBC tracking} to interactively generate character locomotion (WASD to steer, Shift to sprint; G switches clips~$\leftrightarrow$~Gen); deploy code in \href{https://github.com/wbc-mjlab/wbc-g1-deploy/tree/feat/generator}{wbc-g1-deploy}.
+Fast proprio-conditioned latent flow-matching planner that emits trackable WBC references for a frozen whole-body controller; generalizable across tasks on one unified WBC contract; can \href{https://youtu.be/gAHCAtJnRDU}{autonomously recover and get up from failed states} without a fall/standing mode FSM. Gen and WBC co-located on the Unitree G1 onboard CPU, with \href{https://youtube.com/shorts/dXNI8benYAo}{walk/sprint teleop}, \href{https://youtube.com/shorts/iofTKa0GPwQ}{disturbance rejection}, and \href{https://youtube.com/shorts/aMezmX262tg}{agile recovery} on hardware. \href{https://wbc-mjlab.github.io/wbc-demo/}{Try Gen alongside WBC tracking} to interactively generate robot locomotion (WASD to steer, Shift to sprint; G switches clips~$\leftrightarrow$~Gen); deploy code in \href{https://github.com/wbc-mjlab/wbc-g1-deploy/tree/feat/generator}{wbc-g1-deploy}; training code and paper coming soon.
 
 \textbf{WBC-Mjlab: Whole Body Control in MuJoCo Lab} (\href{https://github.com/wbc-mjlab/wbc-mjlab}{github.com/wbc-mjlab/wbc-mjlab}) — \href{https://wbc-mjlab.github.io/wbc-demo/}{web demo}\\
 Shared MDP for universal whole-body motion tracking in mjlab: multi-clip training, paper-specific task presets (ZEST, BeyondMimic-style RSI, etc.), motion-data pipeline, and sim-to-real export for humanoids.
@@ -169,6 +169,6 @@ Course materials on modern control via numerical methods and convex optimization
 
 \section{Research Interests}
 
-Nonlinear and learning-based control; whole-body control and humanoid locomotion; system identification and estimation; differentiable simulation; data-driven motion; novel actuators; convex optimization for control.
+Articulated robots; reinforcement learning; hybrid methods; sim-to-real; motion imitation; whole-body control and humanoid locomotion; learning-based and nonlinear control; system identification and estimation; differentiable simulation; data-driven motion generation.
 
 \end{document}

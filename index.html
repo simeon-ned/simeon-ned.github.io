@@ -104,20 +104,25 @@
           </div>
           <div class="project-body">
             <p>
-              Proprio-conditioned latent flow-matching planner that sits next to a frozen whole-body controller and turns
-              high-level intent into trackable WBC references — reactive, physics- and controller-aware generation rather
-              than open-loop playback. Trained from streaming WBC rollouts with domain randomisation; Gen and WBC both run
-              on the Unitree G1 onboard CPU (no Jetson), with
+              Fast proprio-conditioned latent flow-matching planner that sits next to a frozen whole-body controller and
+              turns high-level intent into trackable WBC references — reactive, physics- and controller-aware generation
+              rather than open-loop playback. Lightweight enough for Gen and WBC to co-locate on the Unitree G1 onboard
+              CPU (no Jetson), and generalizable across tasks on one unified WBC contract. Beyond locomotion teleop, the
+              same planner can
+              <a href="https://youtu.be/gAHCAtJnRDU" target="_blank" rel="noopener noreferrer">autonomously recover and get up from failed states</a>
+              without a fall/standing mode FSM. On hardware:
               <a href="https://youtube.com/shorts/dXNI8benYAo" target="_blank" rel="noopener noreferrer">walk&nbsp;/&nbsp;sprint teleop</a>,
               <a href="https://youtube.com/shorts/iofTKa0GPwQ" target="_blank" rel="noopener noreferrer">disturbance rejection</a>,
               and
-              <a href="https://youtube.com/shorts/aMezmX262tg" target="_blank" rel="noopener noreferrer">agile recovery</a>
-              on hardware, plus
-              <a href="https://youtu.be/gAHCAtJnRDU" target="_blank" rel="noopener noreferrer">walk&nbsp;/&nbsp;sprint&nbsp;/&nbsp;recovery in sim</a>.
+              <a href="https://youtube.com/shorts/aMezmX262tg" target="_blank" rel="noopener noreferrer">agile recovery</a>.
               <a href="https://wbc-mjlab.github.io/wbc-demo/" target="_blank" rel="noopener noreferrer">Try Gen alongside WBC tracking</a>
-              to interactively generate character locomotion (WASD to steer, Shift to sprint; press G to switch clips&nbsp;↔&nbsp;Gen).
-              Deploy code is in
-              <a href="https://github.com/wbc-mjlab/wbc-g1-deploy/tree/feat/generator" target="_blank" rel="noopener noreferrer">wbc-g1-deploy</a>.
+              to interactively generate robot locomotion (WASD to steer, Shift to sprint; press G to switch clips&nbsp;↔&nbsp;Gen).
+              Training code and paper coming soon.
+            </p>
+            <p class="links">
+              [<a href="https://wbc-mjlab.github.io/wbc-demo/" target="_blank" rel="noopener noreferrer">Demo</a>]
+              [<a href="https://github.com/wbc-mjlab/wbc-g1-deploy/tree/feat/generator" target="_blank" rel="noopener noreferrer">Deploy Code</a>]
+              [<a href="https://youtu.be/gAHCAtJnRDU" target="_blank" rel="noopener noreferrer">Simulation</a>]
             </p>
           </div>
         </div>

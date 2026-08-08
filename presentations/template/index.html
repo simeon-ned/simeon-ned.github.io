@@ -32,9 +32,11 @@
               <p class="about-headline">
                 <span class="about-role">Researcher &amp; Senior RL Engineer</span>
                 <span class="about-focus">
-                  <span class="focus-pill">Robotics</span>
-                  <span class="focus-pill">Whole-Body Control</span>
-                  <span class="focus-pill">Humanoid Locomotion</span>
+                  <span class="focus-pill">Articulated Robots</span>
+                  <span class="focus-pill">RL</span>
+                  <span class="focus-pill">Hybrid Methods</span>
+                  <span class="focus-pill">Sim-to-Real</span>
+                  <span class="focus-pill">Motion Imitation</span>
                 </span>
               </p>
               <p class="about-bio">
@@ -132,10 +134,10 @@
             <div class="profile-panel profile-fit">
               <h3>What I deliver</h3>
               <ul class="compact profile-list">
-                <li><span class="kw">Humanoid locomotion &amp; WBC</span> — primary focus</li>
+                <li><span class="kw">Articulated robots</span> — humanoids, WBC, locomotion</li>
+                <li><span class="kw">RL &amp; hybrid methods</span> — learning + model-based / generative stacks</li>
                 <li><span class="kw">Sim-to-real</span> — train in sim, deploy on hardware</li>
-                <li><span class="kw">Teleoperation &amp; imitation</span> — tracking, retargeting, multi-clip RL</li>
-                <li><span class="kw">Generative motion</span> — Gen → WBC flow planners (ongoing)</li>
+                <li><span class="kw">Motion imitation</span> — tracking, retargeting, multi-clip RL</li>
               </ul>
 
               <h3>How I work</h3>
@@ -211,32 +213,40 @@
               </div>
               <div class="project-text">
                 <p class="project-lead">
-                  <span class="kw">Proprio-closed-loop</span> planner → trackable <span class="kw">WBC references</span> every step above a frozen controller.
+                  <span class="kw">Fast</span>, <span class="kw">task-general</span> Gen → trackable <span class="kw">WBC references</span> every step above a frozen controller.
                 </p>
                 <p class="desc">
                   Latent flow matching trained from <span class="kw">streaming WBC rollouts</span> with domain randomisation —
                   reactive, physics- and controller-aware generation, not open-loop kinematic playback.
-                  Fall recovery and agile disturbance response are <span class="kw">embedded in the planner</span>.
+                  Generalizable across tasks on one unified WBC contract; recovery and get-ups from failed states are
+                  <span class="kw">embedded in the planner</span>
+                  (<a href="https://youtu.be/gAHCAtJnRDU" target="_blank" rel="noopener">(sim: autonomous recovery &amp; get-up)</a>,
+                  with no fall/standing mode FSM.
                   On G1 CPU (no Jetson):
                   <a href="https://youtube.com/shorts/dXNI8benYAo" target="_blank" rel="noopener">walk&nbsp;/&nbsp;sprint teleop</a>,
                   <a href="https://youtube.com/shorts/iofTKa0GPwQ" target="_blank" rel="noopener">disturbance rejection</a>,
                   and
-                  <a href="https://youtube.com/shorts/aMezmX262tg" target="_blank" rel="noopener">agile recovery</a>;
-                  also
-                  <a href="https://youtu.be/gAHCAtJnRDU" target="_blank" rel="noopener">sim walk&nbsp;/&nbsp;sprint&nbsp;/&nbsp;recovery</a>.
+                  <a href="https://youtube.com/shorts/aMezmX262tg" target="_blank" rel="noopener">agile recovery</a>.
                   <a href="https://wbc-mjlab.github.io/wbc-demo/" target="_blank" rel="noopener">Try Gen alongside WBC tracking</a>
-                  to interactively generate character locomotion (WASD to steer, Shift to sprint; G switches clips&nbsp;↔&nbsp;Gen).
-                  Deploy code:
-                  <a href="https://github.com/wbc-mjlab/wbc-g1-deploy/tree/feat/generator" target="_blank" rel="noopener">wbc-g1-deploy</a>.
+                  to interactively generate robot locomotion (WASD to steer, Shift to sprint; G switches clips&nbsp;↔&nbsp;Gen).
+                  Training code and paper coming soon.
                 </p>
                 <ul class="project-highlights compact">
-                  <li><span class="kw">Onboard</span> — Gen + WBC co-located on G1 CPU (no Jetson)</li>
-                  <li><span class="kw">Modular</span> — stack task-specific generators on one unified WBC contract</li>
-                  <li><span class="kw">Physically consistent</span> — supervision from actual WBC rollouts with DR</li>
+                  <li><span class="kw">Fast / onboard</span> — Gen + WBC co-located on G1 CPU (no Jetson)</li>
+                  <li><span class="kw">Task-general</span> — stack generators on one unified WBC contract</li>
+                  <li><span class="kw">Autonomous recovery</span> — get-ups from failed states without a mode FSM</li>
                 </ul>
                 <dl class="project-facts">
                   <div><dt>Stack</dt><dd>Control Operators–style flow · mjlab / MuJoCo Warp · ONNX deploy</dd></div>
+                  <div><dt>Status</dt><dd>Deploy code available · training code &amp; paper coming soon</dd></div>
                 </dl>
+                <p class="links">
+                  <a href="https://wbc-mjlab.github.io/wbc-demo/" target="_blank" rel="noopener">Demo</a>
+                  ·
+                  <a href="https://github.com/wbc-mjlab/wbc-g1-deploy/tree/feat/generator" target="_blank" rel="noopener">Deploy Code</a>
+                  ·
+                  <a href="https://youtu.be/gAHCAtJnRDU" target="_blank" rel="noopener">Simulation</a>
+                </p>
               </div>
             </div>
           </div>
@@ -257,15 +267,14 @@
               </div>
               <p class="tagline">Whole Body Control in MuJoCo Lab</p>
             </header>
-            <div class="project-row media-tall">
-              <div class="project-media portrait-tall">
+            <div class="project-row wbc-mjlab-row">
+              <div class="project-media landscape single collage">
                 <figure class="media-figure">
-                  <img src="../../images/projects/wbc-mjlab-sideflip.gif" alt="WBC-Mjlab sideflip" />
-                  <figcaption>Sideflip</figcaption>
-                </figure>
-                <figure class="media-figure">
-                  <img src="../../images/projects/wbc-mjlab-getup.gif" alt="WBC-Mjlab get up" />
-                  <figcaption>Get-up</figcaption>
+                  <img
+                    src="../../images/projects/wbc-mjlab-hardware-collage.gif"
+                    alt="WBC-Mjlab Unitree G1 hardware collage: get-up recovery and walking"
+                  />
+                  <figcaption>G1 hardware — get-up recovery &amp; multi-scene walking</figcaption>
                 </figure>
               </div>
               <div class="project-text">
@@ -591,6 +600,10 @@
             <a href="https://telegram.me/simkasimka" target="_blank" rel="noopener">Telegram</a>
             ·
             <a href="https://simeon-ned.github.io" target="_blank" rel="noopener">simeon-ned.github.io</a>
+            ·
+            <a href="../../pdf/CV.pdf" target="_blank" rel="noopener">CV (EN)</a>
+            ·
+            <a href="../../pdf/CV_ru.pdf" target="_blank" rel="noopener">CV (RU)</a>
           </p>
           <p class="muted small">Questions?</p>
         </section>

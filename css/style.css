@@ -545,6 +545,9 @@ hr.section {
   float: right;
   font-size: 0.9rem;
   font-weight: 600;
+}
+
+.cv-pdf-link a {
   color: var(--link);
 }
 
