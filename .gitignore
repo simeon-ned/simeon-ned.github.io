@@ -1,1 +1,10 @@
 .DS_Store
+node_modules/
+_site/
+*.log
+cv/publications.tex
+cv/*.aux
+cv/*.fdb_latexmk
+cv/*.fls
+cv/*.log
+cv/*.out

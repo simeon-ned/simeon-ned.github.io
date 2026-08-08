@@ -1,0 +1,39 @@
+{% macro pubList(items) %}
+  <ul class="pub-type-list">
+    {% for pub in items %}
+      <li>
+        {{ pub.authorsCv | safe }}. {{ pub.title }}.
+        {% if pub.category == "preprint" and pub.arxiv %}
+          arXiv:{{ pub.arxiv }}, {{ pub.year }}.
+        {% elif pub.journal %}
+          <em>{{ pub.journal }}</em>{% if pub.year %}, {{ pub.year }}{% endif %}.
+        {% elif pub.venue %}
+          <em>{{ pub.venue }}</em>{% if pub.year %}, {{ pub.year }}{% endif %}.
+        {% else %}
+          {{ pub.year }}.
+        {% endif %}
+        {% if pub.url or pub.doi %}
+          {% set href = pub.url or ("https://doi.org/" + pub.doi) %}
+          <a href="{{ href }}" target="_blank" rel="noopener noreferrer">[Paper]</a>
+        {% endif %}
+      </li>
+    {% endfor %}
+  </ul>
+{% endmacro %}
+
+{% if publications.byType.preprint.length %}
+  <div class="cv-subhead">Preprints</div>
+  {{ pubList(publications.byType.preprint) }}
+{% endif %}
+{% if publications.byType.journal.length %}
+  <div class="cv-subhead">Journals</div>
+  {{ pubList(publications.byType.journal) }}
+{% endif %}
+{% if publications.byType.conference.length %}
+  <div class="cv-subhead">Conference papers</div>
+  {{ pubList(publications.byType.conference) }}
+{% endif %}
+{% if publications.byType.other.length %}
+  <div class="cv-subhead">Other</div>
+  {{ pubList(publications.byType.other) }}
+{% endif %}

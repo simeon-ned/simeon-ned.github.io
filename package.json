@@ -1,0 +1,24 @@
+{
+  "name": "simeon-ned.github.io",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Personal academic site (Eleventy)",
+  "scripts": {
+    "build": "eleventy",
+    "dev": "CHOKIDAR_USEPOLLING=1 eleventy --serve --port=8080",
+    "dev:native": "eleventy --serve --port=8080",
+    "preview": "npm run build && python3 -m http.server 8080 --directory _site",
+    "cv:pubs": "node scripts/generate-cv-pubs.js",
+    "cv": "npm run cv:pubs && make -C cv",
+    "clean": "rm -rf _site"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "devDependencies": {
+    "@11ty/eleventy": "^3.0.0",
+    "@citation-js/core": "^0.7.14",
+    "@citation-js/plugin-bibtex": "^0.7.14",
+    "js-yaml": "^4.1.0"
+  }
+}

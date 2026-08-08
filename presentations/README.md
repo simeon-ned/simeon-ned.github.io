@@ -58,6 +58,11 @@ Images and video are referenced from the site root (`../../images/...`). They ar
 
 Reveal.js is loaded from jsDelivr CDN (no npm install). Offline use: download [Reveal.js 5.x](https://github.com/hakimel/reveal.js/releases) into `vendor/reveal.js/` and update the `<link>` / `<script>` paths in `index.html`.
 
+## Notes
+
+- Designed for **desktop talk first** (Reveal default 1280×720); phone viewing is secondary.
+- Project blurbs on the homepage come from [`content/projects.yaml`](../content/projects.yaml). Slides stay hand-authored for talk pacing; optionally sync blurbs from that YAML later.
+
 ## Tips for interviews
 
 - Keep **one main narrative**: sim-to-real humanoid control, or IK libraries, or RL locomotion — pick based on the job description.

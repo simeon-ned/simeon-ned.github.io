@@ -1,11 +1,22 @@
-/* Academic one-pager — minimal static layout */
+/* Academic one-pager — Eleventy site */
 
 :root {
   --text: #222;
   --text-light: #555;
   --link: #1772d0;
   --border: #ddd;
-  --max-width: 820px;
+  --max-width: 960px;
+  --space-xs: 0.35rem;
+  --space-sm: 0.75rem;
+  --space-md: 1.25rem;
+  --space-lg: 2rem;
+  --space-xl: 3rem;
+  --font-size: 16px;
+  --font-size-sm: 0.92rem;
+  --font-size-h1: 2rem;
+  --font-size-h2: 1.25rem;
+  --font-size-h3: 1.05rem;
+  --thumb-w: 219px;
 }
 
 * {
@@ -19,8 +30,8 @@ html {
 body {
   margin: 0;
   padding: 0;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 16px;
+  font-family: Inter, "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: var(--font-size);
   line-height: 1.55;
   color: var(--text);
   background: #fff;
@@ -64,7 +75,7 @@ nav.site-nav a.active {
 }
 
 /* Hide Alumni nav until content is ready — delete this rule to show */
-nav.site-nav a[href="alumni.html"] {
+nav.site-nav a[href="/alumni/"] {
   display: none;
 }
 
@@ -109,16 +120,21 @@ main {
 }
 
 h1 {
-  font-size: 2rem;
+  font-size: var(--font-size-h1);
   font-weight: 700;
-  margin: 0 0 1.25rem;
+  margin: 0 0 var(--space-md);
 }
 
 h2 {
-  font-size: 1.25rem;
+  font-size: var(--font-size-h2);
   font-weight: 700;
   margin: 0 0 1rem;
   text-transform: none;
+}
+
+h3 {
+  font-size: var(--font-size-h3);
+  font-weight: 600;
 }
 
 h2 .subtle {
@@ -131,7 +147,7 @@ h2 .subtle {
 hr.section {
   border: none;
   border-top: 1px solid var(--border);
-  margin: 2rem 0;
+  margin: var(--space-lg) 0;
 }
 
 /* Intro */
@@ -204,8 +220,33 @@ hr.section {
 }
 
 .row-item .body .links {
-  font-size: 0.92rem;
+  font-size: var(--font-size-sm);
   margin: 0;
+}
+
+.pub-year-block {
+  margin-bottom: var(--space-md);
+}
+
+.pub-year-heading {
+  font-size: var(--font-size-h3);
+  font-weight: 600;
+  margin: 0 0 var(--space-sm);
+  padding-bottom: 0.25rem;
+  border-bottom: 1px solid var(--border);
+  color: var(--text);
+}
+
+.pub-year-block:first-child .pub-year-heading {
+  margin-top: 0;
+}
+
+.pub-row {
+  margin-bottom: 1rem;
+}
+
+.pub-row .meta {
+  font-size: var(--font-size-sm);
 }
 
 .row-item .body .links a {
@@ -603,6 +644,15 @@ hr.section {
   margin-bottom: 0;
 }
 
+.pub-type-list {
+  margin: 0.35rem 0 1rem;
+  padding-left: 1.25rem;
+}
+
+.pub-type-list li {
+  margin-bottom: 0.45rem;
+}
+
 /* Footer contact */
 .contact-footer {
   list-style: none;
@@ -618,7 +668,79 @@ hr.section {
   color: var(--text);
 }
 
+/* Tablet */
+@media (max-width: 900px) {
+  :root {
+    --max-width: 100%;
+  }
+
+  nav.site-nav {
+    padding: 1rem 1.25rem 0;
+    flex-wrap: wrap;
+  }
+
+  .nav-links {
+    gap: 1rem;
+  }
+
+  main {
+    padding: 1rem 1.25rem 2.5rem;
+  }
+
+  .intro-table .photo {
+    width: 200px;
+    padding-right: 1.25rem;
+  }
+
+  .intro-table img.profile {
+    width: 180px;
+  }
+
+  .project-thumbs.portrait,
+  .project-thumbs.landscape,
+  .project-thumbs.sber-grid {
+    flex-basis: 180px;
+  }
+
+  .project-thumbs.landscape a {
+    width: 180px;
+  }
+
+  .project-thumbs.landscape img,
+  .project-thumbs.landscape video {
+    width: 180px;
+    height: 101px;
+  }
+
+  .project-thumbs.portrait img,
+  .project-thumbs.portrait video {
+    height: 154px;
+  }
+}
+
+/* Phone */
 @media (max-width: 640px) {
+  :root {
+    --font-size: 15px;
+    --font-size-h1: 1.65rem;
+    --font-size-h2: 1.15rem;
+    --space-lg: 1.5rem;
+  }
+
+  nav.site-nav {
+    padding: 0.85rem 1rem 0;
+    align-items: flex-start;
+  }
+
+  .nav-links {
+    gap: 0.75rem 1rem;
+    row-gap: 0.35rem;
+  }
+
+  main {
+    padding: 0.75rem 1rem 2rem;
+  }
+
   .intro-table,
   .intro-table tbody,
   .intro-table tr,
@@ -629,11 +751,21 @@ hr.section {
 
   .intro-table .photo {
     text-align: center;
+    width: 100%;
     padding: 0 0 1rem;
+  }
+
+  .intro-table img.profile {
+    width: min(220px, 70vw);
   }
 
   .row-item {
     flex-direction: column;
+  }
+
+  .project-card {
+    padding-bottom: 1.5rem;
+    margin-bottom: 1.5rem;
   }
 
   .project-row {
@@ -647,7 +779,15 @@ hr.section {
 
   .project-thumbs.portrait {
     flex-direction: row;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
+    gap: 0.5rem;
+  }
+
+  .project-thumbs.portrait img,
+  .project-thumbs.portrait video {
+    height: auto;
+    aspect-ratio: 4 / 5;
+    max-height: 220px;
   }
 
   .project-thumbs.landscape {
@@ -676,6 +816,10 @@ hr.section {
     width: 100%;
   }
 
+  .pub-year-heading {
+    margin-top: 1.25rem;
+  }
+
   h2 .subtle {
     float: none;
     display: block;
@@ -685,5 +829,21 @@ hr.section {
   .exp-item {
     flex-direction: column;
     gap: 0.2rem;
+  }
+
+  .exp-item .year {
+    flex: none;
+  }
+
+  .cv-entry-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.15rem;
+  }
+
+  .cv-pdf-link {
+    float: none;
+    display: block;
+    margin-bottom: 0.5rem;
   }
 }

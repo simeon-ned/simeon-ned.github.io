@@ -1,0 +1,27 @@
+<details class="pub-dropdown">
+  <summary>View publications by year</summary>
+  <div class="pub-list">
+    {% for group in publications.byYear %}
+      <details class="pub-year"{% if group.open %} open{% endif %}>
+        <summary>{{ group.year }}</summary>
+        {% for pub in group.pubs %}
+          <div class="row-item">
+            <div class="body">
+              <div class="title">{{ pub.title }}</div>
+              <div class="meta">
+                {{ pub.authorsHtml | safe }}{% if pub.venue %} · {{ pub.venue }}{% endif %}
+              </div>
+              {% if pub.links.length %}
+                <p class="links">
+                  {% for link in pub.links %}
+                    [<a href="{{ link.href }}" target="_blank" rel="noopener noreferrer">{{ link.label }}</a>]
+                  {% endfor %}
+                </p>
+              {% endif %}
+            </div>
+          </div>
+        {% endfor %}
+      </details>
+    {% endfor %}
+  </div>
+</details>

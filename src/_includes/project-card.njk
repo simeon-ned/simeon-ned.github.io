@@ -1,0 +1,49 @@
+<article class="project-card">
+  <div class="title">
+    {% if project.title_url %}
+      <a href="{{ project.title_url }}" target="_blank" rel="noopener noreferrer">{{ project.title }}</a>
+    {% else %}
+      {{ project.title }}
+    {% endif %}
+  </div>
+  <div class="project-row">
+    <div class="project-thumbs {{ project.thumbs }}">
+      {% if project.thumbs == "sber-grid" %}
+        <div class="sber-top">
+          <img class="sber-dance" src="/images/projects/sber-dance.gif" alt="Zero-shot dance tracking on Green humanoid" loading="lazy" />
+          <img class="sber-teleop" src="/images/projects/sber-teleop.gif" alt="Teleoperation with unified whole-body control policy" loading="lazy" />
+        </div>
+        <img class="sber-walk" src="/images/projects/sber-walk.gif" alt="Natural RL locomotion on Green humanoid" loading="lazy" />
+      {% else %}
+        {% for m in project.media %}
+          {% if m.type == "video" %}
+            {% if m.href %}<a href="{{ m.href }}" target="_blank" rel="noopener noreferrer">{% endif %}
+            <video
+              src="/{{ m.src }}"
+              {% if m.width %}width="{{ m.width }}"{% endif %}
+              {% if m.height %}height="{{ m.height }}"{% endif %}
+              autoplay loop muted playsinline
+              aria-label="{{ m.aria }}"
+            ></video>
+            {% if m.href %}</a>{% endif %}
+          {% elif m.type == "image" %}
+            {% if m.href %}<a href="{{ m.href }}" target="_blank" rel="noopener noreferrer">{% endif %}
+            <img src="/{{ m.src }}" alt="{{ m.alt }}" loading="lazy" />
+            {% if m.href %}</a>{% endif %}
+          {% endif %}
+        {% endfor %}
+      {% endif %}
+    </div>
+    <div class="project-body">
+      <p>{{ project.body_html | safe }}</p>
+      {% if project.meta %}<p class="meta">{{ project.meta }}</p>{% endif %}
+      {% if project.links and project.links.length %}
+        <p class="links">
+          {% for link in project.links %}
+            [<a href="{{ link.href }}" target="_blank" rel="noopener noreferrer">{{ link.label }}</a>]
+          {% endfor %}
+        </p>
+      {% endif %}
+    </div>
+  </div>
+</article>

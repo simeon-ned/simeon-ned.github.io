@@ -1,0 +1,222 @@
+---
+layout: base.njk
+title: CV
+permalink: /cv/
+---
+
+<h1>
+  CV
+  <a class="cv-pdf-link" href="/pdf/CV.pdf" target="_blank" rel="noopener noreferrer" title="Download PDF">PDF</a>
+</h1>
+
+<div class="cv-header">
+  <div class="name">SIMEON NEDELCHEV</div>
+  <p class="contact">
+    <a href="mailto:{{ site.email }}">{{ site.email }}</a> ·
+    <a href="mailto:s.nedelchev@innopolis.university">s.nedelchev@innopolis.university</a><br />
+    <a href="{{ site.url }}">simeon-ned.github.io</a> ·
+    <a href="/presentations/template/" target="_blank" rel="noopener noreferrer">Presentation</a> ·
+    <a href="{{ site.github }}" target="_blank" rel="noopener noreferrer">github.com/simeon-ned</a> ·
+    <a href="{{ site.scholar }}" target="_blank" rel="noopener noreferrer">Google Scholar</a>
+  </p>
+</div>
+
+<div class="cv-block">
+  <h2>Professional Experience</h2>
+  <div class="cv-entry">
+    <div class="cv-entry-header">
+      <span class="title">Researcher &amp; Senior RL Engineer</span>
+      <span class="cv-date">Feb 2026 – Present</span>
+    </div>
+    <div class="institution">Institute of Artificial Intelligence</div>
+    <p>
+      Developing learning-based whole-body control, data-driven motion generation, and estimation methods for
+      humanoid and articulated robotic systems. Building simulation pipelines, motion libraries, and deployable
+      control stacks in collaboration with academic and industry partners.
+    </p>
+  </div>
+  <div class="cv-entry">
+    <div class="cv-entry-header">
+      <span class="title">Senior Optimal Control &amp; RL Engineer</span>
+      <span class="cv-date">Aug 2023 – Dec 2025</span>
+    </div>
+    <div class="institution">Sber Robotics Center, Sber</div>
+    <p>
+      Developer of the RL whole-body control (WBC) and locomotion policies demonstrated on the Green humanoid at
+      AIJ Conference 2025. Work centered on control, with modeling and MuJoCo-based simulation and
+      training/evaluation pipelines; partial system identification (mainly motor and actuator parameters)
+      (<a href="https://youtu.be/eehll8Uw3pw?t=1432" target="_blank" rel="noopener noreferrer">video</a>).
+    </p>
+  </div>
+  <div class="cv-entry">
+    <div class="cv-entry-header">
+      <span class="title">Senior Lecturer</span>
+      <span class="cv-date">Apr 2022 – Present</span>
+    </div>
+    <div class="institution">Institute for Robotics and Computer Vision, Innopolis University</div>
+    <p>
+      Advanced courses in robotics, mathematical modeling, motion planning, applied and nonlinear control.
+      Curriculum development and student mentoring in dynamics, simulation, and embodied AI.
+    </p>
+  </div>
+  <div class="cv-entry">
+    <div class="cv-entry-header">
+      <span class="title">Junior Researcher</span>
+      <span class="cv-date">Sep 2019 – Sep 2023</span>
+    </div>
+    <div class="institution">Center for Technologies in Robotics and Mechatronics Components, Innopolis University</div>
+    <p>
+      Research on adaptive and learning-based control, system identification, and mechatronic systems; teaching
+      assistance and student mentoring.
+    </p>
+  </div>
+  <div class="cv-entry">
+    <div class="cv-entry-header">
+      <span class="title">Research Assistant</span>
+      <span class="cv-date">2017 – 2019</span>
+    </div>
+    <div class="institution">BioRobotics Laboratory, Korea University of Technology and Education</div>
+    <p>Twisted string actuators, modeling, control, and haptic interfaces.</p>
+  </div>
+</div>
+
+<div class="cv-block">
+  <h2>Education</h2>
+  <div class="cv-entry">
+    <div class="cv-entry-header">
+      <span class="title">Ph.D. studies in Computer Science (Robotics)</span>
+      <span class="cv-date">2019 – 2023</span>
+    </div>
+    <div class="institution">Innopolis University</div>
+    <p>
+      Thesis:
+      <em>Dynamic parameter estimation and adaptive control over robotic systems: generalized momentum approach</em>.
+    </p>
+  </div>
+  <div class="cv-entry">
+    <div class="cv-entry-header">
+      <span class="title">M.Sc. in Mechatronics Engineering</span>
+      <span class="cv-date">Feb 2019</span>
+    </div>
+    <div class="institution">Korea University of Technology and Education</div>
+  </div>
+  <div class="cv-entry">
+    <div class="cv-entry-header">
+      <span class="title">M.Sc. in Robotics</span>
+      <span class="cv-date">Jun 2018</span>
+    </div>
+    <div class="institution">Moscow State Technological University STANKIN</div>
+  </div>
+  <div class="cv-entry">
+    <div class="cv-entry-header">
+      <span class="title">B.Sc. in Robotics</span>
+      <span class="cv-date">Jun 2016</span>
+    </div>
+    <div class="institution">Moscow State Technological University STANKIN · GPA 4.35/5 (87/100)</div>
+    <p>Thesis: <em>Development and research of dynamic model of robot manipulator</em>.</p>
+  </div>
+</div>
+
+<div class="cv-block">
+  <h2>Selected Research &amp; Software Projects</h2>
+  {% for project in projects.forCv %}
+    <p>
+      <strong>
+        {% if project.title_url %}
+          <a href="{{ project.title_url }}" target="_blank" rel="noopener noreferrer">{{ project.title }}</a>
+        {% else %}
+          {{ project.title }}
+        {% endif %}
+      </strong>
+      {% if project.cv_extra_links %}
+        ({% for link in project.cv_extra_links %}<a href="{{ link.href }}" target="_blank" rel="noopener noreferrer">{{ link.label }}</a>{% if not loop.last %}; {% endif %}{% endfor %})
+      {% endif %}
+      — {{ project.cv_html | safe }}
+    </p>
+  {% endfor %}
+</div>
+
+<div class="cv-block">
+  <h2>Open Source Contributions</h2>
+  <p>
+    <strong><a href="https://github.com/stack-of-tasks/pinocchio" target="_blank" rel="noopener noreferrer">Pinocchio</a></strong>
+    — contributor to the rigid-body dynamics library (inertia parametrizations and physical consistency).
+  </p>
+  <p>
+    <strong><a href="https://github.com/stephane-caron/pink" target="_blank" rel="noopener noreferrer">Pink</a></strong>
+    — contributor to differential inverse kinematics for Pinocchio (tasks, constraints, and examples).
+  </p>
+  <p>
+    <strong><a href="https://github.com/kevinzakka/mink" target="_blank" rel="noopener noreferrer">Mink</a></strong>
+    — contributed <code>EqualityConstraintTask</code> for closed-chain mechanisms; humanoid and manipulation examples in
+    the MuJoCo port of Pink.
+  </p>
+  <p>
+    <strong><a href="https://github.com/YanjieZe/GMR" target="_blank" rel="noopener noreferrer">GMR: General Motion Retargeting</a></strong>
+    — contributor (SOMA BVH format and multi-robot configs).
+  </p>
+  <p>
+    <strong><a href="https://github.com/based-robotics/mujoco-sysid" target="_blank" rel="noopener noreferrer">mujoco-sysid</a></strong>
+    — contributor; system identification in MuJoCo and MJX (parameter estimation, dynamics regressors).
+  </p>
+  <p>
+    <strong><a href="https://github.com/based-robotics/mjinx" target="_blank" rel="noopener noreferrer">MJINX: Differentiable GPU-accelerated Numerical IK</a></strong>
+    — co-author (JAX and MuJoCo MJX).
+  </p>
+</div>
+
+<div class="cv-block">
+  <h2>Publications</h2>
+  {% include "publications-by-type.njk" %}
+</div>
+
+<div class="cv-block">
+  <h2>Teaching</h2>
+  <p>
+    <strong>Innopolis University</strong> — Senior Lecturer (2022–present), Teaching Assistant (2019–2022)
+  </p>
+  <p>
+    <strong><a href="https://github.com/simeon-ned/forc" target="_blank" rel="noopener noreferrer">FORC: Fundamentals of Robot Control</a></strong>
+    — introductory course on state-space modeling, stability, linear and nonlinear control, and feedback linearization
+    for robotic systems (lectures and Colab/Python labs).
+  </p>
+  <p>
+    <strong><a href="https://github.com/simeon-ned/mcp" target="_blank" rel="noopener noreferrer">MCP: Modern Control Paradigms</a></strong>
+    — course materials on modern control via numerical methods and convex optimization, with interactive notebooks.
+  </p>
+  <ul>
+    <li>Applied Nonlinear Control; Modern Control Paradigms; Fundamentals of Robot Control</li>
+    <li>Modeling and Simulation of Robotic Systems; Linear Control Theory; Robotic Systems</li>
+    <li>Computational Intelligence; Advanced Robotics</li>
+  </ul>
+</div>
+
+<div class="cv-block">
+  <h2>Technical Skills</h2>
+  <p>
+    <strong>Programming:</strong> Python, C/C++, Bash<br />
+    <strong>Robotics &amp; ML:</strong> MuJoCo, mjlab, Isaac Sim, Isaac Lab, RL/WBC training pipelines, system
+    identification<br />
+    <strong>Embedded:</strong> STM32, ARM, ESP32, RP2040 (MicroPython, HAL, FreeRTOS, mbed)<br />
+    <strong>Tools:</strong> Linux, LaTeX, Docker, uv, pixi
+  </p>
+</div>
+
+<div class="cv-block">
+  <h2>Honors</h2>
+  <ul>
+    <li>Best Master Thesis Award, Korea University of Technology and Education, 2019</li>
+    <li>First Prize, Russian thesis competition “Be-First” (Computer &amp; Information Technologies), 2018</li>
+  </ul>
+</div>
+
+<div class="cv-block">
+  <h2>Research Interests</h2>
+  <p>
+    Articulated robots; reinforcement learning; hybrid methods; sim-to-real; motion imitation; whole-body control
+    and humanoid locomotion; learning-based and nonlinear control; system identification and estimation;
+    differentiable simulation; data-driven motion generation.
+  </p>
+</div>
+
+<p><a href="/pdf/CV.pdf" target="_blank" rel="noopener noreferrer">Download full CV (PDF)</a></p>

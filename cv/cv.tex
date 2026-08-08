@@ -1,5 +1,6 @@
 % Simeon Nedelchev — CV
-% Compile: cd cv && latexmk -pdf cv.tex && cp cv.pdf ../pdf/CV.pdf
+% Compile: npm run cv   (or: node scripts/generate-cv-pubs.js && cd cv && make)
+% Publications come from ../content/publications.bib → publications.tex
 
 \documentclass[11pt,a4paper]{article}
 
@@ -10,7 +11,8 @@
 \usepackage{microtype}
 \usepackage{enumitem}
 \usepackage{titlesec}
-\usepackage[hidelinks]{hyperref}
+\usepackage{xcolor}
+\usepackage{hyperref}
 \usepackage{tabularx}
 
 \pagestyle{empty}
@@ -28,11 +30,16 @@
 }
 \newcommand{\cvitem}[2]{\item #1 #2}
 
+% Match site accent (#1772d0); colorlinks only — no boxes
+\definecolor{cvlink}{HTML}{1772D0}
 \hypersetup{
   pdftitle={Simeon Nedelchev — CV},
   pdfauthor={Simeon Nedelchev},
+  colorlinks=true,
+  linkcolor=cvlink,
+  urlcolor=cvlink,
+  citecolor=cvlink,
 }
-
 \begin{document}
 
 \begin{center}
@@ -109,33 +116,8 @@ Developer of the RL locomotion and whole-body control policies demonstrated on t
 
 \section{Publications}
 
-\textbf{Preprints}
-\begin{itemize}[leftmargin=*, nosep, topsep=0.25em]
-  \cvitem{}{\textbf{Nedelchev S}, Chaikovskaia E, Davydenko E, Zaliaev E, Gorbachev R. Predictive Style Matching: Natural and Robust Humanoid Locomotion. arXiv:2606.07083, 2026.}
-  \cvitem{}{Maslennikov E, Zaliaev E, Dudorov N, Shamanin O, Karanov D, Afanasev G, Burkov A, Lygin E, \textbf{Nedelchev S}, Ponomarev E. Robust RL Control for Bipedal Locomotion with Closed Kinematic Chains. arXiv:2507.10164, 2025.}
-  \cvitem{}{Alentev I, Kozlov L, Domrachev I, \textbf{Nedelchev S}, Ryu JH. VIMPPI: Enhancing Model Predictive Path Integral Control with Variational Integration for Underactuated Systems. arXiv:2505.05507, 2025.}
-\end{itemize}
-
-\textbf{Journals}
-\begin{itemize}[leftmargin=*, nosep, topsep=0.25em]
-  \cvitem{}{\textbf{Nedelchev S}, Kozlov L, Khusainov RR, Gaponov I. Enhanced Adaptive Control over Robotic Systems via Generalized Momentum Dynamic Extensions. \emph{Russian Journal of Nonlinear Dynamics}, 19(4):633--646, 2023.}
-  \cvitem{}{Fam CA, \textbf{Nedelchev S}. Optimization Driven Robust Control of Mechanical Systems with Parametric Uncertainties. \emph{Russian Journal of Nonlinear Dynamics}, 19(4):585--597, 2023.}
-  \cvitem{}{Skvortsova V, \textbf{Nedelchev S}, Brown J, Farkhatdinov I, Gaponov I. Design, characterisation and validation of a haptic interface based on twisted string actuation. \emph{Frontiers in Robotics and AI}, 2022.}
-  \cvitem{}{\textbf{Nedelchev S}, Skvortsova V, Guryev B, Gaponov I, Ryu JH. On Energy-Preserving Motion in Twisted String Actuators. \emph{IEEE Robotics and Automation Letters}, 2021.}
-  \cvitem{}{\textbf{Nedelchev S}, Gaponov I, Ryu JH. Accurate Dynamic Modeling of Twisted String Actuators Accounting for String Compliance and Friction. \emph{IEEE RA-L}, 2020.}
-\end{itemize}
-
-\textbf{Conference papers}
-\begin{itemize}[leftmargin=*, nosep, topsep=0.25em]
-  \cvitem{}{Jnadi A, Khusainov RR, \textbf{Nedelchev S}, Savin S. Explicit Model Predictive Control Design based on Constrained Zonotope Propagation. \emph{DCNA}, 2023.}
-  \cvitem{}{\textbf{Nedelchev S}, Kirsanov D, Gaponov I, Seong H, Ryu JH. On Smooth Time-Optimal Trajectory Planning in Twisted String Actuators. \emph{ICRA}, 2021.}
-  \cvitem{}{Sabirova A, \textbf{Nedelchev S}, Gaponov I. Parameter Identification in Mechanical Systems with Energy-Based Regressor: Preliminary Study. \emph{NIR}, 2021.}
-  \cvitem{}{\textbf{Nedelchev S}, Kirsanov D, Gaponov I. IMU-based Parameter Identification and Position Estimation in Twisted String Actuators. \emph{IROS}, 2020.}
-  \cvitem{}{Balakhnov O, \textbf{Nedelchev S}, Gaponov I. Preliminary Study on Slack-Free MPC of Twisted String-Based Antagonistic Joints. \emph{NIR}, 2020.}
-  \cvitem{}{\textbf{Nedelchev S}, Gaponov I, Ryu JH. High-Bandwidth Control of Twisted String Actuators. \emph{ICRA}, 2019.}
-  \cvitem{}{\textbf{Nedelchev S}, Gaponov I, Ryu JH. Design of Robotic Gripper with Constant Transmission Ratio Based on Twisted String Actuator. \emph{IROS}, 2018.}
-  \cvitem{}{Kosterev D, Vorotnikov A, \textbf{Nedelchev S}, Romash E, Poduraev Y. Development of 2-DoF Adaptive Mechatronic Device with Corrective Adjustment of Laser Tracker Reflector for Industrial Robot Calibration. \emph{Annals of DAAAM \& Proceedings}, 28, 2017.}
-\end{itemize}
+% Generated from ../content/publications.bib via: node ../scripts/generate-cv-pubs.js
+\input{publications}
 
 \section{Teaching}
 
