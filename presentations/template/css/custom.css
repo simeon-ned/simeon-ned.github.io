@@ -663,16 +663,33 @@
   object-position: center;
 }
 
-/* WBC-Mjlab hardware collage — nearly square; give it more of the slide */
+/* WBC-Mjlab hardware collage — nearly square; fill the media column (no letterbox frame) */
 .reveal .project-row.wbc-mjlab-row {
-  grid-template-columns: minmax(0, 56%) minmax(0, 44%);
+  grid-template-columns: minmax(0, 58%) minmax(0, 42%);
   align-items: start;
 }
 
-.reveal .project-media.landscape.single.collage .media-figure img {
-  max-height: min(520px, 62vh);
+.reveal .project-media.landscape.single.collage {
+  min-height: 0;
   width: 100%;
+  align-items: stretch;
+  justify-content: flex-start;
+}
+
+.reveal .project-media.landscape.single.collage .media-figure {
+  width: 100%;
+  margin: 0;
+}
+
+.reveal .project-media.landscape.single.collage .media-figure img {
+  display: block;
+  width: 100%;
+  max-width: 100%;
   height: auto;
+  max-height: none;
+  aspect-ratio: auto;
+  object-fit: unset;
+  background: transparent;
 }
 
 .reveal .project-row.sber-layout {
@@ -960,6 +977,15 @@
   .reveal .project-media.landscape.single .media-figure img {
     max-height: none;
     aspect-ratio: auto;
+  }
+
+  .reveal .project-row.wbc-mjlab-row {
+    grid-template-columns: 1fr;
+  }
+
+  .reveal .project-media.landscape.single.collage .media-figure img {
+    width: 100%;
+    max-height: none;
   }
 
   .reveal .project-facts div {
