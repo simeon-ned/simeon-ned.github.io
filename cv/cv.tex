@@ -57,14 +57,14 @@
 \section{Professional Experience}
 
 \cventry{Researcher \& Senior RL Engineer}{Feb 2026 -- Present}{Institute of Artificial Intelligence}{%
-  Developing learning-based whole-body control, data-driven motion generation, and estimation methods for humanoid and articulated robotic systems. Building simulation pipelines, motion libraries, and deployable control stacks in collaboration with academic and industry partners.}
+  Developing learning-based whole-body control, data-driven motion generation, and estimation methods for humanoid and articulated robots. Building simulation pipelines, motion libraries, and deployable control stacks with academic and industry partners.}
 
 \cventry{Senior Optimal Control \& RL Engineer}{Aug 2023 -- Dec 2025}{Sber Robotics Center, Sber}{%
-  Developer of the RL whole-body control (WBC) and locomotion policies demonstrated on the Green humanoid at AIJ Conference 2025. Work centered on control, with modeling and MuJoCo-based simulation and training/evaluation pipelines; partial system identification (mainly motor and actuator parameters).%
+  Developed the RL whole-body control (WBC) and locomotion policies demonstrated on the Green humanoid at AIJ Conference 2025. Focused on control, with modeling, MuJoCo simulation, and training/evaluation pipelines; also performed motor and actuator system identification.%
   (\href{https://youtu.be/eehll8Uw3pw?t=1432}{video}).}
 
 \cventry{Senior Lecturer}{Apr 2022 -- Present}{Institute for Robotics and Computer Vision, Innopolis University}{%
-  Advanced courses in robotics, mathematical modeling, motion planning, applied and nonlinear control. Curriculum development and student mentoring in dynamics, simulation, and embodied AI.}
+  Teaching advanced courses in robotics, mathematical modeling, motion planning, and applied and nonlinear control. Curriculum development and student mentoring in dynamics, simulation, and embodied AI.}
 
 \cventry{Junior Researcher}{Sep 2019 -- Sep 2023}{Center for Technologies in Robotics and Mechatronics Components, Innopolis University}{%
   Mathematical modeling, identification, and control of twisted-string actuators; optimal nonlinear control and trajectory optimization; mechanical and electrical prototyping of novel robotic systems.}
@@ -84,21 +84,21 @@ Thesis: \emph{Design of Robotic Gripper with Constant Transmission Ratio Based o
 Thesis: \emph{The Dynamics of Controlled Motion of Industrial Robots}.}
 
 \cventry{B.Sc.\ in Robotics}{Jun 2016}{Moscow State Technological University STANKIN}{GPA 4.35/5 (87/100).\\
-Thesis: \emph{Development and research of dynamic model of robot manipulator}.}
+Thesis: \emph{Development and research of a dynamic model of a robot manipulator}.}
 
 \section{Selected Research \& Software Projects}
 
 \textbf{WBC-Gen: Reactive Generative Motion Planner}\\
-Fast proprio-conditioned latent flow-matching planner that emits trackable WBC references for a frozen whole-body controller; generalizable across tasks on one unified WBC contract; can \href{https://youtu.be/gAHCAtJnRDU}{autonomously recover and get up from failed states} without a fall/standing mode FSM. Gen and WBC co-located on the Unitree G1 onboard CPU, with \href{https://youtube.com/shorts/dXNI8benYAo}{walk/sprint teleop}, \href{https://youtube.com/shorts/iofTKa0GPwQ}{disturbance rejection}, and \href{https://youtube.com/shorts/aMezmX262tg}{agile recovery} on hardware. \href{https://wbc-mjlab.github.io/wbc-demo/}{Try Gen alongside WBC tracking} to interactively generate robot locomotion (WASD to steer, Shift to sprint; G switches clips~$\leftrightarrow$~Gen); deploy code in \href{https://github.com/wbc-mjlab/wbc-g1-deploy/tree/feat/generator}{wbc-g1-deploy}; training code and paper coming soon.
+Fast proprio-conditioned latent flow-matching planner that emits trackable WBC references for a frozen whole-body controller; generalizable across tasks under one unified WBC contract; can \href{https://youtu.be/gAHCAtJnRDU}{recover and stand up from failed states} without a fall/stand mode FSM. Gen and WBC run together on the Unitree G1 onboard CPU, with \href{https://youtube.com/shorts/dXNI8benYAo}{walk/sprint teleop}, \href{https://youtube.com/shorts/iofTKa0GPwQ}{disturbance rejection}, and \href{https://youtube.com/shorts/aMezmX262tg}{agile recovery} on hardware. \href{https://wbc-mjlab.github.io/wbc-demo/}{Try Gen alongside WBC tracking} (WASD to steer, Shift to sprint; G switches clips~$\leftrightarrow$~Gen); deploy code in \href{https://github.com/wbc-mjlab/wbc-g1-deploy/tree/feat/generator}{wbc-g1-deploy}; training code and paper coming soon.
 
-\textbf{WBC-Mjlab: Whole Body Control in MuJoCo Lab} (\href{https://github.com/wbc-mjlab/wbc-mjlab}{github.com/wbc-mjlab/wbc-mjlab}) — \href{https://wbc-mjlab.github.io/wbc-demo/}{web demo}\\
-Shared MDP for universal whole-body motion tracking in mjlab: multi-clip training, paper-specific task presets (ZEST, BeyondMimic-style RSI, etc.), motion-data pipeline, and sim-to-real export for humanoids.
+\textbf{WBC-Mjlab: Whole-Body Control in MuJoCo Lab} (\href{https://github.com/wbc-mjlab/wbc-mjlab}{github.com/wbc-mjlab/wbc-mjlab}) — \href{https://wbc-mjlab.github.io/wbc-demo/}{web demo}\\
+Shared MDP for whole-body motion tracking in mjlab: multi-clip training, paper-specific task presets (ZEST, BeyondMimic-style RSI, and related setups), motion-data pipeline, and sim-to-real export for humanoids.
 
 \textbf{PSM: Predictive Style Matching for Natural Locomotion} (\href{https://simeon-ned.github.io/predictive-style-matching/}{project page})\\
-Offline predictor maps lower-body state and velocity commands to upper-body and gait targets during RL training; deployed on Unitree G1 with task-only inference at run time. arXiv:2606.07083 (2026).
+Offline predictor maps lower-body state and velocity commands to upper-body and gait targets during RL training; deployed on the Unitree G1 with task-only inference at runtime. arXiv:2606.07083 (2026).
 
-\textbf{Locomotion and Whole Body Control for Sber Green} (\href{https://youtu.be/eehll8Uw3pw?t=1432}{AIJ 2025 presentation})\\
-Developer of the RL locomotion and whole-body control policies demonstrated on the Green humanoid at AIJ 2025: improved naturalness and human-likeness of locomotion; RL-based whole-body control trained on synthetically generated reference trajectories (without acquiring mocap datasets or retargeting) and unified tracking for teleoperation, dance, and zero-shot skills.
+\textbf{Locomotion and Whole-Body Control for Sber Green} (\href{https://youtu.be/eehll8Uw3pw?t=1432}{AIJ 2025 presentation})\\
+Developed the RL locomotion and whole-body control policies demonstrated on the Green humanoid at AIJ 2025, improving gait naturalness; RL whole-body control trained on synthetically generated reference trajectories (without mocap capture or retargeting) with unified tracking for teleoperation, dance, and zero-shot skills.
 
 \section{Open Source Contributions}
 
@@ -127,7 +127,7 @@ Developer of the RL locomotion and whole-body control policies demonstrated on t
 Introductory course on state-space modeling, stability, linear and nonlinear control, and feedback linearization for robotic systems (lectures and Colab/Python labs).
 
 \textbf{MCP: Modern Control Paradigms} (\href{https://github.com/simeon-ned/mcp}{github.com/simeon-ned/mcp})\\
-Course materials on modern control via numerical methods and convex optimization, with interactive notebooks.
+Course materials on modern control through numerical methods and convex optimization, with interactive notebooks.
 
 \begin{itemize}[leftmargin=*, nosep, topsep=0.2em]
   \item Applied Nonlinear Control; Modern Control Paradigms; Fundamentals of Robot Control
@@ -151,6 +151,6 @@ Course materials on modern control via numerical methods and convex optimization
 
 \section{Research Interests}
 
-Articulated robots; reinforcement learning; hybrid methods; sim-to-real; motion imitation; whole-body control and humanoid locomotion; learning-based and nonlinear control; system identification and estimation; differentiable simulation; data-driven motion generation.
+Articulated robots; reinforcement learning; hybrid methods; sim-to-real transfer; motion imitation; whole-body control and humanoid locomotion; learning-based and nonlinear control; system identification and estimation; differentiable simulation; data-driven motion generation.
 
 \end{document}

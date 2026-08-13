@@ -11,13 +11,13 @@
       src: images/projects/wbc-gen-disturbance.mp4
       aria: WBC-Gen disturbance recovery on Unitree G1
   body_html: |
-    Fast proprio-conditioned latent flow-matching planner that sits next to a frozen whole-body controller and
-    turns high-level intent into trackable WBC references — reactive, physics- and controller-aware generation
-    rather than open-loop playback. Lightweight enough for Gen and WBC to co-locate on the Unitree G1 onboard
-    CPU (no Jetson), and generalizable across tasks on one unified WBC contract. Beyond locomotion teleop, the
-    same planner can
-    <a href="https://youtu.be/gAHCAtJnRDU" target="_blank" rel="noopener noreferrer">autonomously recover and get up from failed states</a>
-    without a fall/standing mode FSM. On hardware:
+    A fast proprio-conditioned latent flow-matching planner that sits beside a frozen whole-body controller and
+    turns high-level intent into trackable WBC references — reactive, physics-aware and controller-aware
+    generation rather than open-loop playback. Lightweight enough for Gen and WBC to run together on the Unitree
+    G1 onboard CPU (no Jetson), and generalizable across tasks under one unified WBC contract. Beyond locomotion
+    teleoperation, the same planner can
+    <a href="https://youtu.be/gAHCAtJnRDU" target="_blank" rel="noopener noreferrer">recover and stand up from failed states</a>
+    without a fall/stand mode FSM. On hardware:
     <a href="https://youtube.com/shorts/dXNI8benYAo" target="_blank" rel="noopener noreferrer">walk&nbsp;/&nbsp;sprint teleop</a>,
     <a href="https://youtube.com/shorts/iofTKa0GPwQ" target="_blank" rel="noopener noreferrer">disturbance rejection</a>,
     and
@@ -27,17 +27,16 @@
     Training code and paper coming soon.
   cv_html: |
     fast proprio-conditioned latent flow-matching planner that emits trackable WBC references for a frozen
-    whole-body controller; generalizable across tasks on one unified WBC contract; can
-    <a href="https://youtu.be/gAHCAtJnRDU" target="_blank" rel="noopener noreferrer">autonomously recover and get up from failed states</a>
-    without a fall/standing mode FSM. Gen and WBC co-located on the Unitree G1 onboard CPU, with
+    whole-body controller; generalizable across tasks under one unified WBC contract; can
+    <a href="https://youtu.be/gAHCAtJnRDU" target="_blank" rel="noopener noreferrer">recover and stand up from failed states</a>
+    without a fall/stand mode FSM. Gen and WBC run together on the Unitree G1 onboard CPU, with
     <a href="https://youtube.com/shorts/dXNI8benYAo" target="_blank" rel="noopener noreferrer">walk&nbsp;/&nbsp;sprint teleop</a>,
     <a href="https://youtube.com/shorts/iofTKa0GPwQ" target="_blank" rel="noopener noreferrer">disturbance rejection</a>,
     and
     <a href="https://youtube.com/shorts/aMezmX262tg" target="_blank" rel="noopener noreferrer">agile recovery</a>
     on hardware.
     <a href="https://wbc-mjlab.github.io/wbc-demo/" target="_blank" rel="noopener noreferrer">Try Gen alongside WBC tracking</a>
-    to interactively generate robot locomotion (WASD to steer, Shift to sprint; G switches clips&nbsp;↔&nbsp;Gen);
-    deploy code in
+    (WASD to steer, Shift to sprint; G switches clips&nbsp;↔&nbsp;Gen); deploy code in
     <a href="https://github.com/wbc-mjlab/wbc-g1-deploy/tree/feat/generator" target="_blank" rel="noopener noreferrer">wbc-g1-deploy</a>;
     training code and paper coming soon.
   links:
@@ -49,7 +48,7 @@
       href: https://youtu.be/gAHCAtJnRDU
 
 - id: wbc-mjlab
-  title: "WBC-Mjlab: Whole Body Control in MuJoCo Lab"
+  title: "WBC-Mjlab: Whole-Body Control in MuJoCo Lab"
   title_url: https://github.com/wbc-mjlab/wbc-mjlab
   thumbs: portrait
   media:
@@ -63,12 +62,12 @@
       href: https://wbc-mjlab.github.io/wbc-demo/
   body_html: |
     One shared MDP for whole-body motion tracking in
-    <a href="https://github.com/mujocolab/mjlab" target="_blank" rel="noopener noreferrer">mjlab</a> — train once
-    on a motion library, deploy one policy for many skills. Multi-clip training, paper-specific task presets,
-    and sim-to-real export.
+    <a href="https://github.com/mujocolab/mjlab" target="_blank" rel="noopener noreferrer">mjlab</a> —
+    train once on a motion library, then deploy one policy across many skills. Supports multi-clip training,
+    paper-specific task presets, and sim-to-real export.
   cv_html: |
-    shared MDP for universal whole-body motion tracking in mjlab: multi-clip training, paper-specific task presets (ZEST,
-    BeyondMimic-style RSI, etc.), motion-data pipeline, and sim-to-real export for humanoids.
+    shared MDP for whole-body motion tracking in mjlab: multi-clip training, paper-specific task presets (ZEST,
+    BeyondMimic-style RSI, and related setups), motion-data pipeline, and sim-to-real export for humanoids.
   cv_extra_links:
     - label: web demo
       href: https://wbc-mjlab.github.io/wbc-demo/
@@ -94,12 +93,13 @@
       alt: PSM disturbance recovery
       href: https://simeon-ned.github.io/predictive-style-matching/
   body_html: |
-    Natural and robust humanoid locomotion via an offline predictor that maps lower-body state and velocity
-    commands to upper-body and gait targets during RL training — preserving task-only deployment on Unitree G1.
+    Natural, robust humanoid locomotion with an offline predictor that maps lower-body state and velocity
+    commands to upper-body and gait targets during RL training — while keeping deployment task-only on the
+    Unitree G1.
   meta: Simeon Nedelchev, Ekaterina Chaikovskaia, Egor Davydenko, Eduard Zaliaev, Roman Gorbachev · 2026 preprint
   cv_html: |
-    offline predictor maps lower-body state and velocity commands to upper-body and gait targets during RL training;
-    deployed on Unitree G1 with task-only inference at run time. arXiv:2606.07083 (2026).
+    offline predictor maps lower-body state and velocity commands to upper-body and gait targets during RL
+    training; deployed on the Unitree G1 with task-only inference at runtime. arXiv:2606.07083 (2026).
   cv_extra_links:
     - label: project page
       href: https://simeon-ned.github.io/predictive-style-matching/
@@ -112,19 +112,18 @@
       href: https://github.com/simeon-ned/predictive-style-matching
 
 - id: sber-green
-  title: Locomotion and Whole Body Control for Sber Green
+  title: Locomotion and Whole-Body Control for Sber Green
   thumbs: sber-grid
   media:
     - type: sber
   body_html: |
-    Core senior engineer for RL locomotion and whole-body control on the Green humanoid at AIJ
-    2025: <span class="kw">predictor-based human-like locomotion</span>; unified WBC for teleoperation,
-    dance, and zero-shot skills; motor &amp; actuator system identification for MuJoCo simulation.
+    Senior engineer for RL locomotion and whole-body control on the Green humanoid at AIJ 2025:
+    <span class="kw">predictor-based human-like locomotion</span>; a unified WBC for teleoperation, dance, and
+    zero-shot skills; and motor and actuator system identification for MuJoCo simulation.
   cv_html: |
-    developer of the RL locomotion and whole-body control policies demonstrated on the Green humanoid at AIJ
-    2025: improved naturalness and human-likeness of locomotion; RL-based whole-body control trained on
-    synthetically generated reference trajectories (without acquiring mocap
-    datasets or retargeting) and unified tracking for teleoperation, dance, and zero-shot skills.
+    developed the RL locomotion and whole-body control policies demonstrated on the Green humanoid at AIJ 2025,
+    improving gait naturalness; RL whole-body control trained on synthetically generated reference trajectories
+    (without mocap capture or retargeting) with unified tracking for teleoperation, dance, and zero-shot skills.
   cv_extra_links:
     - label: AIJ 2025 presentation
       href: https://youtu.be/eehll8Uw3pw?t=1432
@@ -150,9 +149,9 @@
     <a href="https://github.com/google-deepmind/mujoco_warp" target="_blank" rel="noopener noreferrer">MuJoCo Warp</a>
     with a
     <a href="https://github.com/kevinzakka/mink" target="_blank" rel="noopener noreferrer">Mink</a>-shaped API:
-    GPU-parallel task-space IK for many worlds at once — frame tasks, posture, COM, equality constraints for
-    closed chains, and hard limits via GPU ADMM. CUDA graph capture for real-time loops; Panda, UR5e, Cassie,
-    dual iiwa, and G1 examples.
+    GPU-parallel task-space IK across many worlds — frame tasks, posture, COM, equality constraints for closed
+    chains, and hard limits via GPU ADMM. Supports CUDA graph capture for real-time loops, with examples for
+    Panda, UR5e, Cassie, dual iiwa, and G1.
   links:
     - label: Docs
       href: https://simeon-ned.github.io/mink-warp/

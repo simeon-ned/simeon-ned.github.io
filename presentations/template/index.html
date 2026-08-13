@@ -217,11 +217,11 @@
                 </p>
                 <p class="desc">
                   Latent flow matching trained from <span class="kw">streaming WBC rollouts</span> with domain randomisation —
-                  reactive, physics- and controller-aware generation, not open-loop kinematic playback.
-                  Generalizable across tasks on one unified WBC contract; recovery and get-ups from failed states are
+                  reactive, physics-aware and controller-aware generation, not open-loop kinematic playback.
+                  Generalizable across tasks under one unified WBC contract; recovery and get-ups from failed states are
                   <span class="kw">embedded in the planner</span>
                   (<a href="https://youtu.be/gAHCAtJnRDU" target="_blank" rel="noopener">(sim: autonomous recovery &amp; get-up)</a>,
-                  with no fall/standing mode FSM.
+                  with no fall/stand mode FSM.
                   On G1 CPU (no Jetson):
                   <a href="https://youtube.com/shorts/dXNI8benYAo" target="_blank" rel="noopener">walk&nbsp;/&nbsp;sprint teleop</a>,
                   <a href="https://youtube.com/shorts/iofTKa0GPwQ" target="_blank" rel="noopener">disturbance rejection</a>,
@@ -233,7 +233,7 @@
                 </p>
                 <ul class="project-highlights compact">
                   <li><span class="kw">Fast / onboard</span> — Gen + WBC co-located on G1 CPU (no Jetson)</li>
-                  <li><span class="kw">Task-general</span> — stack generators on one unified WBC contract</li>
+                  <li><span class="kw">Task-general</span> — stack generators under one unified WBC contract</li>
                   <li><span class="kw">Autonomous recovery</span> — get-ups from failed states without a mode FSM</li>
                 </ul>
                 <dl class="project-facts">
@@ -338,10 +338,10 @@
                   <span class="kw">Predictive Style Matching</span> — natural gait without imitation fragility on <span class="kw">Unitree G1</span> (sim &amp; hardware).
                 </p>
                 <p class="desc">
-                  Task-only RL transfers and recovers well, but gaits stay stiff; clip tracking looks better yet
-                  references oppose balance — ~5× more falls under pushes. Frozen predictor <span class="kw">f<sub>φ</sub></span>
-                  maps lower-body history + commands to <span class="kw">state-conditioned</span> upper-body &amp; gait targets;
-                  rewards at train time only — deployed <span class="kw">π<sub>θ</sub></span> keeps vanilla proprioceptive obs.
+                  Task-only RL transfers and recovers well, but gaits stay stiff; clip tracking looks more natural yet
+                  references fight the balance controller — about 5× more falls under pushes. A frozen predictor <span class="kw">f<sub>φ</sub></span>
+                  maps lower-body history and commands to <span class="kw">state-conditioned</span> upper-body and gait targets;
+                  matching rewards are used only at training time — the deployed <span class="kw">π<sub>θ</sub></span> keeps vanilla proprioceptive observations.
                 </p>
                 <ul class="project-highlights compact">
                   <li><span class="kw">Stage 1</span> — supervised <span class="kw">f<sub>φ</sub></span> on retargeted walking (GRU–MLP, reconstruction + symmetry); frozen</li>
@@ -404,13 +404,13 @@
               </div>
               <div class="project-text">
                 <p class="project-lead">
-                  <span class="kw">Core senior engineer</span> — <span class="kw">RL locomotion &amp; WBC</span> on Green humanoid (<span class="kw">AIJ 2025</span>).
+                  <span class="kw">Senior engineer</span> — <span class="kw">RL locomotion &amp; WBC</span> on the Green humanoid (<span class="kw">AIJ 2025</span>).
                 </p>
                 <p class="desc">
                   <span class="kw">Predictor-based human-like locomotion</span>; unified <span class="kw">WBC</span> for
                   <span class="kw">teleoperation</span>, dance, and zero-shot skills;
-                  <span class="kw">synthetic refs</span> &amp; retargeting;
-                  motor &amp; actuator <span class="kw">system identification</span> for simulation fidelity.
+                  <span class="kw">synthetic references</span> without mocap retargeting;
+                  motor and actuator <span class="kw">system identification</span> for simulation fidelity.
                 </p>
                 <ul class="project-highlights compact">
                   <li><span class="kw">End-to-end</span>: training → control stack → on-robot demos</li>
@@ -418,7 +418,7 @@
                   <li>One <span class="kw">WBC policy</span> for teleop &amp; skills — trained on <span class="kw">synthetic data</span></li>
                 </ul>
                 <dl class="project-facts">
-                  <div><dt>Role</dt><dd>Core senior engineer · Sber Robotics Center (2023–2025)</dd></div>
+                  <div><dt>Role</dt><dd>Senior engineer · Sber Robotics Center (2023–2025)</dd></div>
                   <div><dt>Stack</dt><dd><span class="kw">Isaac Lab</span> · <span class="kw">MuJoCo</span> sim · <span class="kw">custom model assembly</span> · <span class="kw">PPO</span>-style RL · <a href="https://github.com/based-robotics/mujoco-sysid" target="_blank" rel="noopener">actuator sys ID</a> · custom control stack</dd></div>
                 </dl>
                 <p class="links">
