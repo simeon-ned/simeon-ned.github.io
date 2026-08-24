@@ -85,7 +85,7 @@
 \textbf{WBC-Gen: Reactive Generative Motion Planner}\\
 Быстрый проприоцептивно обусловленный latent flow-matching планировщик, выдающий отслеживаемые WBC-референсы для замороженного контроллера всего тела; обобщается на разные задачи на одном WBC-контракте; способен \href{https://youtu.be/gAHCAtJnRDU}{автономно восстанавливаться и вставать из failed states} без FSM режимов fall/standing. Gen и WBC совместно на onboard CPU Unitree G1, с \href{https://youtube.com/shorts/dXNI8benYAo}{walk/sprint телеопом}, \href{https://youtube.com/shorts/iofTKa0GPwQ}{отклонением возмущений} и \href{https://youtube.com/shorts/aMezmX262tg}{agile recovery} на железе. \href{https://wbc-mjlab.github.io/wbc-demo/}{Попробуйте Gen вместе с WBC-трекингом}, чтобы интерактивно генерировать локомоцию робота (WASD — управление, Shift — спринт; G переключает clips~$\leftrightarrow$~Gen); код деплоя в \href{https://github.com/wbc-mjlab/wbc-g1-deploy/tree/feat/generator}{wbc-g1-deploy}; training code и статья скоро.
 
-\textbf{WBC-Mjlab: Whole Body Control in MuJoCo Lab} (\href{https://github.com/wbc-mjlab/wbc-mjlab}{github.com/wbc-mjlab/wbc-mjlab}) — \href{https://wbc-mjlab.github.io/wbc-demo/}{веб-демо}\\
+\textbf{WBC-Mjlab: Whole Body Control in MuJoCo Lab} (\href{https://wbc-mjlab.github.io/}{страница проекта}) — \href{https://wbc-mjlab.github.io/wbc-demo/}{веб-демо}\\
 Общий MDP для универсального отслеживания движений всего тела в mjlab: обучение на нескольких клипах, пресеты задач из статей (ZEST, BeyondMimic-style RSI и др.), конвейер данных движений и экспорт sim-to-real для гуманоидов.
 
 \textbf{PSM: Predictive Style Matching for Natural Locomotion} (\href{https://simeon-ned.github.io/predictive-style-matching/}{страница проекта})\\

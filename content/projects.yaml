@@ -49,17 +49,17 @@
 
 - id: wbc-mjlab
   title: "WBC-Mjlab: Whole-Body Control in MuJoCo Lab"
-  title_url: https://github.com/wbc-mjlab/wbc-mjlab
+  title_url: https://wbc-mjlab.github.io/
   thumbs: portrait
   media:
     - type: image
       src: images/projects/wbc-mjlab-sideflip.gif
       alt: WBC-Mjlab sideflip
-      href: https://wbc-mjlab.github.io/wbc-demo/
+      href: https://wbc-mjlab.github.io/
     - type: image
       src: images/projects/wbc-mjlab-getup.gif
       alt: WBC-Mjlab get up
-      href: https://wbc-mjlab.github.io/wbc-demo/
+      href: https://wbc-mjlab.github.io/
   body_html: |
     One shared MDP for whole-body motion tracking in
     <a href="https://github.com/mujocolab/mjlab" target="_blank" rel="noopener noreferrer">mjlab</a> —
@@ -69,9 +69,13 @@
     shared MDP for whole-body motion tracking in mjlab: multi-clip training, paper-specific task presets (ZEST,
     BeyondMimic-style RSI, and related setups), motion-data pipeline, and sim-to-real export for humanoids.
   cv_extra_links:
+    - label: project page
+      href: https://wbc-mjlab.github.io/
     - label: web demo
       href: https://wbc-mjlab.github.io/wbc-demo/
   links:
+    - label: Project page
+      href: https://wbc-mjlab.github.io/
     - label: Demo
       href: https://wbc-mjlab.github.io/wbc-demo/
     - label: Code
