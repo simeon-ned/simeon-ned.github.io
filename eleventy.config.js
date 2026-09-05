@@ -7,6 +7,8 @@ module.exports = function (eleventyConfig) {
     images: "images",
     pdf: "pdf",
     presentations: "presentations",
+    drafts: "drafts",
+    "robots.txt": "robots.txt",
     ".nojekyll": ".nojekyll",
   });
   eleventyConfig.addPassthroughCopy("src/css");
@@ -23,6 +25,7 @@ module.exports = function (eleventyConfig) {
     "**/images/**",
     "**/pdf/**",
     "**/presentations/**",
+    "**/drafts/**",
     "**/.git/**",
   ]) {
     eleventyConfig.watchIgnores.add(pattern);
