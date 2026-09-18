@@ -1,0 +1,992 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>WBC Beyond Tracking — предложение по прикладным R&amp;D</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=PT+Serif:ital,wght@0,400;0,700;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #F7FAFC;
+  --surface: #FFFFFF;
+  --ink: #1C2430;
+  --ink-2: #4B5A6A;
+  --rule: #D5DEE8;
+  --rule-strong: #B7C6D4;
+  --accent: #3A6F93;
+  --accent-soft: #E8F1F7;
+  --hl: #2F6386;
+  --mono-bg: #EEF3F7;
+  --frame-bg: #0f1216;
+  --display: "PT Serif", "Times New Roman", Times, serif;
+  --body: "PT Serif", "Times New Roman", Times, serif;
+  --mono: "IBM Plex Mono", "SFMono-Regular", Consolas, monospace;
+  /* type follows the smaller of width and height, so a slide never overflows on a wide-but-short or tall-but-narrow screen */
+  --fs: clamp(12px, min(1.22vw, 2.1vh), 26px);
+  --pad-x: clamp(16px, 4vw, 80px);
+  --pad-y: clamp(10px, 1.6vh, 24px);
+  --chrome-h: 2.4em;
+  --maxw: 1640px;
+  --gap: 1.4em;
+}
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; height: 100%; }
+body {
+  margin: 0; height: 100%;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--body);
+  font-size: var(--fs);
+  line-height: 1.45;
+  -webkit-font-smoothing: antialiased;
+  overflow: hidden;
+}
+a { color: var(--accent); }
+a:focus-visible { outline: 1px solid var(--accent); outline-offset: 1px; }
+code { font-family: var(--mono); font-size: 0.84em; background: var(--mono-bg); padding: 0 3px; border-radius: 2px; }
+sup.cite { font-size: 0.68em; font-weight: 400; line-height: 0; }
+sup.cite a { text-decoration: none; color: var(--accent); }
+strong { font-weight: 700; }
+p { margin: 0 0 0.55em; }
+ul, ol { margin: 0 0 0.55em; padding-left: 1.25em; }
+li { margin: 0 0 0.3em; }
+li::marker { color: var(--ink-2); }
+h1, h2, h3, h4 { font-family: var(--display); font-weight: 700; line-height: 1.2; margin: 0; }
+
+/* ---------- deck: every slide is a fixed-height column; the body row takes what is left ---------- */
+.deck { position: fixed; inset: 0; }
+.slide {
+  position: absolute; inset: 0;
+  display: none;
+  padding: var(--pad-y) var(--pad-x) calc(var(--pad-y) + var(--chrome-h));
+}
+.slide.is-active { display: flex; flex-direction: column; }
+.slide-inner {
+  flex: 1 1 auto; min-height: 0;
+  display: flex; flex-direction: column;
+  width: 100%; max-width: var(--maxw); margin: 0 auto;
+}
+.slide.wide .slide-inner { max-width: 1960px; }
+.head { flex: 0 0 auto; }
+.body { flex: 1 1 auto; min-height: 0; display: grid; gap: var(--gap); align-items: stretch; }
+.body > * { min-height: 0; min-width: 0; }
+.cell { display: flex; flex-direction: column; min-height: 0; }
+.cell.text { overflow: auto; scrollbar-width: thin; justify-content: safe center; }
+.cell.media { justify-content: center; }
+.foot { flex: 0 0 auto; margin-top: 0.7em; }
+.two { grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr); }
+.two.media-heavy { grid-template-columns: minmax(0, 0.82fr) minmax(0, 1.18fr); }
+.body.demo { grid-template-columns: minmax(0, 1fr) 17em; }
+.three, .four, .two-even { display: grid; gap: var(--gap); align-items: stretch; align-content: start; }
+.body.three, .body.four, .body.two-even { align-content: center; }
+.three { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.four { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.two-even { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+
+.eyebrow {
+  font-family: var(--mono);
+  font-size: 0.66em;
+  letter-spacing: 0.03em;
+  color: var(--ink-2);
+  display: flex; flex-wrap: wrap; gap: 4px 16px;
+  border-bottom: 1px solid var(--rule-strong);
+  padding-bottom: 0.5em;
+  margin-bottom: 0.8em;
+}
+.eyebrow .sec { color: var(--accent); }
+.eyebrow .right { margin-left: auto; }
+h2 { font-size: 1.75em; margin: 0 0 0.5em; }
+h2 .n { color: var(--accent); }
+h2 .n::after { content: "."; margin-right: 0.4em; }
+h3 { font-size: 1.1em; margin: 0.5em 0 0.3em; }
+.lede { font-size: 1.12em; line-height: 1.4; }
+.muted { color: var(--ink-2); }
+.small { font-size: 0.86em; }
+.label {
+  font-family: var(--mono); font-size: 0.66em; letter-spacing: 0.04em; text-transform: uppercase;
+  color: var(--ink-2); margin-bottom: 0.4em;
+}
+
+/* cards & callouts */
+.callout { border: 1px solid var(--rule-strong); background: var(--surface); padding: 0.75em 0.95em; border-radius: 6px; }
+.callout.result { background: var(--accent-soft); border-color: var(--hl); }
+.callout p:last-child, .callout ul:last-child { margin-bottom: 0; }
+.card { border: 1px solid var(--rule); background: var(--surface); padding: 0.75em 0.9em 0.8em; border-radius: 6px; height: 100%; }
+.card.is-hl { background: var(--accent-soft); border-color: var(--hl); }
+.card h4 { font-size: 1.02em; margin: 0 0 0.3em; }
+.card p, .card li { font-size: 0.92em; }
+.card p:last-child { margin-bottom: 0; }
+.card .k, .k { font-family: var(--mono); font-size: 0.68em; color: var(--accent); letter-spacing: 0.03em; display: block; margin-bottom: 0.3em; }
+.stack-cards { display: flex; flex-direction: column; gap: 0.7em; }
+.stack-cards .card { height: auto; }
+
+/* tables */
+.table-wrap { overflow: auto; min-height: 0; }
+table { border-collapse: collapse; width: 100%; font-size: 0.84em; line-height: 1.3; }
+th { text-align: left; padding: 0.3em 0.6em 0.3em 0; border-bottom: 1px solid var(--ink); vertical-align: bottom; }
+td { padding: 0.38em 0.6em 0.38em 0; border-bottom: 1px solid var(--rule); vertical-align: top; }
+td.k { font-weight: 700; }
+tr.hl td { background: var(--accent-soft); }
+.yes { color: var(--hl); font-weight: 700; }
+.no { color: var(--ink-2); }
+.part { color: #8a6d1d; font-weight: 700; }
+
+/* ---------- media: sized by JS (fitRow) to the space that is left in the cell ---------- */
+figure { margin: 0; display: flex; flex-direction: column; min-height: 0; }
+figcaption { font-size: 0.8em; color: var(--ink-2); margin-top: 0.4em; line-height: 1.3; }
+.player { position: relative; overflow: hidden; background: #0b1720; border: 1px solid var(--rule); border-radius: 6px; line-height: 0; flex: 0 0 auto; }
+.player video { display: block; width: 100%; height: 100%; object-fit: cover; background: #0b1720; }
+.frame-wrap { position: relative; border: 1px solid var(--rule-strong); border-radius: 6px; background: var(--frame-bg); overflow: hidden; flex: 0 0 auto; }
+.frame-wrap iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; background: var(--frame-bg); }
+.frame-wrap .frame-note {
+  position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; pointer-events: none;
+  color: #c7d3de; font-family: var(--mono); font-size: 0.78em; text-align: center; padding: 1em;
+}
+.frame-wrap.is-loaded .frame-note { display: none; }
+.frame-wrap.needs-click .frame-note {
+  inset: auto 0 0 0; padding: 0.45em 1em; background: rgba(15,18,22,0.75); color: #e6edf3;
+}
+.media-row { display: flex; gap: 0.9em; align-items: flex-start; justify-content: center; min-height: 0; }
+.media-row figure { flex: 0 0 auto; min-width: 0; }
+.media-row figcaption { width: 0; min-width: 100%; }
+.placeholder {
+  border: 1.5px dashed var(--rule-strong); border-radius: 6px; background: var(--surface);
+  display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center;
+  color: var(--ink-2); font-family: var(--mono); font-size: 0.76em; padding: 1em; line-height: 1.4;
+  flex: 1 1 0; min-height: 4em;
+}
+.placeholder b { color: var(--accent); font-weight: 500; letter-spacing: 0.04em; }
+.placeholders { display: flex; flex-direction: column; gap: 0.8em; height: 100%; min-height: 0; }
+.keys { list-style: none; padding: 0; margin: 0; font-size: 0.86em; }
+.keys li { display: flex; gap: 0.5em; align-items: baseline; margin-bottom: 0.4em; }
+.kbd {
+  display: inline-block; min-width: 1.6em; padding: 0 0.35em; text-align: center;
+  font-family: var(--mono); font-size: 0.8em; line-height: 1.5;
+  border: 1px solid var(--rule-strong); border-bottom-width: 2px; border-radius: 4px; background: var(--surface); white-space: nowrap;
+}
+
+/* svg stack */
+svg.stack { display: block; width: 100%; height: 100%; max-height: 100%; margin: 0 auto; overflow: visible; }
+svg.stack .f-box { fill: var(--surface); stroke: var(--rule-strong); }
+svg.stack .f-hl { fill: var(--accent-soft); stroke: var(--hl); }
+svg.stack .f-dim { fill: var(--surface); stroke: var(--rule-strong); stroke-dasharray: 4 3; }
+svg.stack .t { font-family: var(--display); font-weight: 700; font-size: 15px; fill: var(--ink); }
+svg.stack .t-sub { font-family: var(--body); font-size: 12px; fill: var(--ink-2); }
+svg.stack .t-id { font-family: var(--mono); font-size: 10.5px; fill: var(--ink-2); letter-spacing: 0.03em; }
+svg.stack .t-lab { font-family: var(--mono); font-size: 10.5px; fill: var(--ink-2); }
+svg.stack .t-lab-hl { font-family: var(--mono); font-size: 10.5px; fill: var(--hl); }
+svg.stack .arrow { fill: none; stroke: var(--rule-strong); stroke-width: 1.5; }
+svg.stack .arrow-hl { fill: none; stroke: var(--hl); stroke-width: 1.5; }
+svg.stack .arrow-head { fill: var(--rule-strong); }
+svg.stack .arrow-head-hl { fill: var(--hl); }
+
+/* timeline strip */
+.strip { display: grid; grid-template-columns: repeat(6, 1fr); position: relative; margin: 0.5em 0 0; }
+.strip::before { content: ""; position: absolute; left: 6%; right: 6%; top: 7px; height: 1.5px; background: var(--rule-strong); }
+.strip div { position: relative; text-align: center; font-size: 0.76em; color: var(--ink-2); padding-top: 20px; line-height: 1.25; }
+.strip div::before { content: ""; position: absolute; top: 2px; left: 50%; width: 11px; height: 11px; margin-left: -5.5px; border-radius: 50%; background: var(--surface); border: 1.5px solid var(--rule-strong); }
+.strip div.now { color: var(--ink); }
+.strip div.now::before { background: var(--hl); border-color: var(--hl); }
+.strip .y { font-family: var(--mono); font-size: 0.85em; display: block; }
+
+/* flow */
+.flow { display: flex; align-items: stretch; margin: 0 0 0.6em; }
+.flow-step { flex: 1; border: 1px solid var(--rule-strong); background: var(--surface); border-radius: 6px; padding: 0.55em 0.8em 0.65em; }
+.flow-step.is-hl { background: var(--accent-soft); border-color: var(--hl); }
+.flow-step h4 { font-size: 0.98em; margin: 0 0 0.2em; }
+.flow-step p { font-size: 0.82em; margin: 0; color: var(--ink-2); }
+.flow-arrow { display: flex; align-items: center; justify-content: center; width: 4.2em; position: relative; }
+.flow-arrow::before { content: ""; position: absolute; left: 4px; right: 4px; top: 50%; height: 1.5px; background: var(--rule-strong); }
+.flow-arrow::after { content: ""; position: absolute; right: 2px; top: 50%; margin-top: -4px; border: 4px solid transparent; border-left-color: var(--rule-strong); }
+.flow-arrow span { position: relative; background: var(--bg); font-family: var(--mono); font-size: 0.62em; color: var(--ink-2); padding: 0 3px; white-space: nowrap; }
+.flow-back { font-family: var(--mono); font-size: 0.68em; color: var(--ink-2); text-align: center; margin: 0 0 0.9em; }
+
+/* roadmap */
+.road-card { border: 1px solid var(--rule); border-left: 3px solid var(--rule-strong); background: var(--surface); border-radius: 6px; padding: 0.65em 0.85em 0.75em; height: 100%; }
+.road-card.is-now { background: var(--accent-soft); border-color: var(--hl); border-left-color: var(--hl); }
+.road-card header { display: flex; flex-direction: column; margin-bottom: 0.4em; }
+.road-card header h3 { margin: 0; font-size: 0.98em; }
+.road-when { font-family: var(--mono); font-size: 0.66em; color: var(--ink-2); }
+.road-card ul { margin: 0; padding-left: 1.05em; }
+.road-card li { font-size: 0.86em; margin-bottom: 0.3em; }
+
+/* references */
+.refs { columns: 3; column-gap: 2em; font-size: 0.66em; line-height: 1.3; overflow: auto; min-height: 0; }
+.refs ol { padding-left: 1.9em; margin: 0; }
+.refs li { break-inside: avoid; margin-bottom: 0.35em; }
+.refs li:target { background: var(--accent-soft); }
+
+/* title slide */
+.slide.title .slide-inner { max-width: 1000px; justify-content: center; }
+.slide.title h1 { font-size: 2.9em; line-height: 1.1; margin: 0.45em 0 0.35em; }
+.slide.title .subtitle { font-size: 1.22em; color: var(--ink-2); max-width: 34em; line-height: 1.4; }
+.slide.title .toc { margin-top: 1.4em; font-size: 0.9em; padding: 0.7em 0.9em; background: var(--surface); border: 1px solid var(--rule); border-radius: 6px; }
+.slide.title .toc ol { margin: 0; padding: 0; list-style: none; display: flex; flex-wrap: wrap; gap: 4px 0; }
+.slide.title .toc li { margin: 0; }
+.slide.title .toc li:not(:last-child)::after { content: " · "; color: var(--ink-2); padding: 0 8px 0 4px; }
+.slide.title .toc a { color: var(--ink); text-decoration: none; }
+.slide.title .toc a:hover { color: var(--accent); }
+.slide.title .toc .n { color: var(--accent); font-weight: 700; margin-right: 4px; }
+.slide.title .toc .n::after { content: "."; }
+.hint { font-family: var(--mono); font-size: 0.68em; color: var(--ink-2); margin-top: 1.6em; }
+
+/* chrome */
+.chrome {
+  position: fixed; left: 0; right: 0; bottom: 0; height: var(--chrome-h);
+  display: flex; align-items: center; gap: 0.6em;
+  padding: 0 1.2em; font-family: var(--mono); font-size: 0.68em; color: var(--ink-2);
+  background: linear-gradient(to top, var(--bg) 70%, rgba(247,250,252,0));
+  z-index: 5;
+}
+.chrome .progress { position: absolute; left: 0; top: 0; height: 2px; background: var(--hl); width: 0; transition: width .25s; }
+.chrome button { font-family: var(--mono); font-size: 1em; color: var(--ink); background: var(--surface); border: 1px solid var(--rule-strong); border-radius: 4px; padding: 0.15em 0.6em; cursor: pointer; }
+.chrome button:hover { border-color: var(--accent); color: var(--accent); }
+.chrome .lang { font-family: var(--mono); font-size: 1em; color: var(--ink); text-decoration: none; border: 1px solid var(--rule-strong); border-radius: 4px; padding: 0.15em 0.6em; background: var(--surface); }
+.chrome .lang:hover { border-color: var(--accent); color: var(--accent); }
+.chrome .count { margin-left: auto; }
+.chrome .name { color: var(--ink); }
+.chrome .spacer { flex: 1; }
+
+/* ---------- scroll mode & small screens: columns stack, slides scroll, media get a viewport-relative height ---------- */
+body.mode-scroll { overflow: auto; }
+body.mode-scroll .deck { position: static; }
+body.mode-scroll .slide { position: static; display: flex; min-height: 100vh; border-bottom: 1px solid var(--rule-strong); }
+body.mode-scroll .slide-inner { flex: 0 0 auto; }
+body.mode-scroll .body { flex: 0 0 auto; }
+
+@media (max-width: 900px), (orientation: portrait) {
+  :root { --fs: clamp(13px, 2.4vw, 17px); }
+  .slide { overflow: auto; }
+  .slide-inner { flex: 0 0 auto; }
+  .body { flex: 0 0 auto; }
+  .body, .two, .two.media-heavy, .three, .four, .two-even { grid-template-columns: 1fr !important; }
+  .cell.text { overflow: visible; }
+  .media-row { flex-wrap: wrap; }
+  .refs { columns: 1; }
+  .strip { grid-template-columns: repeat(3, 1fr); row-gap: 8px; }
+  .strip::before { display: none; }
+  .flow { flex-direction: column; }
+  .flow-arrow { width: auto; height: 1.8em; }
+  .flow-arrow::before { left: 50%; right: auto; top: 4px; bottom: 4px; width: 1.5px; height: auto; }
+  .flow-arrow::after { right: auto; left: 50%; top: auto; bottom: 0; margin-left: -4px; border-left-color: transparent; border-top-color: var(--rule-strong); }
+  .slide.title h1 { font-size: 2.1em; }
+  .placeholder { min-height: 9em; }
+  svg.stack { max-height: 70vh; }
+}
+@media print {
+  body { overflow: visible; background: #fff; }
+  .deck { position: static; }
+  .slide { position: static; display: flex !important; page-break-after: always; padding: 1.5cm; height: auto; }
+  .chrome, .frame-wrap { display: none; }
+  .player video { display: none; }
+}
+</style>
+</head>
+<body>
+<div class="deck" id="deck">
+
+<!-- ============ 0. TITLE ============ -->
+<section class="slide title" data-name="Титул">
+<div class="slide-inner">
+  <div class="eyebrow"><span>Симеон Неделчев</span><span>сентябрь 2026</span><span class="right">Предложение по прикладным R&amp;D · Движение гуманоидов</span></div>
+  <h1>WBC Beyond Tracking</h1>
+  <p class="subtitle">Контроллер всего тела — уже решённый компонент. Это план того, как использовать физический опыт, который он порождает, — для генерации движений, оценивания и VLA — на основе одного выученного многообразия человеческих движений.</p>
+  <nav class="toc" aria-label="Содержание"><ol>
+    <li><a href="#/1"><span class="n">1</span>Где мы сейчас</a></li>
+    <li><a href="#/2"><span class="n">2</span>И что дальше?</a></li>
+    <li><a href="#/4"><span class="n">3</span>Инструменты</a></li>
+    <li><a href="#/5"><span class="n">4</span>Направления</a></li>
+    <li><a href="#/9"><span class="n">5</span>Дорожная карта</a></li>
+    <li><a href="#/10"><span class="n">6</span>Что я предлагаю</a></li>
+    <li><a href="#/11"><span class="n">7</span>Команда и культура</a></li>
+    <li><a href="#/12">Литература</a></li>
+  </ol></nav>
+  <p class="hint">→ / ← или пробел · Home / End · <span class="kbd">S</span> — режим одной прокручиваемой страницы · на двух слайдах запускается живая симуляция в браузере (Chrome, ПК)</p>
+</div>
+</section>
+
+<!-- ============ 1. WHERE WE ARE ============ -->
+<section class="slide wide" data-name="Где мы сейчас">
+<div class="slide-inner">
+  <div class="head">
+    <div class="eyebrow"><span class="sec">1 · Где мы сейчас</span><span class="right">Трекер стал зрелым</span></div>
+    <h2><span class="n">1</span>Управление всем телом уже здесь</h2>
+  </div>
+  <div class="body two media-heavy" data-fit-cols data-media-side="right">
+    <div class="cell text">
+      <p class="lede">Один унифицированный контроллер ходит, бегает, танцует, дерётся, прыгает и встаёт — отслеживая практически <em>любой</em> референс на реальном железе.</p>
+      <p>BeyondMimic, SONIC, ZEST, OmniXtreme, GMT<sup class="cite">[<a href="#ref-liao2025beyondmimic">10</a>, <a href="#ref-sonic2025">12</a>, <a href="#ref-zest2026">22</a>, <a href="#ref-omnixtreme2026">29</a>]</sup> различаются в деталях, но рецепт сошёлся: одна политика, одна библиотека движений, рандомизированная симуляция. Эти работы опубликованы, открыты и уже интегрированы в единые стеки вроде wbc-mjlab<sup class="cite">[<a href="#ref-wbcmjlab">15</a>]</sup>: одна и та же политика работает на роботе (видео) и во вкладке браузера (живое демо).</p>
+      <p>Трекер больше не узкое место. Вопрос в том, что строить поверх него.</p>
+      <div class="strip">
+        <div><span class="y">2018</span>DeepMimic</div>
+        <div><span class="y">2021</span>AMP / ASE</div>
+        <div><span class="y">2023–24</span>PHC · ExBody · OmniH2O</div>
+        <div><span class="y">2025</span>BeyondMimic · SONIC</div>
+        <div class="now"><span class="y">2026</span>ZEST · OmniXtreme · GMT</div>
+        <div><span class="y">дальше</span>?</div>
+      </div>
+    </div>
+    <div class="cell media">
+      <div class="media-row" data-fit>
+        <figure>
+          <div class="player" data-ar="1.032"><video muted loop playsinline preload="metadata" poster="assets/collage_poster.jpg"><source src="assets/videos/wbc_g1_hardware_collage.mp4" type="video/mp4"></video></div>
+          <figcaption>Unitree G1, одна политика слежения: подъём, стойка, танец, бой, спринт, сальто боком — из проекта <a href="https://wbc-mjlab.github.io/" target="_blank" rel="noopener">wbc-mjlab</a>.</figcaption>
+        </figure>
+        <figure>
+          <div class="frame-wrap" data-ar="0.75" data-frame data-src="https://wbc-mjlab.github.io/wbc-demo/tracking.html"><div class="frame-note">загрузка MuJoCo (WASM) + ONNX-политики …</div></div>
+          <figcaption>Живая симуляция в браузере: выберите клип, потяните робота, чтобы толкнуть его, <span class="kbd">R</span> — сброс. <a href="https://wbc-mjlab.github.io/wbc-demo/" target="_blank" rel="noopener">на весь экран</a></figcaption>
+        </figure>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- ============ 2. SO WHAT ============ -->
+<section class="slide" data-name="И что дальше?">
+<div class="slide-inner">
+  <div class="head">
+    <div class="eyebrow"><span class="sec">2 · И что дальше?</span><span class="right">Открытые вопросы</span></div>
+    <h2><span class="n">2</span>У нас есть WBC. И что дальше?</h2>
+    <p class="lede">Запущенный в тех же GPU-симуляторах, в которых он обучался (MuJoCo Warp, Newton, Isaac Lab, mjlab<sup class="cite">[<a href="#ref-zakka2026mjlab">25</a>, <a href="#ref-newton">30</a>]</sup>), трекер порождает неограниченный <em>физический опыт</em>: контактные, человекоподобные rollout-ы, в которых наблюдаема каждая скрытая переменная.</p>
+  </div>
+  <div class="body three">
+    <div class="card">
+      <span class="k">В1 · КОНТРАКТ</span>
+      <h4>Плотный референс — правильный интерфейс?</h4>
+      <p>Сегодня WBC ждёт полную позу тела и движение базы на 50 Гц. Должна ли VLA выдавать суставные траектории — или только разреженное задание (ключевые звенья, путь, стиль), а тело дорисует что-то уровнем ниже?</p>
+    </div>
+    <div class="card">
+      <span class="k">В2 · ПОВЕДЕНИЕ</span>
+      <h4>Целевое, но естественное и устойчивое</h4>
+      <p>«Рука туда, идти с такой скоростью» — и при этом выглядеть по-человечески, выдержать толчок, встать самостоятельно. Кинематические генераторы пишут движение для идеализированного мира; трекер, слепо следующий за ними, не будет ни устойчивым, ни динамичным.</p>
+    </div>
+    <div class="card is-hl">
+      <span class="k">В3 · ОПЫТ — ГЛАВНЫЙ ВОПРОС</span>
+      <h4>Что делать с физическим опытом</h4>
+      <p>Силы, контакты, полезная нагрузка, рельеф и отказы, которых motion capture никогда не показывает, — в масштабе петабайт. Как превратить это в генераторы, оцениватели и контроллеры, которые остаются человекоподобными?</p>
+    </div>
+  </div>
+  <div class="foot callout result">
+    <div class="label">Тезис</div>
+    <p>WBC и симулятор — это <strong>движок</strong>, порождающий реализуемое человекоподобное движение вместе с его скрытым состоянием. Генерация, оценивание и управление — его потребители, и связывает их одно многообразие человеческих движений, выученное flow matching на этом выходе, а не на копиях motion capture.</p>
+  </div>
+</div>
+</section>
+
+<!-- ============ 3. LANDSCAPE ============ -->
+<section class="slide" data-name="Ландшафт">
+<div class="slide-inner">
+  <div class="head">
+    <div class="eyebrow"><span class="sec">2 · И что дальше?</span><span class="right">Кто что делает</span></div>
+    <h2><span class="n">2</span>Слой между заданием и трекером остаётся открытым</h2>
+  </div>
+  <div class="body" style="grid-template-columns: 1fr">
+  <div class="table-wrap">
+  <table>
+    <thead><tr><th>Система</th><th>Источник референса</th><th>Реагирует на состояние робота</th><th>Физика в контуре</th><th>Разреженное задание</th><th>Примечание</th></tr></thead>
+    <tbody>
+      <tr><td class="k">NVIDIA GR00T-WholeBodyControl<sup class="cite">[<a href="#ref-grootwbc2026">16</a>]</sup></td><td>Трекер SONIC + кинематический планировщик / VR-телеоперация / клипы VLA</td><td class="no">нет — разомкнутый планировщик</td><td class="no">нет</td><td class="yes">да</td><td>Ближайший промышленный аналог; планировщик не видит робота</td></tr>
+      <tr><td class="k">Figure Helix 02<sup class="cite">[<a href="#ref-figure2026helix02">5</a>]</sup></td><td>S2 → зрительно-моторная S1 → S0 WBC</td><td class="part">S1 частично</td><td class="no">—</td><td class="yes">да</td><td>Закрытая система; нотация S0 / S1 / S2, которую мы заимствуем</td></tr>
+      <tr><td class="k">Kimodo · ARDY · MotionBricks<sup class="cite">[<a href="#ref-rempe2026kimodo">19</a>, <a href="#ref-zhao2026ardy">26</a>, <a href="#ref-wang2026motionbricks">24</a>]</sup></td><td>Кинематические генераторы (текст / ограничения)</td><td class="no">нет</td><td class="no">без объекта</td><td class="yes">да</td><td>Отличные данные; клип пишется до физики</td></tr>
+      <tr><td class="k">Control Operators (Ubisoft)<sup class="cite">[<a href="#ref-gou2025controloperators">7</a>]</sup></td><td>Flow matching в игровом анимационном pipeline</td><td class="no">нет</td><td class="no">нет</td><td class="yes">да</td><td>Архитектурное вдохновение для нашего генератора</td></tr>
+      <tr><td class="k">CLoSD · GPC · ADAPT (Пенг и др.)<sup class="cite">[<a href="#ref-tevet2025closd">23</a>, <a href="#ref-shi2026gpc">21</a>, <a href="#ref-adapt2026">31</a>]</sup></td><td>Генеративный планировщик, замкнутый на трекер</td><td class="yes">да</td><td class="yes">да (симулируемые персонажи)</td><td class="yes">да</td><td>Верная идея; без робота и бортового бюджета</td></tr>
+      <tr><td class="k">LYRIC · WholeBodyWAM · RECAL (сент. 2026)<sup class="cite">[<a href="#ref-lyric2026">32</a>, <a href="#ref-wam2026">33</a>, <a href="#ref-recal2026">34</a>]</sup></td><td>Разреженный план + дообученный нижний контроллер / WAM, заземлённая в команды WBC</td><td class="part">частично</td><td class="part">на дообучении</td><td class="yes">да</td><td>Граница вокруг контроллера стала главной задачей проектирования</td></tr>
+      <tr class="hl"><td class="k">Предлагается: Motion Layer (S<sub>0.5</sub>) + фиксированный WBC</td><td>Разреженное задание ⊕ история проприоцепции → референс WBC</td><td class="yes">да, 50 Гц</td><td class="yes">да — обучение на rollout-ах с WBC в контуре</td><td class="yes">да</td><td>~12M параметров, на ARM CPU G1 рядом с трекером</td></tr>
+    </tbody>
+  </table>
+  </div>
+  </div>
+  <p class="foot small muted">Смежное: motion priors AMP / ASE, SMP, PFM-HR, CMP, HMP<sup class="cite">[<a href="#ref-peng2021amp">17</a>, <a href="#ref-peng2022ase">18</a>, <a href="#ref-mu2025smp">14</a>, <a href="#ref-gao2026pfmhr">6</a>, <a href="#ref-mo2026cmp">13</a>, <a href="#ref-belli2026hmp">1</a>]</sup> · восстановление StableMimic<sup class="cite">[<a href="#ref-stablemimic2026">35</a>]</sup> · навигация с фиксированным контроллером RoM-Nav<sup class="cite">[<a href="#ref-romnav2026">36</a>]</sup> · flow-политики с ограничениями ActSafeGuard, TraceFlow<sup class="cite">[<a href="#ref-actsafeguard2026">37</a>, <a href="#ref-traceflow2026">38</a>]</sup>.</p>
+</div>
+</section>
+
+<!-- ============ 4. INSTRUMENTS ============ -->
+<section class="slide" data-name="Инструменты">
+<div class="slide-inner">
+  <div class="head">
+    <div class="eyebrow"><span class="sec">3 · Инструменты</span><span class="right">Один движок, одна нить, один стек</span></div>
+    <h2><span class="n">3</span>Инструменты</h2>
+  </div>
+  <div class="body two" style="grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr)">
+    <div class="cell text stack-cards">
+      <div class="card is-hl">
+        <span class="k">I · ДВИЖОК</span>
+        <h4>Симулятор + фиксированный WBC как источник физического опыта</h4>
+        <p>Каждый rollout несёт то, чего робот никогда не наблюдает, — силы, моменты, полезную нагрузку, трение, рельеф — плюс отказы, которых нет в motion capture. Контроллер в контуре, с той же рандомизацией и шумом датчиков, что и при обучении трекера.<sup class="cite">[<a href="#ref-zakka2026mjlab">25</a>, <a href="#ref-newton">30</a>]</sup></p>
+      </div>
+      <div class="card is-hl">
+        <span class="k">II · СКВОЗНАЯ НИТЬ</span>
+        <h4>Многообразие человеческих движений, выученное flow matching</h4>
+        <p>Одна модель в трёх ролях: <em>генератор</em> (авторегрессионный / латентный flow), <em>приор</em> (стоимость для RL, IK и сэмплирующих планировщиков), <em>обусловливание</em> для оценивателей и VLA.<sup class="cite">[<a href="#ref-lipman2022flow">11</a>, <a href="#ref-gou2025controloperators">7</a>, <a href="#ref-shi2024amdm">20</a>, <a href="#ref-mu2025smp">14</a>]</sup> Обучается на rollout-ах движка — на движениях, которые робот способен реализовать, а не только на тех, что выполнил человек.</p>
+      </div>
+      <div class="card">
+        <span class="k">III · СУПЕРВИЗИЯ ЛАТЕНТНЫХ ПЕРЕМЕННЫХ</span>
+        <h4>Потоковые оцениватели и плотные представления</h4>
+        <p>Привилегированные переменные симулятора становятся целями для бортовых оценивателей; плотные соответствия человек→робот<sup class="cite">[<a href="#ref-umr2026">27</a>]</sup> позволяют движку поглощать человеческие данные без ретаргетинга под каждого робота.</p>
+      </div>
+    </div>
+    <div class="cell media">
+      <svg class="stack" viewBox="0 0 700 470" role="img" aria-label="Стек: VLA и телеоперация, Motion Layer, WBC, симулятор или робот, оцениватели латентных переменных, возвращающие латенты и проприоцепцию наверх">
+        <defs>
+          <marker id="sah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="arrow-head"/></marker>
+          <marker id="sahb" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="arrow-head-hl"/></marker>
+        </defs>
+        <rect x="90" y="8" width="380" height="60" rx="6" class="f-dim" stroke-width="1.5"/>
+        <text x="104" y="27" class="t-id">S2 / S1</text><text x="458" y="27" text-anchor="end" class="t-id">5–200 Гц</text>
+        <text x="280" y="44" text-anchor="middle" class="t">VLA · телеоперация</text>
+        <text x="280" y="60" text-anchor="middle" class="t-sub">→ разреженные ограничения: SE(3), путь, стиль, маски ключевых звеньев</text>
+        <path d="M280,68 L280,84" class="arrow" marker-end="url(#sah)"/>
+        <rect x="90" y="86" width="380" height="66" rx="6" class="f-hl" stroke-width="1.8"/>
+        <text x="104" y="105" class="t-id">S0.5</text><text x="458" y="105" text-anchor="end" class="t-id">50–200 Гц</text>
+        <text x="280" y="122" text-anchor="middle" class="t">Генеративный Motion Layer</text>
+        <text x="280" y="139" text-anchor="middle" class="t-sub">задание ⊕ проприо ⊕ латенты (⊕ зрение) → референс WBC · Н1</text>
+        <path d="M280,152 L280,168" class="arrow" marker-end="url(#sah)"/>
+        <rect x="90" y="170" width="380" height="60" rx="6" class="f-box" stroke-width="1.5"/>
+        <text x="104" y="189" class="t-id">S0</text><text x="458" y="189" text-anchor="end" class="t-id">50–500 Гц</text>
+        <text x="280" y="206" text-anchor="middle" class="t">Фиксированный унифицированный WBC</text>
+        <text x="280" y="222" text-anchor="middle" class="t-sub">референс → PD-цели · любой современный трекер</text>
+        <path d="M280,230 L280,246" class="arrow" marker-end="url(#sah)"/>
+        <rect x="90" y="248" width="380" height="56" rx="6" class="f-box" stroke-width="1.5"/>
+        <text x="104" y="267" class="t-id">объект</text>
+        <text x="280" y="282" text-anchor="middle" class="t">Симулятор / робот</text>
+        <text x="280" y="297" text-anchor="middle" class="t-sub">проприо · камеры · (в симуляции: все привилегированные переменные)</text>
+        <path d="M280,304 L280,320" class="arrow" marker-end="url(#sah)"/>
+        <rect x="90" y="322" width="380" height="66" rx="6" class="f-hl" stroke-width="1.8"/>
+        <text x="104" y="341" class="t-id">оцен.</text><text x="458" y="341" text-anchor="end" class="t-id">50–200 Гц</text>
+        <text x="280" y="358" text-anchor="middle" class="t">Оцениватели латентных переменных</text>
+        <text x="280" y="375" text-anchor="middle" class="t-sub">проприо (⊕ камера) → контакты · усилия · нагрузка · карта высот · Н2</text>
+        <path d="M470,355 L520,355 L520,200" class="arrow-hl" stroke-dasharray="4 3"/>
+        <path d="M520,200 L470,200" class="arrow-hl" stroke-dasharray="4 3" marker-end="url(#sahb)"/>
+        <path d="M520,200 L520,119" class="arrow-hl" stroke-dasharray="4 3"/>
+        <path d="M520,119 L470,119" class="arrow-hl" stroke-dasharray="4 3" marker-end="url(#sahb)"/>
+        <path d="M520,119 L520,38" class="arrow-hl" stroke-dasharray="4 3"/>
+        <path d="M520,38 L470,38" class="arrow-hl" stroke-dasharray="4 3" marker-end="url(#sahb)"/>
+        <text x="540" y="196" class="t-lab-hl" transform="rotate(-90 540 196)" text-anchor="middle">латенты: силы · высота робота · локальная карта высот</text>
+        <text x="556" y="196" class="t-lab-hl" transform="rotate(-90 556 196)" text-anchor="middle">+ измеримая проприо: суставы · IMU · …</text>
+        <path d="M90,276 L40,276 L40,119" class="arrow" stroke-dasharray="4 3"/>
+        <path d="M40,119 L90,119" class="arrow" stroke-dasharray="4 3" marker-end="url(#sah)"/>
+        <path d="M40,276 L40,355 L90,355" class="arrow" stroke-dasharray="4 3" marker-end="url(#sah)"/>
+        <text x="14" y="200" class="t-lab" transform="rotate(-90 14 200)" text-anchor="middle">rollout-ы = обучающие данные</text>
+        <text x="280" y="420" text-anchor="middle" class="t-sub">Оцениватели стоят после объекта; латенты + измеримая проприоцепция возвращаются в WBC, Motion Layer и VLA.</text>
+        <text x="280" y="438" text-anchor="middle" class="t-sub">Имена слоёв — по нотации Helix 02 от Figure (S0 / S1 / S2): пример разбиения современных стеков, а не шаблон.</text>
+      </svg>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- ============ 5. D1 MOTION LAYER ============ -->
+<section class="slide wide" data-name="Н1 · Motion Layer">
+<div class="slide-inner">
+  <div class="head">
+    <div class="eyebrow"><span class="sec">4 · Направления</span><span class="right">Н1 · Генеративный Motion Layer</span></div>
+    <h2><span class="n">4.1</span>Генеративный Motion Layer: реактивный генератор как интерфейс к фиксированному WBC</h2>
+  </div>
+  <div class="body two media-heavy" data-fit-cols data-media-side="right">
+    <div class="cell text">
+      <p>Компактная латентная модель на flow matching отображает <strong>разреженное задание</strong> (скорость, стиль, путевые точки, ключевые звенья) и короткую <strong>историю проприоцепции</strong> в следующий референс WBC — на частоте трекера, при фиксированном трекере; в нотации Helix это слой S<sub>0.5</sub>.</p>
+      <ul>
+        <li><strong>Обучение на движке.</strong> Метки берутся из собственного буфера rollout-ов трекера; неотслеживаемые сегменты отсекаются в симуляции. Генератор выучивает то, что WBC действительно способен исполнить.</li>
+        <li><strong>Один интерфейс</strong> для номинального движения, восстановления и локоманипуляции — восстановление генерируется, а не переключается автоматом.</li>
+        <li><strong>Фиксированный контракт WBC.</strong> Джойстик, телеоперация, чанки VLA или клипы меняются выше по стеку без переобучения трекера.</li>
+      </ul>
+      <div class="callout result">
+        <div class="label">Статус · proof of concept, сентябрь 2026</div>
+        <p>~12M параметров · обучение на подмножествах BONES-SEED и LAFAN<sup class="cite">[<a href="#ref-bones2026">2</a>, <a href="#ref-harvey2020lafan">8</a>]</sup> · ходьба / бег / спринт / присед, восстановление после мягких и сильных возмущений · работает вместе с WBC на <strong>ARM CPU G1 на 50 Гц</strong> и в браузере.</p>
+      </div>
+      <p class="small muted" style="margin-top:0.6em">Дальше: команды на локоманипуляцию и ключевые звенья под возмущениями; семейство генераторов с action chunking; канал глубины / карты высот. Подробное описание: <a href="https://simeon-ned.github.io/drafts/motion-layer/ru.html" target="_blank" rel="noopener">предложение Motion Layer</a>.</p>
+    </div>
+    <div class="cell media">
+      <div class="media-row" data-fit>
+        <figure><div class="player" data-ar="0.521"><video muted loop playsinline preload="metadata"><source src="assets/videos/walking_running_crouching.mp4" type="video/mp4"></video></div><figcaption>Ходьба, бег, спринт, ходьба на корточках — по команде на скорость и стиль.</figcaption></figure>
+        <figure><div class="player" data-ar="0.521"><video muted loop playsinline preload="metadata"><source src="assets/videos/agile_disturbance.mp4" type="video/mp4"></video></div><figcaption>Мягкое возмущение: податливость только по проприоцепции — без измерения силы.</figcaption></figure>
+        <figure><div class="player" data-ar="0.521"><video muted loop playsinline preload="metadata"><source src="assets/videos/hard_disturbance.mp4" type="video/mp4"></video></div><figcaption>Сильное возмущение: человекоподобное восстановление, сгенерированное той же моделью.</figcaption></figure>
+      </div>
+      <figcaption style="text-align:center">Одна модель генерирует референсы; один фиксированный WBC их отслеживает. Unitree G1, бортовой CPU.</figcaption>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- ============ 6. LIVE DEMO: GENERATOR ============ -->
+<section class="slide wide" data-name="Демо: генератор">
+<div class="slide-inner">
+  <div class="head">
+    <div class="eyebrow"><span class="sec">4 · Направления</span><span class="right">Живое демо · генератор + фиксированный WBC</span></div>
+    <h2><span class="n">4.1</span>Интерактив: управляйте Motion Layer, толкните робота</h2>
+  </div>
+  <div class="body demo" data-fit-cols data-media-side="left" data-text-min="17">
+    <div class="cell media">
+      <div class="media-row" data-fit>
+        <figure><div class="frame-wrap" data-ar="1.7" data-frame data-src="https://wbc-mjlab.github.io/wbc-demo/?mode=gen&amp;hud=off&amp;pad=on&amp;lock=gen"><div class="frame-note" data-click-note="кликните внутри окна, чтобы запустить симуляцию, — затем управляйте клавишами или экранным падом">загрузка генератора + WBC (WASM / ONNX) … рекомендуется Chrome на ПК</div></div></figure>
+      </div>
+    </div>
+    <div class="cell text">
+      <p class="small">Генератор и контроллер всего тела работают вместе прямо на странице. Поуправляйте, затем потяните робота, чтобы приложить усилие, и посмотрите, как восстановление <em>генерируется</em>.</p>
+      <ul class="keys">
+        <li><span class="kbd">W</span><span class="kbd">S</span><span>ходьба вперёд / назад</span></li>
+        <li><span class="kbd">Q</span><span class="kbd">E</span><span>страф · <span class="kbd">A</span><span class="kbd">D</span> поворот</span></li>
+        <li><span class="kbd">⇧</span><span class="kbd">␣</span><span>бег · присед</span></li>
+        <li><span class="kbd">мышь</span><span>потяните робота, чтобы толкнуть; перетащите фон, чтобы вращать камеру</span></li>
+        <li><span class="kbd">R</span><span>сброс позы</span></li>
+      </ul>
+      <p class="small muted">Прототип — Chrome на ПК и Android. <a href="https://wbc-mjlab.github.io/wbc-demo/?mode=gen&amp;hud=off&amp;pad=on&amp;lock=gen" target="_blank" rel="noopener">Открыть на весь экран</a>.</p>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- ============ 7. D2 LATENT ESTIMATORS ============ -->
+<section class="slide" data-name="Н2 · Оцениватели латентных переменных">
+<div class="slide-inner">
+  <div class="head">
+    <div class="eyebrow"><span class="sec">4 · Направления</span><span class="right">Н2 · Оцениватели латентных переменных · совместно с Антоном Чаплыгиным</span></div>
+    <h2><span class="n">4.2</span>Оцениватели латентных переменных: движок отдаёт каждую скрытую величину бесплатно</h2>
+    <p class="lede">Симуляционные rollout-ы несут метки, которых робот никогда не видит. Потоковые оцениватели, обученные на том же буфере, превращают их в бортовые сигналы для WBC, Motion Layer и VLA.</p>
+  </div>
+  <div class="body three">
+      <div class="card">
+        <span class="k">A · СИГНАЛЫ</span>
+        <h4>Контакт · внешнее усилие · скорость</h4>
+        <p>Уверенность в контакте, внешний винт сил и остатки скорости базы по истории проприоцепции — с обусловливанием тем же латентом многообразия движений, что и у генератора.</p>
+      </div>
+      <div class="card is-hl">
+        <span class="k">B · РЕЛЬЕФ ПО ЗРЕНИЮ</span>
+        <h4>Карта высот как латентная переменная</h4>
+        <p>Обучаем WBC, учитывающий рельеф, с привилегированной картой высот; оцениватель на тех же rollout-ах восстанавливает её из канала глубины. Трекер и Motion Layer потребляют оценку — без отдельного стека построения карт.</p>
+      </div>
+      <div class="card">
+        <span class="k">C · ПАРАМЕТРЫ · ПОЗЖЕ</span>
+        <h4>Параметры объекта из взаимодействия</h4>
+        <p>Те же rollout-ы размечают полезную нагрузку, трение и состояние приводов; физически согласованные оценки по проприоцепции — когда локоманипуляция с предметами будет на роботе.</p>
+      </div>
+  </div>
+  <p class="foot small muted">Оценивание — это то, как верхние слои узнают об объекте: смена нагрузки или скользкий пол становятся входом для обусловливания, а не неожиданностью.</p>
+</div>
+</section>
+
+<!-- ============ 8. D3 VLA ============ -->
+<section class="slide wide" data-name="Н3 · Реактивная VLA">
+<div class="slide-inner">
+  <div class="head">
+    <div class="eyebrow"><span class="sec">4 · Направления</span><span class="right">Н3 · Модальности и реактивность VLA · со студентами Иннополиса</span></div>
+    <h2><span class="n">4.3</span>Дополнительные модальности и реактивность VLA</h2>
+    <p class="lede">Сегодняшние VLA выдают чанки действий разомкнуто на 5–10 Гц; тело остаётся контроллеру, которому никто не сообщил, что предполагал план.</p>
+  </div>
+  <div class="body" style="grid-template-columns: 1fr; grid-template-rows: auto minmax(0, 1fr)">
+    <div class="three">
+
+      <div class="card is-hl">
+                <h4>Разреженное задание на входе — отслеживаемое тело на выходе</h4>
+        <p>VLA выдаёт цели для ключевых звеньев, пути и стиль; Motion Layer дорисовывает тело с учётом состояния на 50 Гц. Полные суставные траектории от фундаментальной модели не нужны и не устойчивы — WholeBodyWAM и LYRIC сходятся к той же границе.<sup class="cite">[<a href="#ref-wam2026">33</a>, <a href="#ref-lyric2026">32</a>]</sup></p>
+      </div>
+      <div class="card is-hl">
+                <h4>Больше модальностей, быстрее контур</h4>
+        <p>Обусловливаем быстрый зрительно-моторный слой проприоцепцией, оценками контактов / усилий / латентов (Н2) и состоянием слежения генератора; подстраиваем длину чанка под неопределённость; направляем фиксированную flow-политику траекториями успехов и отказов.<sup class="cite">[<a href="#ref-figure2026helix02">5</a>, <a href="#ref-traceflow2026">38</a>]</sup> Многообразие движений — его приор на действия.</p>
+      </div>
+      <div class="card">
+                <h4>Движок как фабрика данных для VLA</h4>
+        <p>Физически согласованные размеченные траектории всего тела — контакты, восстановления, смены стиля, локоманипуляция — вместо кинематических ретаргетов.</p>
+      </div>
+    </div>
+    <div class="cell media">
+      <div class="media-row" data-fit>
+        <figure><div class="player" data-ar="1.0"><video muted loop playsinline preload="metadata"><source src="assets/videos/case-hyundai.mp4" type="video/mp4"></video></div><figcaption>Hyundai — сборка автокузовов: peg-in-hole под контактом с учётом усилий, RL обучен полностью в Isaac, деплой на заводскую линию.</figcaption></figure>
+        <figure><div class="player" data-ar="1.0"><video muted loop playsinline preload="metadata"><source src="assets/videos/case-lselectric.mp4" type="video/mp4"></video></div><figcaption>LS Electric — сборка автомата с wrist-камерой: world models для контактной динамики, VLA-политики на демонстрациях, ретаргетинг с ручных устройств.</figcaption></figure>
+        <figure><div class="player" data-ar="1.119"><video muted loop playsinline preload="metadata"><source src="assets/videos/case-kaistbonn.mp4" type="video/mp4"></video></div><figcaption>KAIST × Bonn — гиперреалистичная телеоперация: ретаргетинг с VR-шлема, force / tactile feedback, 4K-поток с низкой задержкой, конфигурация, близкая к гуманоиду.</figcaption></figure>
+        <figure><div class="player" data-ar="1.0"><video muted loop playsinline preload="metadata"><source src="assets/videos/case-ooju.mp4" type="video/mp4"></video></div><figcaption>OOJU — G1 + Galaxea: VR-телеоперация и сбор демонстраций для обучения роботов и foundation-моделей; мобильная манипуляция в аэропорту Чанги вместе с NTU.</figcaption></figure>
+      </div>
+      <figcaption style="text-align:center">Промышленные и партнёрские кейсы, из которых растёт линия VLA: каждый — источник разреженного задания для Motion Layer и контактных данных для движка.</figcaption>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- ============ 9. ROADMAP ============ -->
+<section class="slide" data-name="Дорожная карта">
+<div class="slide-inner">
+  <div class="head">
+    <div class="eyebrow"><span class="sec">5 · Дорожная карта</span><span class="right">сентябрь 2026 → май 2027</span></div>
+    <h2><span class="n">5</span>Дорожная карта</h2>
+  </div>
+  <div class="body four">
+    <div class="road-card is-now">
+      <header><span class="road-when">СЕЙЧАС · сентябрь–октябрь 2026</span><h3>Рабочий proof of concept</h3></header>
+      <ul>
+        <li>Motion Layer + фиксированный WBC на CPU G1 на 50 Гц; ходьба / бег / возмущения на железе.</li>
+        <li>Команды на локоманипуляцию и ключевые звенья под возмущениями; семейство генераторов с action chunking.</li>
+        <li>Потоковые оцениватели на том же буфере: контакт, усилие, скорость базы.</li>
+      </ul>
+    </div>
+    <div class="road-card">
+      <header><span class="road-when">2–3 МЕСЯЦА · к декабрю 2026</span><h3>Рабочий интерфейс</h3></header>
+      <ul>
+        <li>Естественное движение всего тела от джойстика, путевых точек, целей локоманипуляции или токенов VLA.</li>
+        <li>Перенос на целевого робота; генеративная полнотельная телеоперация по разреженным точкам, без кинематического ретаргетинга.</li>
+        <li><strong>WBC с учётом рельефа</strong>, обученный с привилегированной картой высот.</li>
+        <li>Первая интеграция с высокоуровневой VLA.</li>
+      </ul>
+    </div>
+    <div class="road-card">
+      <header><span class="road-when">3–8 МЕСЯЦЕВ · к маю 2027</span><h3>Зрение и расширение</h3></header>
+      <ul>
+        <li><strong>Камеры глубины в Motion Layer</strong> — локомоция по рельефу со зрением: лестницы, препятствия.</li>
+        <li><strong>Оцениватели на WBC с учётом рельефа</strong> восстанавливают карты высот из зрительного канала.</li>
+        <li>Автономные конвейеры генерации данных в симуляции; набор данных, на котором может обучаться VLA.</li>
+      </ul>
+    </div>
+    <div class="road-card">
+      <header><span class="road-when">ДАЛЬШЕ</span><h3>Обычное поведение</h3></header>
+      <ul>
+        <li>Контракт локоманипуляции с учётом рельефа между любым источником задания и трекером — в симуляции и на железе.</li>
+        <li>Симуляционная фабрика: привилегированные цели размечают контакты, восстановления и смены стиля, которых motion capture почти не покрывает.</li>
+        <li>Растить Motion Layer к S1 (зрение, языковые токены) или дистиллировать его в S0.</li>
+      </ul>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- ============ 10. WHAT I PROPOSE ============ -->
+<section class="slide" data-name="Что я предлагаю">
+<div class="slide-inner">
+  <div class="head">
+    <div class="eyebrow"><span class="sec">6 · Что я предлагаю</span><span class="right">Команда, партнёры, воронка</span></div>
+    <h2><span class="n">6</span>Что я предлагаю</h2>
+  </div>
+  <div class="body two-even">
+    <div class="card is-hl">
+      <span class="k">1 · КОМАНДА</span>
+      <h4>Небольшая команда, набранная быстро и точечно</h4>
+      <p>Сильные ребята из МФТИ, Иннополиса и Яндекса, которые уже доводят RL / control-код до железа. Команда достаточно мала, чтобы держать лимит WIP, и достаточно опытна, чтобы каждый вёл направление целиком.</p>
+    </div>
+    <div class="card is-hl">
+      <span class="k">2 · ЛАБОРАТОРИЯ</span>
+      <h4>Лаборатория в Университете Иннополис, компания — её единственный заказчик</h4>
+      <p>Создать лабораторию в Иннополисе или войти в партнёрство с ней; со стороны компании отвечаю я. Компания ставит задачи и владеет результатами; лаборатория даёт студентов, вычислительные ресурсы и академическую среду. Широкое академическое сотрудничество поддерживает ректор Александр Гасников.</p>
+    </div>
+    <div class="card is-hl">
+      <span class="k">3 · ПАРТНЁРЫ</span>
+      <h4>Неформальное сотрудничество с лабораторией KAIST</h4>
+      <p>Соавторы нашей работы по трекингу работают в KAIST: совместные публикации, общие бенчмарки, обмен опытом по трекингу и ретаргетингу — без договорных накладных расходов.</p>
+    </div>
+    <div class="card is-hl">
+      <span class="k">4 · ВОРОНКА</span>
+      <h4>Преподавание как воронка талантов</h4>
+      <p>Я старший преподаватель Университета Иннополис и уже веду там курсы. Профильные курсы по управлению роботами ровно с теми темами, которые нужны стеку, — RL для шагающих систем, управление всем телом, генеративное движение, инструменты симуляции, — а лучшие студенты идут на стажировки в профильные команды.</p>
+    </div>
+  </div>
+  <div class="foot callout">
+    <div class="label">Что получает компания за первый год</div>
+    <p class="small">Реактивный генеративный интерфейс между её высокоуровневыми моделями и WBC, работающий на CPU робота · оцениватели, которые делают объект и рельеф наблюдаемыми по проприоцепции и камерам · симуляционную фабрику данных для её VLA · команду и университетскую воронку, которые продолжают строить на том же движке.</p>
+  </div>
+</div>
+</section>
+
+<!-- ============ 11. TEAM & CULTURE ============ -->
+<section class="slide" data-name="Команда и культура">
+<div class="slide-inner">
+  <div class="head">
+    <div class="eyebrow"><span class="sec">7 · Команда и культура</span><span class="right">Как организована работа</span></div>
+    <h2><span class="n">7</span>Ориентация на результат: у каждого направления есть путь в продукт</h2>
+    <p class="lede">Мы не занимаемся исследованиями ради исследований — исследования должны двигать индустрию. Направление существует потому, что меняет то, на что способен робот; публикации следуют за результатами.</p>
+  </div>
+  <div class="body" style="grid-template-columns: 1fr; align-content: center">
+    <div>
+      <div class="flow">
+        <div class="flow-step"><span class="k">1 · ИДЕЯ</span><h4>Гипотеза</h4><p>Одна страница: утверждение, критерий «готово», абляция, которая может её убить.</p></div>
+        <div class="flow-arrow"><span>1 неделя</span></div>
+        <div class="flow-step is-hl"><span class="k">2 · СПРИНТ</span><h4>Proof of concept в симуляции</h4><p>Собирается за один спринт на общем движке. На ревью — оставить или закрыть.</p></div>
+        <div class="flow-arrow"><span>1–2 спринта</span></div>
+        <div class="flow-step is-hl"><span class="k">3 · ЖЕЛЕЗО</span><h4>Тот же артефакт на роботе</h4><p>ONNX + конфиг через модульный runtime, на собственном CPU робота.</p></div>
+        <div class="flow-arrow"><span>гейт</span></div>
+        <div class="flow-step"><span class="k">4 · ПРОДУКТ</span><h4>Интеграция</h4><p>Фиксированный контракт — интерфейс референса, пакет расширения, формат экспорта, — чтобы ничего не переписывать.</p></div>
+      </div>
+      <p class="flow-back">↩ что доехало до робота, становится новой возможностью движка · что оказалось новым, идёт на ICRA / IROS / RA-L / CoRL и по возможности в open source — побочный продукт, а не цель</p>
+      <div class="three">
+        <div class="card"><span class="k">КУЛЬТУРА</span><h4>Еженедельный дайджест статей</h4><p>Литературный радар на основе LLM собирает статьи недели; каждый член команды представляет одну с решением — внедрить, наблюдать или пропустить.</p></div>
+        <div class="card"><span class="k">КУЛЬТУРА</span><h4>PoC живут в спринтах и доезжают до железа</h4><p>Proof of concept укладывается в один спринт и заканчивается на роботе, а не в ноутбуке. Две активные ставки одновременно, общая доска и журнал экспериментов.</p></div>
+        <div class="card"><span class="k">ПРИНЦИП</span><h4>Переносимость между роботами</h4><p>Методы пишутся против MDP, не зависящего от робота; новая платформа — пакет расширения, а не форк.</p></div>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- ============ 12. REFERENCES ============ -->
+<section class="slide" data-name="Литература">
+<div class="slide-inner">
+  <div class="head">
+    <div class="eyebrow"><span class="sec">Литература</span><span class="right">трекеры · генераторы · приоры · недавнее</span></div>
+    <h2>Литература</h2>
+  </div>
+  <div class="body" style="grid-template-columns: 1fr">
+  <div class="refs"><ol>
+    <li id="ref-belli2026hmp">V. Belli, V. Modugno, E. Mingo Hoffman, F. Amadio. Learning Reusable Hybrid Motion Priors for Humanoid Locomotion from Motion Imitation. arXiv:2607.24083, 2026. <a href="https://arxiv.org/abs/2607.24083">link</a></li>
+    <li id="ref-bones2026">Bones Studio. BONES-SEED: Skeletal Everyday Embodiment Dataset. 2026. <a href="https://huggingface.co/datasets/bones-studio/seed">link</a></li>
+    <li id="ref-clavet2016motionmatching">S. Clavet. Motion Matching and the Road to Next-Gen Animation. GDC, 2016.</li>
+    <li id="ref-figure2025helix">Figure AI. Helix: A Vision-Language-Action Model for Generalist Humanoid Control. 2025. <a href="https://www.figure.ai/news/helix">link</a></li>
+    <li id="ref-figure2026helix02">Figure AI. Introducing Helix 02: Full-Body Autonomy. 2026. <a href="https://www.figure.ai/news/helix-02">link</a></li>
+    <li id="ref-gao2026pfmhr">Y. Gao et al. PFM-HR: Pose Flow Matching for Humanoid Robots. arXiv:2608.03227, 2026. <a href="https://arxiv.org/abs/2608.03227">link</a></li>
+    <li id="ref-gou2025controloperators">R. Gou, M. van de Panne, D. Holden. Control Operators for Interactive Character Animation. ACM TOG, 2025. <a href="https://doi.org/10.1145/3763319">link</a></li>
+    <li id="ref-harvey2020lafan">F. G. Harvey, M. Yurick, D. Nowrouzezahrai, C. Pal. Robust Motion In-Betweening (LAFAN1). ACM TOG, 2020.</li>
+    <li id="ref-holden2020lmm">D. Holden, O. Kanoun, M. Perepichka, T. Popa. Learned Motion Matching. ACM TOG, 2020. <a href="https://doi.org/10.1145/3386569.3392440">link</a></li>
+    <li id="ref-liao2025beyondmimic">Q. Liao et al. BeyondMimic: From Motion Tracking to Versatile Humanoid Control via Guided Diffusion. arXiv:2508.08241, 2025. <a href="https://arxiv.org/abs/2508.08241">link</a></li>
+    <li id="ref-lipman2022flow">Y. Lipman, R. T. Q. Chen, H. Ben-Hamu, M. Nickel, M. Le. Flow Matching for Generative Modeling. arXiv:2210.02747, 2022. <a href="https://arxiv.org/abs/2210.02747">link</a></li>
+    <li id="ref-sonic2025">Z. Luo et al. SONIC: Supersizing Motion Tracking for Natural Humanoid Whole-Body Control. arXiv:2511.07820, 2025. <a href="https://arxiv.org/abs/2511.07820">link</a></li>
+    <li id="ref-mo2026cmp">Y. Mo, Y. Gu, Y. Zhou, H. Cao, R. Xu. Learning Context-Aware Motion Priors for Humanoid Control. arXiv:2608.03234, 2026. <a href="https://arxiv.org/abs/2608.03234">link</a></li>
+    <li id="ref-mu2025smp">Y. Mu et al. SMP: Reusable Score-Matching Motion Priors for Physics-Based Character Control. arXiv:2512.03028, 2025. <a href="https://arxiv.org/abs/2512.03028">link</a></li>
+    <li id="ref-wbcmjlab">S. Nedelchev, A. Chaplygin, L. Kozlov, I. Domrachev. wbc-mjlab: Unified Whole-Body Motion Tracking on mjlab. 2026. <a href="https://wbc-mjlab.github.io/">project</a> · <a href="https://github.com/wbc-mjlab/wbc-mjlab">code</a></li>
+    <li id="ref-grootwbc2026">NVIDIA GEAR Team. GR00T-WholeBodyControl: Unified Platform for Humanoid Whole-Body Control. 2026. <a href="https://nvlabs.github.io/GR00T-WholeBodyControl/">link</a></li>
+    <li id="ref-peng2021amp">X. B. Peng, Z. Ma, P. Abbeel, S. Levine, A. Kanazawa. AMP: Adversarial Motion Priors for Stylized Physics-Based Character Control. ACM TOG, 2021. <a href="https://doi.org/10.1145/3450626.3459670">link</a></li>
+    <li id="ref-peng2022ase">X. B. Peng, Y. Guo, L. Halper, S. Levine, S. Fidler. ASE: Large-Scale Reusable Adversarial Skill Embeddings. ACM TOG, 2022. <a href="https://doi.org/10.1145/3528223.3530110">link</a></li>
+    <li id="ref-rempe2026kimodo">D. Rempe et al. Kimodo: Scaling Controllable Human Motion Generation. arXiv:2603.15546, 2026. <a href="https://arxiv.org/abs/2603.15546">link</a></li>
+    <li id="ref-shi2024amdm">Y. Shi, J. Wang, X. Jiang, B. Lin, B. Dai, X. B. Peng. Interactive Character Control with Auto-Regressive Motion Diffusion Models. ACM TOG, 2024.</li>
+    <li id="ref-shi2026gpc">Y. Shi, Y. Jiang, C. Tessler, X. B. Peng. GPC: Large-Scale Generative Pretraining for Transferable Motor Control. arXiv:2606.29148, 2026. <a href="https://arxiv.org/abs/2606.29148">link</a></li>
+    <li id="ref-zest2026">J.-P. Sleiman et al. ZEST: Zero-shot Embodied Skill Transfer for Athletic Robot Control. arXiv:2602.00401, 2026. <a href="https://arxiv.org/abs/2602.00401">link</a></li>
+    <li id="ref-tevet2025closd">G. Tevet et al. CLoSD: Closing the Loop between Simulation and Diffusion for Multi-Task Character Control. ICLR, 2025.</li>
+    <li id="ref-wang2026motionbricks">T. Wang et al. MotionBricks: Scalable Real-Time Motions with Modular Latent Generative Model and Smart Primitives. arXiv:2604.24833, 2026. <a href="https://arxiv.org/abs/2604.24833">link</a></li>
+    <li id="ref-zakka2026mjlab">K. Zakka, Q. Liao, B. Yi, L. Le Lay, K. Sreenath, P. Abbeel. mjlab: A Lightweight Framework for GPU-Accelerated Robot Learning. arXiv:2601.22074, 2026. <a href="https://arxiv.org/abs/2601.22074">link</a></li>
+    <li id="ref-zhao2026ardy">K. Zhao, M. Petrovich, H. Zhang, T. Wang, S. Tang, D. Rempe. ARDY: Autoregressive Diffusion with Hybrid Representation for Interactive Human Motion Generation. ACM TOG, 2026. <a href="https://doi.org/10.1145/3811284">link</a></li>
+    <li id="ref-umr2026">UMR: Unified Motion Retargeting via learned dense surface correspondence. arXiv:2609.02134, 2026. <a href="https://arxiv.org/abs/2609.02134">link</a></li>
+    <li id="ref-omnixtreme2026" value="29">OmniXtreme. arXiv:2602.23843, 2026. <a href="https://arxiv.org/abs/2602.23843">link</a></li>
+    <li id="ref-newton">NVIDIA / Linux Foundation. Newton: GPU-accelerated physics engine for robot learning; MuJoCo Warp. 2025–2026. <a href="https://github.com/newton-physics/newton">link</a></li>
+    <li id="ref-adapt2026">ADAPT: Agile Diffusion Action Priors for Robust and Steerable Online Text-Driven Humanoid Control. arXiv:2609.00677, 2026. <a href="https://arxiv.org/abs/2609.00677">link</a></li>
+    <li id="ref-lyric2026">Z. Han et al. LYRIC: Language-Driven Physics-Based Character Control for Contact-Rich Whole-Body Object Interaction. arXiv:2609.19688, 2026. <a href="https://arxiv.org/abs/2609.19688">link</a></li>
+    <li id="ref-wam2026">WholeBodyWAM: Generalizing Pre-trained World-Action Priors to Humanoid Loco-Manipulation via WBC-Grounded Coordination. arXiv:2609.16644, 2026. <a href="https://arxiv.org/abs/2609.16644">link</a></li>
+    <li id="ref-recal2026">RECAL: Collision-Aware Humanoid Whole-Body Control under Imperfect Tracking Targets. arXiv:2609.16405, 2026. <a href="https://arxiv.org/abs/2609.16405">link</a></li>
+    <li id="ref-stablemimic2026">StableMimic: Smooth Human-Like Recovery for Humanoid Motion Tracking. arXiv:2608.02385, 2026. <a href="https://arxiv.org/abs/2608.02385">link</a></li>
+    <li id="ref-romnav2026">RoM-Nav: Learning Safe Humanoid Navigation from Reduced Order Models. arXiv:2609.19272, 2026. <a href="https://arxiv.org/abs/2609.19272">link</a></li>
+    <li id="ref-actsafeguard2026">ActSafeGuard: Differentiable and Training-Aligned Constraint Enforcement for Flow-Matching Policies. arXiv:2609.11697, 2026. <a href="https://arxiv.org/abs/2609.11697">link</a></li>
+    <li id="ref-traceflow2026">TraceFlow: Guiding Frozen Flow-Matching Robot Policies with Success and Failure Traces. arXiv:2609.20646, 2026. <a href="https://arxiv.org/abs/2609.20646">link</a></li>
+    <li id="ref-psm2026">S. Nedelchev, Chaikovskaia, Davydenko, Zaliaev, Gorbachev. Predictive Style Matching: Natural and Robust Humanoid Locomotion. arXiv:2606.07083, 2026. <a href="https://arxiv.org/abs/2606.07083">paper</a> · <a href="https://simeon-ned.github.io/predictive-style-matching/">project</a></li>
+  
+  </ol></div>
+  </div>
+</div>
+</section>
+
+</div>
+
+<div class="chrome">
+  <div class="progress" id="progress"></div>
+  <button type="button" id="prev" aria-label="Предыдущий слайд">←</button>
+  <button type="button" id="next" aria-label="Следующий слайд">→</button>
+  <span class="name" id="slide-name"></span>
+  <span class="spacer"></span>
+  <a class="lang" href="index.html">EN</a>
+  <button type="button" id="mode" title="Переключить режим прокрутки (S)">прокрутка</button>
+  <span class="count" id="count"></span>
+</div>
+
+<script>
+(function () {
+  var slides = Array.prototype.slice.call(document.querySelectorAll(".slide"));
+  document.querySelectorAll(".frame-note").forEach(function (n) { n.dataset.orig = n.innerHTML; });
+  var n = slides.length, cur = -1;
+  var progress = document.getElementById("progress");
+  var count = document.getElementById("count");
+  var nameEl = document.getElementById("slide-name");
+  var body = document.body;
+
+  function scrollMode() { return body.classList.contains("mode-scroll"); }
+  function stacked() { return window.matchMedia("(max-width: 900px), (orientation: portrait)").matches; }
+  function outer(el) { var cs = getComputedStyle(el); return el.getBoundingClientRect().height + (parseFloat(cs.marginTop) || 0) + (parseFloat(cs.marginBottom) || 0); }
+
+  /* ---- fit a media row: every box keeps its aspect ratio; the row fills the cell's height or its width, whichever binds ---- */
+  function fitRow(row) {
+    var cell = row.closest(".cell") || row.parentNode;
+    var bodyEl = cell.closest(".body");
+    var boxes = Array.prototype.slice.call(row.querySelectorAll("[data-ar]"));
+    if (!boxes.length) return;
+    var gap = parseFloat(getComputedStyle(row).gap) || 0;
+    var cs = getComputedStyle(cell);
+    var sumAr = 0; boxes.forEach(function (b) { sumAr += parseFloat(b.dataset.ar); });
+    var gaps = gap * (boxes.length - 1);
+    var fitCols = bodyEl && bodyEl.hasAttribute("data-fit-cols") && !stacked() && !scrollMode();
+    if (bodyEl) bodyEl.style.gridTemplateColumns = "";
+    var cellW = cell.clientWidth - parseFloat(cs.paddingLeft) - parseFloat(cs.paddingRight);
+    var capH;
+    if (stacked() || scrollMode()) {
+      capH = window.innerHeight * 0.62;
+    } else {
+      var extra = 0;
+      Array.prototype.forEach.call(cell.children, function (ch) { if (ch !== row) extra += outer(ch); });
+      var capMax = 0;
+      boxes.forEach(function (b) { var c = b.parentNode.querySelector("figcaption"); if (c) capMax = Math.max(capMax, outer(c)); });
+      capH = cell.clientHeight - parseFloat(cs.paddingTop) - parseFloat(cs.paddingBottom) - extra - capMax - 2;
+    }
+    var h;
+    if (fitCols) {
+      // give the media column exactly the width it needs to fill the cell height; the text column takes the rest
+      var bcs = getComputedStyle(bodyEl);
+      var colGap = parseFloat(bcs.columnGap) || parseFloat(bcs.gap) || 0;
+      var bodyW = bodyEl.clientWidth;
+      var fs = parseFloat(getComputedStyle(document.body).fontSize);
+      var textMin = bodyEl.dataset.textMin ? parseFloat(bodyEl.dataset.textMin) * fs : 24 * fs;
+      var txt = bodyEl.querySelector(".cell.text");
+      var setCols = function (w) { bodyEl.style.gridTemplateColumns = bodyEl.dataset.mediaSide === "left" ? (w + "px minmax(0, 1fr)") : ("minmax(0, 1fr) " + w + "px"); };
+      var fits = function (w) { setCols(w); return !txt || txt.scrollHeight <= txt.clientHeight + 1; };
+      var hi = Math.min(capH * sumAr + gaps, bodyW - textMin - colGap);   // media at full height
+      var lo = Math.min(hi, Math.max(textMin, bodyW * 0.45));            // never squeeze media below ~half
+      var mediaW = hi;
+      if (!fits(hi)) {
+        // the text does not fit beside full-height media: find the widest media column at which it does
+        var a = lo, b = hi;
+        for (var k = 0; k < 7; k++) { var mid = (a + b) / 2; if (fits(mid)) a = mid; else b = mid; }
+        mediaW = fits(a) ? a : lo;
+      }
+      setCols(mediaW);
+      h = (mediaW - gaps) / sumAr;
+    } else {
+      var widthBound = (cellW - gaps) / sumAr;
+      h = Math.min(capH, widthBound);
+    }
+    h = Math.max(100, h);
+    if (stacked() && h < capH * 0.6 && boxes.length > 1) {
+      boxes.forEach(function (b) { var ar = parseFloat(b.dataset.ar); var w = Math.min(cellW, capH * ar); b.style.width = w + "px"; b.style.height = (w / ar) + "px"; });
+      return;
+    }
+    boxes.forEach(function (b) { var ar = parseFloat(b.dataset.ar); b.style.height = h + "px"; b.style.width = (h * ar) + "px"; });
+  }
+  function fitAll(slide) {
+    (slide || document).querySelectorAll("[data-fit]").forEach(fitRow);
+  }
+
+  function loadFrame(slide) {
+    slide.querySelectorAll("[data-frame]").forEach(function (w) {
+      if (w.querySelector("iframe")) return;
+      if (scrollMode() && !w.classList.contains("is-armed")) {
+        var note0 = w.querySelector(".frame-note");
+        if (note0) { note0.innerHTML = "кликните, чтобы запустить живую симуляцию"; }
+        w.style.cursor = "pointer";
+        w.onclick = function () { w.classList.add("is-armed"); w.onclick = null; w.style.cursor = ""; loadFrame(slide); };
+        return;
+      }
+      var f = document.createElement("iframe");
+      f.title = "живое демо";
+      f.setAttribute("allow", "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; fullscreen");
+      f.setAttribute("allowfullscreen", "");
+      f.addEventListener("load", function () {
+        var note = w.querySelector(".frame-note");
+        if (note && note.dataset.clickNote) { note.textContent = note.dataset.clickNote; w.classList.add("needs-click"); }
+        else { w.classList.add("is-loaded"); }
+      });
+      f.src = w.getAttribute("data-src");
+      w.appendChild(f);
+    });
+  }
+  function unloadFrame(slide) {
+    slide.querySelectorAll("[data-frame]").forEach(function (w) {
+      w.classList.remove("is-armed", "needs-click", "is-loaded"); w.onclick = null; w.style.cursor = "";
+      var note = w.querySelector(".frame-note");
+      if (note && note.dataset.orig) note.innerHTML = note.dataset.orig;
+      var f = w.querySelector("iframe");
+      if (f) { f.src = "about:blank"; w.removeChild(f); }
+    });
+  }
+  function playVideos(slide) {
+    slide.querySelectorAll("video").forEach(function (v) { v.muted = true; var p = v.play(); if (p && p.catch) p.catch(function () {}); });
+  }
+  function pauseVideos(slide) { slide.querySelectorAll("video").forEach(function (v) { v.pause(); }); }
+
+  function go(i, push) {
+    i = Math.max(0, Math.min(n - 1, i));
+    if (i === cur) return;
+    if (cur >= 0 && !scrollMode()) { slides[cur].classList.remove("is-active"); unloadFrame(slides[cur]); pauseVideos(slides[cur]); }
+    cur = i;
+    var s = slides[cur];
+    s.classList.add("is-active");
+    if (!scrollMode()) { s.scrollTop = 0; fitAll(s); loadFrame(s); playVideos(s); }
+    else { s.scrollIntoView({ block: "start" }); }
+    progress.style.width = ((cur + 1) / n * 100) + "%";
+    count.textContent = (cur + 1) + " / " + n;
+    nameEl.textContent = s.getAttribute("data-name") || "";
+    if (push !== false) { history.replaceState(null, "", "#/" + cur); }
+  }
+  function fromHash() {
+    var m = location.hash.match(/^#\/(\d+)/);
+    if (m) { go(parseInt(m[1], 10), false); return true; }
+    return false;
+  }
+
+  document.getElementById("prev").addEventListener("click", function () { go(cur - 1); });
+  document.getElementById("next").addEventListener("click", function () { go(cur + 1); });
+  document.getElementById("mode").addEventListener("click", toggleMode);
+
+  function toggleMode() {
+    var to = !scrollMode();
+    if (to) {
+      body.classList.add("mode-scroll");
+      slides.forEach(function (s) { s.classList.add("is-active"); });
+      fitAll();
+      slides.forEach(function (s) { loadFrame(s); playVideos(s); });
+      document.getElementById("mode").textContent = "слайды";
+      slides[cur].scrollIntoView({ block: "start" });
+    } else {
+      body.classList.remove("mode-scroll");
+      slides.forEach(function (s, i) { if (i !== cur) { s.classList.remove("is-active"); unloadFrame(s); pauseVideos(s); } });
+      document.getElementById("mode").textContent = "прокрутка";
+      window.scrollTo(0, 0);
+      fitAll(slides[cur]);
+    }
+  }
+
+  document.addEventListener("keydown", function (e) {
+    if (e.metaKey || e.ctrlKey || e.altKey) return;
+    var t = e.target;
+    if (t && (t.tagName === "INPUT" || t.tagName === "TEXTAREA" || t.isContentEditable)) return;
+    switch (e.key) {
+      case "ArrowRight": case "PageDown": case " ": case "Enter": if (scrollMode() && e.key !== "PageDown") return; e.preventDefault(); go(cur + 1); break;
+      case "ArrowLeft": case "PageUp": case "Backspace": if (scrollMode() && e.key !== "PageUp") return; e.preventDefault(); go(cur - 1); break;
+      case "Home": e.preventDefault(); go(0); break;
+      case "End": e.preventDefault(); go(n - 1); break;
+      case "s": case "S": e.preventDefault(); toggleMode(); break;
+    }
+  });
+
+  document.addEventListener("click", function (e) {
+    var a = e.target.closest && e.target.closest("a[href^='#']");
+    if (!a) return;
+    var h = a.getAttribute("href");
+    var m = h.match(/^#\/(\d+)$/);
+    if (m) { e.preventDefault(); go(parseInt(m[1], 10)); return; }
+    if (h.indexOf("#ref-") === 0) {
+      e.preventDefault();
+      var el = document.querySelector(h);
+      if (!el) return;
+      go(slides.indexOf(el.closest(".slide")));
+      el.scrollIntoView({ block: "center" });
+      history.replaceState(null, "", h);
+    }
+  });
+
+  var tx = null, ty = null;
+  document.addEventListener("touchstart", function (e) { if (e.touches.length === 1) { tx = e.touches[0].clientX; ty = e.touches[0].clientY; } }, { passive: true });
+  document.addEventListener("touchend", function (e) {
+    if (tx === null || scrollMode()) return;
+    var dx = e.changedTouches[0].clientX - tx, dy = e.changedTouches[0].clientY - ty;
+    if (Math.abs(dx) > 60 && Math.abs(dx) > Math.abs(dy) * 1.5 && !e.target.closest("iframe")) go(dx < 0 ? cur + 1 : cur - 1);
+    tx = ty = null;
+  }, { passive: true });
+
+  window.addEventListener("blur", function () {
+    setTimeout(function () {
+      var a = document.activeElement;
+      if (a && a.tagName === "IFRAME") { var w = a.closest("[data-frame]"); if (w) { w.classList.remove("needs-click"); w.classList.add("is-loaded"); } }
+    }, 0);
+  });
+  var rt;
+  function refit() { fitAll(scrollMode() ? null : slides[cur]); }
+  window.addEventListener("resize", function () { clearTimeout(rt); rt = setTimeout(refit, 80); });
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(refit);
+  window.addEventListener("hashchange", fromHash);
+  if (!fromHash()) go(0);
+})();
+</script>
+</body>
+</html>
